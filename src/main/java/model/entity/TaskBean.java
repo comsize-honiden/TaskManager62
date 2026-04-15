@@ -85,5 +85,26 @@ public class TaskBean {
 	public void setUpdateDatetime(Timestamp updateDatetime) {
 		this.updateDatetime = updateDatetime;
 	}
+	
+	@Override
+	public boolean equals(Object updateTaskObj) {
+		
+		TaskBean updateTask = (TaskBean)updateTaskObj;
+		
+		if (
+			this.taskName.equals(updateTask.getTaskName()) &&
+			this.categoryId == updateTask.getCategoryId() &&
+			this.limitDate.compareTo(updateTask.getLimitDate()) == 0 &&
+			this.statusCode.equals(updateTask.getStatusCode()) &&
+			this.memo.equals(updateTask.equals(updateTask.getMemo()))
+			
+			
+				) 
+		{
+			
+			
+		}
+		
+	}
 
 }
