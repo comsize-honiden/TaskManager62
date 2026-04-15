@@ -1,6 +1,5 @@
 package model.entity;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class TaskBean {
@@ -11,8 +10,6 @@ public class TaskBean {
 	private String userId;
 	private String statusCode;
 	private String memo;
-	private Timestamp createDatetime;
-	private Timestamp updateDatetime;
 
 	public int getTaskId() {
 		return taskId;
@@ -68,22 +65,6 @@ public class TaskBean {
 
 	public void setMemo(String memo) {
 		this.memo = memo;
-	}
-
-	public Timestamp getCreateDatetime() {
-		return createDatetime;
-	}
-
-	public void setCreateDatetime(Timestamp createDatetime) {
-		this.createDatetime = createDatetime;
-	}
-
-	public Timestamp getUpdateDatetime() {
-		return updateDatetime;
-	}
-
-	public void setUpdateDatetime(Timestamp updateDatetime) {
-		this.updateDatetime = updateDatetime;
 	}
 
 }

@@ -46,17 +46,21 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("pass");
 		
-		UserDAO dao = new UserDAO();
-		UserBean user = new UserBean();
+		UserBean userLogin = new UserBean();
+		UserDAO userDao = new UserDAO();
+		
+		//ログイン認証メソッドを呼び出す
 		try {
- 			user = dao.getUser(userId,password);
+ 			userLogin = userDao.getUser(userId,password);
 			
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		if (user != null) {
+		if (userLogin != null) {
 			HttpSession session = request.getSession();
-			session.setAttribute("user",user);
+			session.setAttribute("user",userLogin);
+			
+			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
 			rd.forward(request, response);
