@@ -85,5 +85,5 @@ public class TaskBean {
 	public void setUpdateDatetime(Timestamp updateDatetime) {
 		this.updateDatetime = updateDatetime;
 	}
- 
+
 }
