@@ -49,15 +49,15 @@ public class TaskListServlet extends HttpServlet {
 		try {
 			List<TaskBean> taskList = dao.getTaskList();
 			request.setAttribute("taskList", taskList);
+			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
+			rd.forward(request, response);
+			
 		} catch (ClassNotFoundException e) {
-			// TODO 自動生成された catch ブロック
+			System.out.println("一覧を表示できません。");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
+			System.out.println("一覧を表示できませんでした。");
 			e.printStackTrace();
 		}
-
-		RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
-		rd.forward(request, response);
 	}
 }

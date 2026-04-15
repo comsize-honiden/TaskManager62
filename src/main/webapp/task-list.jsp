@@ -47,7 +47,7 @@
 						categoryName = category.getCategoryName();
 					}
 				}
-				%> <%=categoryName%>
+				%><%=categoryName%>
 			</td>
 			<td><%=task.getLimitDate()%></td>
 			<td>
@@ -58,7 +58,7 @@
 						userName = user.getUserName();
 					}
 				}
-				%> <%=userName%>
+				%><%=userName%>
 			</td>
 			<td>
 				<%
@@ -68,7 +68,7 @@
 						statusName = status.getStatusName();
 					}
 				}
-				%> <%=statusName%>
+				%><%=statusName%>
 			</td>
 			<td><%=task.getMemo()%></td>
 		</tr>
