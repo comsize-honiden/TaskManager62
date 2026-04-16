@@ -42,7 +42,7 @@ public class SampleDAO {
 				
 			}
 			
-			//System.out.println(userBeanList.size());
+			System.out.println("1");
 			return userBeanList;
 			
 		}
@@ -73,7 +73,7 @@ public class SampleDAO {
 				
 			}
 			
-			System.out.println(categoryBeanList.size());
+			System.out.println("2");
 			return categoryBeanList;
 			
 		}
@@ -105,7 +105,7 @@ public class SampleDAO {
 				
 			}
 			
-			System.out.println(statusBeanList.size());
+			System.out.println("3");
 			return statusBeanList;
 			
 		}
@@ -118,7 +118,7 @@ public class SampleDAO {
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
-					("SELECT * FROM m_task")) {
+					("SELECT * FROM t_task")) {
 			
 			ResultSet res = pstmt.executeQuery();
 			
@@ -131,7 +131,7 @@ public class SampleDAO {
 				int categoryId = res.getInt("category_id");
 				LocalDate limitDate = res.getObject("limit_date", LocalDate.class);
 				String userId = res.getString("user_id");
-				String statusCode = res.getString("stasus_code");
+				String statusCode = res.getString("status_code");
 				String memo = res.getString("memo");
 				LocalDateTime createDatetime = res.getObject("create_datetime", LocalDateTime.class);
 				LocalDateTime updateDatetime = res.getObject("update_datetime", LocalDateTime.class);
@@ -144,14 +144,14 @@ public class SampleDAO {
 				task.setStatusCode(statusCode);
 				task.setMemo(memo);
 				task.setCreateDatetime(createDatetime);
-				task.setUpdateDatetime(updateDatetime);
+				task.setUpdateDatetime(updateDatetime); 
 				
 				
 				taskBeanList.add(task);
 				
 			}
 			
-			System.out.println(taskBeanList.size());
+			System.out.println("4");
 			return taskBeanList;
 			
 		}
