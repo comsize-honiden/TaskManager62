@@ -1,5 +1,5 @@
 package model.dao;
- 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
 
-public class SampleNoDAO {
+public class SampleDAO {
 
 	public List<UserBean> getUserBeanList() throws SQLException, ClassNotFoundException {
 		
@@ -41,7 +41,6 @@ public class SampleNoDAO {
 				userBeanList.add(user);
 				
 			}
-			
 			
 			return userBeanList;
 			
@@ -73,7 +72,6 @@ public class SampleNoDAO {
 				
 			}
 			
-			
 			return categoryBeanList;
 			
 		}
@@ -104,7 +102,6 @@ public class SampleNoDAO {
 				statusBeanList.add(status);
 				
 			}
-			
 			
 			return statusBeanList;
 			
@@ -150,7 +147,6 @@ public class SampleNoDAO {
 				taskBeanList.add(task);
 				
 			}
-			
 			
 			return taskBeanList;
 			

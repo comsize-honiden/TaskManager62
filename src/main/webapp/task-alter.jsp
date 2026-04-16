@@ -19,14 +19,7 @@
 			<th>タスク名</th>
 			<td><%=task.getTaskName()%></td>
 		</tr>
-		<tr>
-			<th>カテゴリ情報</th>
-			<td><%=itemCategoryBean.getItemName()%></td>
-		</tr>
-		<tr>
-			<th>期限</th>
-			<td><%=task.getLimitDate()%></td>
-		</tr>
+		
 	</table>
 	<%
 	
