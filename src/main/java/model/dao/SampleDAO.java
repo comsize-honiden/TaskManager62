@@ -42,7 +42,7 @@ public class SampleDAO {
 				
 			}
 			
-			System.out.println("1");
+			
 			return userBeanList;
 			
 		}
@@ -73,7 +73,7 @@ public class SampleDAO {
 				
 			}
 			
-			System.out.println("2");
+			
 			return categoryBeanList;
 			
 		}
@@ -105,7 +105,7 @@ public class SampleDAO {
 				
 			}
 			
-			System.out.println("3");
+			
 			return statusBeanList;
 			
 		}
@@ -151,7 +151,7 @@ public class SampleDAO {
 				
 			}
 			
-			System.out.println("4");
+			
 			return taskBeanList;
 			
 		}

@@ -90,7 +90,7 @@ public class SampleSevlet extends HttpServlet {
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		
-		rd.forward(request, response);
+		rd.forward(request, response); 
 		
 	}
 
