@@ -1,10 +1,10 @@
 package model.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class TaskDAO {
 			while(rs.next()) {
 				String taskName = rs.getString("task_name");
 				int categoryId = rs.getInt("category_id");
-				Date limitDate = rs.getDate("limit_date");
+				LocalDate limitDate = rs.getDate("limit_date").toLocalDate();
 				String userId = rs.getString("user_id");
 				String statusCode = rs.getString("status_code");
 				String memo = rs.getString("memo");

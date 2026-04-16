@@ -1,12 +1,12 @@
 package model.entity;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class TaskBean {
 	private int taskId;
 	private String taskName;
 	private int categoryId;
-	private Date limitDate;
+	private LocalDate limitDate;
 	private String userId;
 	private String statusCode;
 	private String memo;
@@ -35,11 +35,11 @@ public class TaskBean {
 		this.categoryId = categoryId;
 	}
 
-	public Date getLimitDate() {
+	public LocalDate getLimitDate() {
 		return limitDate;
 	}
 
-	public void setLimitDate(Date limitDate) {
+	public void setLimitDate(LocalDate limitDate) {
 		this.limitDate = limitDate;
 	}
 
