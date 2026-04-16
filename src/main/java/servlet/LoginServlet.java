@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.SampleDAO;
 import model.dao.UserDAO;
+import model.entity.CategoryBean;
+import model.entity.StatusBean;
 import model.entity.UserBean;
 
 /**
@@ -44,23 +49,53 @@ public class LoginServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("userId");
-		String password = request.getParameter("pass");
+		String pass = request.getParameter("pass");
 		
-		UserBean userLogin = new UserBean();
+		UserBean user = new UserBean();
 		UserDAO userDao = new UserDAO();
 		
-		//ログイン認証メソッドを呼び出す
+		//ログイン認証メソッドを呼び出し、認証された場合はセッションに詰める
 		try {
- 			userLogin = userDao.getUser(userId,password);
-			
+ 			user = userDao.getUser(userId,pass);
+ 			
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		if (userLogin != null) {
+		if (user.getUserName() != null) {
+			
 			HttpSession session = request.getSession();
-			session.setAttribute("user",userLogin);
+			session.setAttribute("userName",user.getUserName());
 			
+			//全ユーザーリストを生成し、セッションに詰める
+			List<UserBean> userList = new ArrayList<>();
+			try {
+				userList = userDao.getUserList();
+				
+			} catch(SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			session.setAttribute("userList",userList);
 			
+			//カテゴリーリストを生成し、セッションに詰める
+			SampleDAO sampleDao = new SampleDAO();
+			List<CategoryBean> categoryList = new ArrayList<>();
+			try {
+				categoryList = sampleDao.getCategoryBeanList();
+				
+			} catch(SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			session.setAttribute("categoryList",categoryList);
+			
+			//ステータスリストを生成し、セッションに詰める
+			List<StatusBean> statusList = new ArrayList<>();
+			try {
+				statusList = sampleDao.getStatusBeanList();
+				
+			} catch(SQLException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+			session.setAttribute("statusList",statusList);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
 			rd.forward(request, response);
