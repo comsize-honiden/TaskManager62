@@ -7,12 +7,10 @@
 <title>ログイン失敗画面</title>
 </head>
 <body>
-	<div style="text-align: center;">
-		<h1>ログイン失敗画面</h1>
-		<h3>ログインに失敗しました。</h3><br>
-		<form action="login.jsp" method="POST">
-			<input type="submit" value="ログイン画面へ">
-		</form>
-	</div>
+	<h1>ログイン失敗画面</h1>
+	<h3>ログインに失敗しました。</h3><br>
+	<form action="login.jsp" method="POST">
+		<input type="submit" value="ログイン画面へ">
+	</form>
 </body>
 </html>
