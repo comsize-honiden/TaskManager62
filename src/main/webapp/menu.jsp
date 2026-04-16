@@ -14,7 +14,7 @@
 	<form action="task-list-servlet" method="POST">
 		<input type="submit" value="タスク一覧">
 	</form><br>
-	<form action="logout.jsp" method="POST">
+	<form action="logout.jsp" method="GET">
 		<input type="submit" value="ログアウト">
 	</form>
 </body>
