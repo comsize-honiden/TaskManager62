@@ -7,17 +7,15 @@
 <title>ログアウト画面</title>
 </head>
 <body>
-	<div style="text-align: center;">
-		<h1>ログアウト画面</h1>
-		<%
-			UserBean user = (UserBean) session.getAttribute("user");
-		%>
-		お疲れ様でした！ <%=user.getUserName() %>さん
-		<% session.invalidate(); %>
-		<h3>ログアウトしました</h3>
-		<form action="login.jsp" method="POST">
-			<input type="submit" value="ログイン画面へ">
-		</form>
-	</div>
+	<h1>ログアウト画面</h1>
+	<%
+		String userName = (String) session.getAttribute("userName");
+	%>
+	お疲れ様でした！ <%=userName %>さん
+	<% session.invalidate(); %>
+	<h3>ログアウトしました</h3>
+	<form action="login.jsp" method="POST">
+		<input type="submit" value="ログイン画面へ">
+	</form>
 </body>
 </html>
