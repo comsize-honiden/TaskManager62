@@ -52,7 +52,7 @@ public class SampleSevlet extends HttpServlet {
 		
 		//サンプルデータ生成
 		
-		List<UserBean> userBaenList = new ArrayList<>();
+		List<UserBean> userBeanList = new ArrayList<>();
 		List<CategoryBean> categoryBeanList = new ArrayList<>();
 		List<StatusBean> statusBeanList = new ArrayList<>();
 		List<TaskBean> taskBeanList = new ArrayList<>();
@@ -62,14 +62,14 @@ public class SampleSevlet extends HttpServlet {
 		
 		try {
 			
-			userBaenList = sampleDao.getUserBeanList();
+			userBeanList = sampleDao.getUserBeanList();
 			categoryBeanList = sampleDao.getCategoryBeanList();
 			statusBeanList = sampleDao.getStatusBeanList();
 			taskBeanList = sampleDao.getTaskBeanList();
 			
 			//テスト用
 			System.out.println("各リストの長さ");
-			System.out.println("userBaenList:" + userBaenList.size());
+			System.out.println("userBaenList:" + userBeanList.size());
 			System.out.println("categoryBeanList:" + categoryBeanList.size());
 			System.out.println("statusBeanList:" + statusBeanList.size());
 			System.out.println("taskBeanList:" + taskBeanList.size());
@@ -85,11 +85,12 @@ public class SampleSevlet extends HttpServlet {
 		int taskId = 1;
 		request.setAttribute("taskId", taskId);
 		
-		session.setAttribute("userBaenList",userBaenList );
+		session.setAttribute("userBeanList", userBeanList);
 		session.setAttribute("categoryBeanList", categoryBeanList);
 		session.setAttribute("statusBeanList", statusBeanList);
 		session.setAttribute("taskBeanList", taskBeanList);
 		
+		System.out.println(userBeanList.get(1).getUserName());
 		//転送先を代入
 		String forwadUrl = "task-alter.jsp";
 		
