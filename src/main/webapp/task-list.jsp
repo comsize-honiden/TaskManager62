@@ -36,7 +36,7 @@
 		%>
 		<tr>
 			<td><a
-				href="task-detail-servlet?taskId=<%=task.getTaskId()%>">
+				href="task-detail-servlet?taskBean=<%=task%>">
 					<%task.getTaskName();%>
 			</a></td>
 			<td>
