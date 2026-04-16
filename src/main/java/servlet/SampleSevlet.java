@@ -1,5 +1,5 @@
 package servlet;
-
+ 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.SampleDAO;
+import model.dao.SampleNoDAO;
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
 import model.entity.TaskBean;
@@ -58,7 +58,7 @@ public class SampleSevlet extends HttpServlet {
 		List<TaskBean> taskBeanList = new ArrayList<>();
 		
 		
-		SampleDAO sampleDao = new SampleDAO();
+		SampleNoDAO sampleDao = new SampleNoDAO();
 		
 		try {
 			
@@ -86,7 +86,7 @@ public class SampleSevlet extends HttpServlet {
 		session.setAttribute("taskBeanList", taskBeanList);
 		
 		//転送先を代入
-		String forwadUrl = "task-alter.jsp";
+		String forwadUrl = "";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		

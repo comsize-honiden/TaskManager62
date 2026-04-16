@@ -1,5 +1,5 @@
 package model.dao;
-
+ 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
 
-public class SampleDAO {
+public class SampleNoDAO {
 
 	public List<UserBean> getUserBeanList() throws SQLException, ClassNotFoundException {
 		

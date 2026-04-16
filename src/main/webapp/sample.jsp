@@ -12,4 +12,4 @@
 	<input type="submit" value="BeanLIstを生成">
 	</form>
 </body>
-</html> 
+</html>
