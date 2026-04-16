@@ -80,6 +80,11 @@ public class SampleSevlet extends HttpServlet {
 		}
 		
 		HttpSession session = request.getSession();
+		
+		//仮の詳細番号taskId = 1
+		int taskId = 1;
+		request.setAttribute("taskId", taskId);
+		
 		session.setAttribute("userBaenList",userBaenList );
 		session.setAttribute("categoryBeanList", categoryBeanList);
 		session.setAttribute("statusBeanList", statusBeanList);
