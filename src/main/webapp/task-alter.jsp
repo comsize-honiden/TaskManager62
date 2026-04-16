@@ -178,12 +178,21 @@
 				<input type="text" name="memo"  value="<%=task.getMemo()%>">
 			</td> 
 		</tr>
-		
-		
 	</table>
-	<%
-	
-	
-	%>
+	<br>
+	<table>
+		<tr>
+			<td>
+				<form action="task-alter-servlet" method="POST">
+				<input type="submit" value="変更する">
+				</form>
+			</td>
+			<td>
+				<form action="task-detail.jsp" methos="GET">
+				<input type="submit" value="詳細画面へ">
+				</form>
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
