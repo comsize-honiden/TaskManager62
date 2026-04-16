@@ -39,5 +39,5 @@ public class UserBean {
 	public void setTs(Timestamp ts) {
 		this.ts = ts;
 	}
-
+	
 }

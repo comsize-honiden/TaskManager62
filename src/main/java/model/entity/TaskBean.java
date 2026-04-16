@@ -1,6 +1,6 @@
 package model.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class TaskBean {
@@ -11,8 +11,8 @@ public class TaskBean {
 	private String userId;
 	private String statusCode;
 	private String memo;
-	private Timestamp createDatetime;
-	private Timestamp updateDatetime;
+	private LocalDateTime createDatetime;
+	private LocalDateTime updateDatetime;
 
 	public int getTaskId() {
 		return taskId;
@@ -70,19 +70,19 @@ public class TaskBean {
 		this.memo = memo;
 	}
 
-	public Timestamp getCreateDatetime() {
+	public LocalDateTime getCreateDatetime() {
 		return createDatetime;
 	}
 
-	public void setCreateDatetime(Timestamp createDatetime) {
+	public void setCreateDatetime(LocalDateTime createDatetime) {
 		this.createDatetime = createDatetime;
 	}
 
-	public Timestamp getUpdateDatetime() {
+	public LocalDateTime getUpdateDatetime() {
 		return updateDatetime;
 	}
 
-	public void setUpdateDatetime(Timestamp updateDatetime) {
+	public void setUpdateDatetime(LocalDateTime updateDatetime) {
 		this.updateDatetime = updateDatetime;
 	}
 	
@@ -96,14 +96,16 @@ public class TaskBean {
 			this.categoryId == updateTask.getCategoryId() &&
 			this.limitDate.compareTo(updateTask.getLimitDate()) == 0 &&
 			this.statusCode.equals(updateTask.getStatusCode()) &&
-			this.memo.equals(updateTask.equals(updateTask.getMemo()))
+			this.memo.equals(updateTask.getMemo())){
+				
+			return true;
 			
+		} else {
 			
-				) 
-		{
-			
-			
+			return false;
+		
 		}
+		
 		
 	}
 

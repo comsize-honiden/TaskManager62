@@ -24,8 +24,8 @@
 			<td><%=itemCategoryBean.getItemName()%></td>
 		</tr>
 		<tr>
-			<th>価格</th>
-			<td><%=itemCategoryBean.getPrice()%>円</td>
+			<th>期限</th>
+			<td><%=task.getLimitDate()%></td>
 		</tr>
 	</table>
 	<%

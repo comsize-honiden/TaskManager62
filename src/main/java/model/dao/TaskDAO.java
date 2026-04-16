@@ -11,8 +11,6 @@ public class TaskDAO {
 	//タスクの変更を行うメソッド
 	public int updateTask(TaskBean task) throws SQLException, ClassNotFoundException {
 		
-		
-		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
 					("UPDATE t_task SET"
@@ -30,5 +28,5 @@ public class TaskDAO {
 		}
 		
 	}
-	
+
 }
