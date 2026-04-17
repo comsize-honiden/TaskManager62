@@ -7,7 +7,7 @@
 <title>サンプル</title>
 </head>
 <body>
-	<h1>サンプル</h1>
+	<h1>サンプル </h1>
 	<form action="sample-servlet" method="POST">
 	<input type="submit" value="BeanLIstを生成">
 	</form>
