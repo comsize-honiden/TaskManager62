@@ -1,3 +1,6 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="model.entity.CommentBean"%>
+<%@page import="java.util.List"%>
 <%@page import="model.entity.UserBean"%>
 <%@page import="model.entity.CategoryBean"%>
 <%@page import="model.entity.StatusBean"%>
@@ -15,33 +18,62 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html charset=UTF-8");
 
-	TaskBean task = (TaskBean) request.getAttribute("task");
-	CategoryBean category = (CategoryBean) request.getAttribute("category");
-	UserBean user = (UserBean) request.getAttribute("user");
-	StatusBean status = (StatusBean) request.getAttribute("status");
-	session.setAttribute("taskId", task.getTaskId());
+	TaskBean task = (TaskBean) session.getAttribute("task");
+	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
+	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
+	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
+	List<CommentBean> commentList = (List<CommentBean>) request.getAttribute("commentList");
+
 	%>
 	<h3>タスク詳細画面</h3>
-	<table>
+	<table border=1>
 		<tr>
 			<th>タスク名</th>
 			<td><%=task.getTaskName()%></td>
 		</tr>
 		<tr>
 			<th>カテゴリ</th>
-			<td><%=category.getCategoryName()%></td>
+			<td><%=categoryList.get(task.getCategoryId() - 1).getCategoryName()%></td>
 		</tr>
 		<tr>
 			<th>期限</th>
-			<td><%=task.getLimitDate()%></td>
+			<td>
+				<%
+				if(!(task.getLimitDate() == null)){
+				%>
+				<%=task.getLimitDate()%>
+				<%} %>
+			</td>
 		</tr>
 		<tr>
 			<th>担当者情報</th>
-			<td><%=user.getUserName()%></td>
+			<td>
+				<%
+				String userName = "";
+				for (UserBean user : userList) {
+					if (task.getUserId().equals(user.getUserId())) {
+						userName = user.getUserName();
+					}
+				}
+				%> <%=userName%>
+			</td>
 		</tr>
 		<tr>
 			<th>ステータス</th>
-			<td><%=status.getStatusName()%></td>
+			<td>
+				<%
+				String statusName = "";
+				for (StatusBean status : statusList) {
+					if (task.getStatusCode().equals(status.getStatusCode())) {
+						statusName = status.getStatusName();
+					}
+				}
+				%><%=statusName%>
+			</td>
+		</tr>
+		<tr>
+			<th>メモ</th>
+			<td><%=task.getMemo()%></td>
 		</tr>
 		<tr>
 			<td>
@@ -55,7 +87,39 @@
 					<input type="submit" value="削除">
 				</form>
 			</td>
-		<tr>
+		</tr>
 	</table>
+	<h3>コメント</h3>
+	<form method="POST" action="comment-post-form.jsp">
+		<input type="submit" value="コメントを投稿">
+	</form>
+	<%
+	int i = 1;
+	for (CommentBean comment : commentList) {
+	%>
+		<a href="comment-delete-servlet?commentId=<%=comment.getCommentId()%>">
+		<%=i%>
+		</a>
+		<%
+		String CommentUserName = "";
+		for (UserBean user : userList) {
+			if (comment.getUserId().equals(user.getUserId())) {
+				CommentUserName = user.getUserName();
+			}
+		}
+		i++;
+		%>
+		投稿者:
+		<%=CommentUserName%>
+		<%DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); %>
+		投稿日時:
+		<%=comment.getUpdateDateTime().format(formatter) %>
+		<table border=1>
+			<tr>
+				<td><%=comment.getComment()%>
+				</td>
+			</tr>
+		</table>
+	<%} %>
 </body>
 </html>
