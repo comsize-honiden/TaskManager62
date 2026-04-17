@@ -84,7 +84,7 @@ public class SampleSevlet extends HttpServlet {
 		session.setAttribute("statusList", statusBeanList);
 		session.setAttribute("taskList", taskBeanList);
 		
-		//転送先を代入
+		//転送先を代入 
 		String forwadUrl = "task-list.jsp";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
