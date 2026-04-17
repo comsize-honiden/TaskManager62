@@ -15,7 +15,7 @@ import model.entity.TaskBean;
 import model.entity.UserBean;
 
 public class SampleDAO {
-
+ 
 	public List<UserBean> getUserBeanList() throws SQLException, ClassNotFoundException {
 		
 		List<UserBean> userBeanList = new ArrayList<>();

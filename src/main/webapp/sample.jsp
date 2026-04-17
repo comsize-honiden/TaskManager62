@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>サンプル</title>
 </head>
-<body>
+<body> 
 	<h1>サンプル</h1>
 	<form action="sample-servlet" method="POST">
 	<input type="submit" value="BeanLIstを生成">

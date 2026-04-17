@@ -29,7 +29,7 @@ public class SampleSevlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SampleSevlet() {
+    public SampleSevlet() { 
         super();
         // TODO Auto-generated constructor stub
     }
