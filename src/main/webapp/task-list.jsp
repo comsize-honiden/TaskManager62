@@ -1,3 +1,5 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="model.entity.StatusBean"%>
 <%@page import="model.entity.UserBean"%>
 <%@page import="model.entity.CategoryBean"%>
@@ -17,17 +19,18 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html charset=UTF-8");
 
-	List<TaskBean> taskList = (List<TaskBean>) request.getAttribute("taskList");
+	List<TaskBean> taskList = (List<TaskBean>) session.getAttribute("taskList");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
-
+	
 	%>
 	<table border=1>
 		<th>タスク名</th>
 		<th>カテゴリ</th>
 		<th>期限</th>
 		<th>担当者情報</th>
+		<th>ステータス情報</th>
 		<th>メモ</th>
 
 		<%
@@ -35,9 +38,8 @@
 			int taskId = task.getTaskId();
 		%>
 		<tr>
-			<td><a
-				href="task-detail-servlet?taskBean=<%=task%>">
-					<%task.getTaskName();%>
+			<td><a href="task-detail-servlet?taskId=<%=task.getTaskId()%>">
+					<%=task.getTaskName()%>
 			</a></td>
 			<td>
 				<%
@@ -49,7 +51,13 @@
 				}
 				%><%=categoryName%>
 			</td>
-			<td><%=task.getLimitDate()%></td>
+			<td>
+				<%
+				if(!(task.getLimitDate() == null)){
+				%>
+				<%=task.getLimitDate()%>
+				<%} %>
+			</td>
 			<td>
 				<%
 				String userName = "";
@@ -64,17 +72,19 @@
 				<%
 				String statusName = "";
 				for (StatusBean status : statusList) {
-					if (task.getStatusCode() == status.getStatusCode()) {
+					if (task.getStatusCode().equals(status.getStatusCode())) {
 						statusName = status.getStatusName();
 					}
 				}
 				%><%=statusName%>
 			</td>
-			<td><%=task.getMemo()%></td>
+			<td>
+				<%=task.getMemo()%>
+			</td>
 		</tr>
-			<%
-			}
-			%>
+		<%
+		}
+		%>
 	</table>
 </body>
 </html>

@@ -32,17 +32,15 @@ public class CategoryDAO {
 		return result;
 	}
 
-	public CategoryBean getCategoryDetail(CategoryBean taskId) throws ClassNotFoundException, SQLException {
+	public CategoryBean getCategoryDetail(int categoryId) throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM m_category WHERE CategoryId = ?";
 		CategoryBean category = new CategoryBean();
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
 			while (rs.next()) {
-				int categoryId = rs.getInt("category_id");
 				String categoryName = rs.getString("category_name");
 
-				category.setCategoryId(categoryId);
 				category.setCategoryName(categoryName);
 			}
 		}

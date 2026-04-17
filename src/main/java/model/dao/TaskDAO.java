@@ -1,11 +1,9 @@
 package model.dao;
 
+
 import java.sql.Connection;
-<<<<<<< HEAD
-=======
 import java.sql.Date;
 import java.sql.PreparedStatement;
->>>>>>> 5f84643 (更新)
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,47 +21,49 @@ public class TaskDAO {
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)) {
-			while(rs.next()) {
+			while (rs.next()) {
 				int taskId = rs.getInt("task_id");
-				String taskName = rs.getString("task_name");
-				int categoryId = rs.getInt("category_id");
-				LocalDate limitDate = rs.getDate("limit_date").toLocalDate();
-				String userId = rs.getString("user_id");
-				String statusCode = rs.getString("status_code");
-				String memo = rs.getString("memo");
-				
-				TaskBean task = new TaskBean();
-				
-				task.setTaskId(taskId);
-				task.setTaskName(taskName);
-				task.setCategoryId(categoryId);
-				task.setLimitDate(limitDate);
-				task.setUserId(userId);
-				task.setStatusCode(statusCode);
-				task.setMemo(memo);
-				
-				result.add(task);
-			}
-		}
-		return result;
-	}
-	
-	public TaskBean getTaskDetail(int taskId) throws ClassNotFoundException, SQLException {
-		String sql = "SELECT * FROM t_task WHERE task_id = ?";
-		TaskBean result = new TaskBean();
-		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setInt(1, taskId);
-			
-			ResultSet rs = pstmt.executeQuery();
-			while(rs.next()) {
 				String taskName = rs.getString("task_name");
 				int categoryId = rs.getInt("category_id");
 				Date limitDate = rs.getDate("limit_date");
 				String userId = rs.getString("user_id");
 				String statusCode = rs.getString("status_code");
 				String memo = rs.getString("memo");
-				
+
+				TaskBean task = new TaskBean();
+
+				task.setTaskId(taskId);
+				task.setTaskName(taskName);
+				task.setCategoryId(categoryId);
+				if(!(limitDate == null)) {
+					task.setLimitDate(limitDate.toLocalDate());
+				}
+				task.setUserId(userId);
+				task.setStatusCode(statusCode);
+				task.setMemo(memo);
+
+				result.add(task);
+			}
+		}
+		return result;
+	}
+
+	public TaskBean getTaskDetail(int taskId) throws ClassNotFoundException, SQLException {
+		String sql = "SELECT * FROM t_task WHERE task_id = ?";
+		TaskBean result = new TaskBean();
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, taskId);
+
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String taskName = rs.getString("task_name");
+				int categoryId = rs.getInt("category_id");
+				LocalDate limitDate = rs.getDate("limit_date").toLocalDate();
+				String userId = rs.getString("user_id");
+				String statusCode = rs.getString("status_code");
+				String memo = rs.getString("memo");
+
 				result.setTaskName(taskName);
 				result.setCategoryId(categoryId);
 				result.setLimitDate(limitDate);
