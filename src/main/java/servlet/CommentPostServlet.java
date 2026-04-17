@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.dao.CommentDAO;
+import model.entity.CommentBean;
+
 /**
  * Servlet implementation class CommentPostServlet
  */
@@ -44,7 +47,7 @@ public class CommentPostServlet extends HttpServlet {
 		
 		String comment = request.getParameter("comment");
 		
-		CommentBean comment = new CommentBean();
+		CommentBean coment = new CommentBean();
 		CommentDAO commentDao = new CommentDAO();
 		
 		try {

@@ -1,41 +1,56 @@
+<%@page import="java.time.LocalDate"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
-<%@page import="model.entity.CommentBean"%>
-<%@page import="java.util.List"%>
+<%@page import="model.entity.StatusBean"%>
 <%@page import="model.entity.UserBean"%>
 <%@page import="model.entity.CategoryBean"%>
-<%@page import="model.entity.StatusBean"%>
+<%@page import="java.util.List"%>
 <%@page import="model.entity.TaskBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>コメント投稿画面</title>
+<title>TaskManager62</title>
 </head>
 <body>
-	<h1>コメント投稿画面</h1>
+	<h3>タスク一覧画面</h3>
 	<%
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html charset=UTF-8");
 
-	TaskBean task = (TaskBean) session.getAttribute("task");
+	List<TaskBean> taskList = (List<TaskBean>) session.getAttribute("taskList");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
-	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
-	List<CommentBean> commentList = (List<CommentBean>) request.getAttribute("commentList");
+	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
+	
 	%>
-	<table border="1">
+	<table border=1>
+		<th>タスク名</th>
+		<th>カテゴリ</th>
+		<th>期限</th>
+		<th>担当者情報</th>
+		<th>ステータス情報</th>
+		<th>メモ</th>
+
+		<%
+		for (TaskBean task : taskList) {
+			int taskId = task.getTaskId();
+		%>
 		<tr>
-			<th>タスク名</th>
-			<td><%=task.getTaskName()%></td>
-		</tr>
-		<tr>
-			<th>カテゴリ</th>
-			<td><%=categoryList.get(task.getCategoryId() - 1).getCategoryName()%></td>
-		</tr>
-		<tr>
-			<th>期限</th>
+			<td><a href="task-detail-servlet?taskId=<%=task.getTaskId()%>">
+					<%=task.getTaskName()%>
+			</a></td>
+			<td>
+				<%
+				String categoryName = "";
+				for (CategoryBean category : categoryList) {
+					if (task.getCategoryId() == category.getCategoryId()) {
+						categoryName = category.getCategoryName();
+					}
+				}
+				%><%=categoryName%>
+			</td>
 			<td>
 				<%
 				if(!(task.getLimitDate() == null)){
@@ -43,9 +58,6 @@
 				<%=task.getLimitDate()%>
 				<%} %>
 			</td>
-		</tr>
-		<tr>
-			<th>担当者情報</th>
 			<td>
 				<%
 				String userName = "";
@@ -56,9 +68,6 @@
 				}
 				%> <%=userName%>
 			</td>
-		</tr>
-		<tr>
-			<th>ステータス</th>
 			<td>
 				<%
 				String statusName = "";
@@ -69,16 +78,13 @@
 				}
 				%><%=statusName%>
 			</td>
+			<td>
+				<%=task.getMemo()%>
+			</td>
 		</tr>
-		<tr>
-			<th>メモ</th>
-			<td><%=task.getMemo()%></td>
-		</tr>
-	</table><br>
-	<h3>コメント</h3>
-	<form action="comment-post-servlet" method="POST">
-		<textarea name="comment" maxlength="100" required></textarea><br>
-		<input type="submit" value="投稿する">
-	</form>
+		<%
+		}
+		%>
+	</table>
 </body>
 </html>

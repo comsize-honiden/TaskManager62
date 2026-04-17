@@ -6,15 +6,14 @@
 <%@page import="model.entity.StatusBean"%>
 <%@page import="model.entity.TaskBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>コメント投稿画面</title>
+<title>TaskManager62</title>
 </head>
 <body>
-	<h1>コメント投稿画面</h1>
 	<%
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html charset=UTF-8");
@@ -24,8 +23,10 @@
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 	List<CommentBean> commentList = (List<CommentBean>) request.getAttribute("commentList");
+
 	%>
-	<table border="1">
+	<h3>タスク詳細画面</h3>
+	<table border=1>
 		<tr>
 			<th>タスク名</th>
 			<td><%=task.getTaskName()%></td>
@@ -74,11 +75,51 @@
 			<th>メモ</th>
 			<td><%=task.getMemo()%></td>
 		</tr>
-	</table><br>
+		<tr>
+			<td>
+				<form method="POST" action="task-alter-form.jsp">
+					<input type="submit" value="編集">
+				</form>
+			</td>
+
+			<td>
+				<form method="POST" action="task-delete-confirm.jsp">
+					<input type="submit" value="削除">
+				</form>
+			</td>
+		</tr>
+	</table>
 	<h3>コメント</h3>
-	<form action="comment-post-servlet" method="POST">
-		<textarea name="comment" maxlength="100" required></textarea><br>
-		<input type="submit" value="投稿する">
+	<form method="POST" action="comment-post-form.jsp">
+		<input type="submit" value="コメントを投稿">
 	</form>
+	<%
+	int i = 1;
+	for (CommentBean comment : commentList) {
+	%>
+		<a href="comment-delete-servlet?commentId=<%=comment.getCommentId()%>">
+		<%=i%>
+		</a>
+		<%
+		String CommentUserName = "";
+		for (UserBean user : userList) {
+			if (comment.getUserId().equals(user.getUserId())) {
+				CommentUserName = user.getUserName();
+			}
+		}
+		i++;
+		%>
+		投稿者:
+		<%=CommentUserName%>
+		<%DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); %>
+		投稿日時:
+		<%=comment.getUpdateDateTime().format(formatter) %>
+		<table border=1>
+			<tr>
+				<td><%=comment.getComment()%>
+				</td>
+			</tr>
+		</table>
+	<%} %>
 </body>
 </html>
