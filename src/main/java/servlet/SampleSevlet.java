@@ -81,9 +81,9 @@ public class SampleSevlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		//仮の詳細番号taskId = 1
+		//仮の受け取るタスク番号taskId = 1
 		int taskId = 1;
-		request.setAttribute("taskId", taskId);
+		session.setAttribute("taskId", taskId);
 		
 		session.setAttribute("userBeanList", userBeanList);
 		session.setAttribute("categoryBeanList", categoryBeanList);
@@ -92,7 +92,7 @@ public class SampleSevlet extends HttpServlet {
 		
 		System.out.println(userBeanList.get(1).getUserName());
 		//転送先を代入
-		String forwadUrl = "task-alter.jsp";
+		String forwadUrl = "task-alter-form.jsp";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		

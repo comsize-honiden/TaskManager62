@@ -1,12 +1,16 @@
 package servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.entity.TaskBean;
 
@@ -41,16 +45,72 @@ public class TaskAlterServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF=8");
 		
+		HttpSession session = request.getSession();
 		
+		List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
+		
+		//変更前のタスクを取得
 		TaskBean task = new TaskBean();
-		Object updateTaskObj = new TaskBean();//実際はインスタンス生成ではなく、変更後のTaskBeanをうけとる
-		if (task.equals(updateTaskObj)) {
-			//成功処理に遷移するコード
+		
+		int taskId = Integer.parseInt(request.getParameter("taskId"));
+		
+		for (TaskBean newTask : taskBeanList) {
+			
+			if(newTask.getTaskId() == taskId) {
+				
+				task = newTask;
+				
+			}
+			
 		}
 		
+		//変更後のタスクオブジェクトを用意
+		TaskBean updateTask = new TaskBean();
+		
+		updateTask.setTaskId(task.getTaskId());
+		updateTask.setTaskName(task.getTaskName());
+		updateTask.setCategoryId(taskId);
+		updateTask.setLimitDate(task.getLimitDate());
+		updateTask.setUserId(task.getUserId());
+		updateTask.setStatusCode(task.getStatusCode());
+		updateTask.setMemo(task.getMemo());
+		updateTask.setCreateDatetime(task.getCreateDatetime());
+		updateTask.setUpdateDatetime(task.getUpdateDatetime());
+		 
+		
+		//変更後の値を取得
+		String taskName = request.getParameter("taskName");
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		LocalDate limitDate = LocalDate.parse(request.getParameter("limitdate"));
+		String userId = request.getParameter("userId");
+		String statusCode = request.getParameter("statusCode");
+		String memo = request.getParameter("memo");
+		
+		//変更後の値でオブジェクトの中身を更新
+		updateTask.setTaskName(taskName);
+		updateTask.setCategoryId(categoryId);
+		updateTask.setLimitDate(limitDate);
+		updateTask.setUserId(userId);
+		updateTask.setStatusCode(statusCode);
+		updateTask.setMemo(memo);
+		
+		
+		session.setAttribute("updateTask", updateTask);
+		
+		String url = null;
+		
+		if (task.equals(updateTask)) {
+			//成功処理に遷移するコード
+			System.out.println("変更有");
+			url = "task-alter-success.jsp";
+		} else {
+		System.out.println("変更なし");
 		//失敗画面に遷移するコード
+		url = "task-alter-failure.jsp";
+		}
 		
-		
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
 	}
 
 }

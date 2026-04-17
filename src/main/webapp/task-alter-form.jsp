@@ -11,8 +11,10 @@
 <body>
 	<h1>タスク編集画面</h1>
 	<%
+	request.setCharacterEncoding("UTF-8");
 	//セッションで受け取る必要あり
-	int taskId = (int)(request.getAttribute("taskId"));
+	int taskId = (int)session.getAttribute("taskId");
+	System.out.println("タスクId" + taskId);
 	
 	List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
 	List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
@@ -43,6 +45,7 @@
 			
 			category = newCategory;
 			
+			System.out.println("テスト" + category.getCategoryName());
 		}
 		
 	}
@@ -56,9 +59,10 @@
 	//ユーザーIDに一致するUserBeanオブジェクトをUserBeanListから取得
 	UserBean user = new UserBean();
 	
-	String userId = user.getUserId();
+	String userId = task.getUserId();
 	
 	for (UserBean newUser : userBeanList) {
+		
 		
 		if(newUser.getUserId().equals(userId)) {
 			
@@ -71,7 +75,7 @@
 	//ステータスコードに一致するStatusBeanオブジェクトをStatusBeanListから取得
 	StatusBean status = new StatusBean();
 	
-	String stausCode = status.getStatusCode();
+	String stausCode = task.getStatusCode();
 	
 	for (StatusBean newStatus : statusBeanList) {
 		
@@ -86,11 +90,13 @@
 	
 	
 	%>
+	<form action="task-alter-servlet" method="POST">
+	<input type="hidden" name="taskId" value="<%= taskId %>">
 	<table border="1">
 		<tr>
 			<th>タスク名</th>
 			<td>
-				<input type="text" name="itemName"  value="<%=task.getTaskName()%>">
+				<input type="text" name="taskName"  value="<%=task.getTaskName()%>">
 			</td>
 		</tr>
 		<tr>
@@ -105,7 +111,7 @@
 				
 				 if (categoryName.equals(eachCategoryName)) {
 			%>		
-					 <option value="<%=category.getCategoryId()%>">
+					<option value="<%=category.getCategoryId()%>" selected>
 						<%=categoryName%>
 					</option>	
 				<%		 
@@ -118,12 +124,13 @@
 				 }
 			 }
 			 %>
+			 </select>
 			</td>
 		</tr>
 		<tr>
 			<th>期限</th>
 			<td>
-			<input type="date" value="<%=limitDate %>" min="<%=today%>"/>
+			<input type="date" name="limitdate" value="<%=limitDate %>" min="<%=today%>"/>
 			</td>
 		</tr>
 		<tr>
@@ -134,19 +141,22 @@
 				
 				 if (userBeanList.get(i).getUserId().equals(user.getUserId())) {
 			%>		
-					 <option value="<%=user.getUserId()%>">
+					 <option value="<%=user.getUserId()%>" selected>
 						<%=user.getUserName()%>
 					</option>	
-				<%		 
+				<%	
+			//	System.out.println("syokiti" + user.getUserName());
 				 }else {
 				%>	 
 					<option value="<%=userBeanList.get(i).getUserId()%>">
 						<%=userBeanList.get(i).getUserName()%>
 					</option>
 				<% 
+			//	System.out.println("テスト" + userBeanList.get(i).getUserName());
 				 }
 			 }
 			 %>
+			 </select>
 			</td> 
 		</tr>
 		<tr>
@@ -157,19 +167,23 @@
 				
 				 if (statusBeanList.get(i).getStatusCode().equals(status.getStatusCode())) {
 			%>		
-					 <option value="<%=status.getStatusCode()%>">
+					 <option value="<%=status.getStatusCode()%>" selected>
 						<%=status.getStatusName()%>
 					</option>	
-				<%		 
+				<%	
+				System.out.println("真偽値" + statusBeanList.get(i).getStatusCode().equals(status.getStatusCode()));
+				System.out.println("syokiti" + status.getStatusName());
 				 }else {
 				%>	 
 					<option value="<%=statusBeanList.get(i).getStatusCode()%>">
 						<%=statusBeanList.get(i).getStatusName()%>
 					</option>
 				<% 
+				System.out.println("test" + statusBeanList.get(i).getStatusName());
 				 }
 			 }
 			 %>
+			 </select>
 			</td> 
 		</tr>
 		<tr>
@@ -183,12 +197,11 @@
 	<table>
 		<tr>
 			<td>
-				<form action="task-alter-servlet" method="POST">
 				<input type="submit" value="変更する">
 				</form>
 			</td>
 			<td>
-				<form action="task-detail.jsp" methos="GET">
+				<form action="task-detail.jsp" method="GET">
 				<input type="submit" value="詳細画面へ">
 				</form>
 			</td>

@@ -98,11 +98,11 @@ public class TaskBean {
 			this.statusCode.equals(updateTask.getStatusCode()) &&
 			this.memo.equals(updateTask.getMemo())){
 				
-			return true;
+			return false;
 			
 		} else {
 			
-			return false;
+			return true;
 		
 		}
 		
