@@ -62,11 +62,11 @@
 				<%
 				String userName = "";
 				for (UserBean user : userList) {
-					if (task.getUserId() == user.getUserId()) {
+					if (task.getUserId().equals(user.getUserId())) {
 						userName = user.getUserName();
 					}
 				}
-				%><%=userName%>
+				%> <%=userName%>
 			</td>
 			<td>
 				<%

@@ -2,7 +2,6 @@ package model.dao;
 
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,7 @@ public class TaskDAO {
 				int taskId = rs.getInt("task_id");
 				String taskName = rs.getString("task_name");
 				int categoryId = rs.getInt("category_id");
-				Date limitDate = rs.getDate("limit_date");
+				LocalDate limitDate = rs.getObject("limit_date", LocalDate.class);
 				String userId = rs.getString("user_id");
 				String statusCode = rs.getString("status_code");
 				String memo = rs.getString("memo");
@@ -35,9 +34,7 @@ public class TaskDAO {
 				task.setTaskId(taskId);
 				task.setTaskName(taskName);
 				task.setCategoryId(categoryId);
-				if(!(limitDate == null)) {
-					task.setLimitDate(limitDate.toLocalDate());
-				}
+				task.setLimitDate(limitDate);
 				task.setUserId(userId);
 				task.setStatusCode(statusCode);
 				task.setMemo(memo);
@@ -59,7 +56,7 @@ public class TaskDAO {
 			while (rs.next()) {
 				String taskName = rs.getString("task_name");
 				int categoryId = rs.getInt("category_id");
-				LocalDate limitDate = rs.getDate("limit_date").toLocalDate();
+				LocalDate limitDate = rs.getObject("limit_date", LocalDate.class);
 				String userId = rs.getString("user_id");
 				String statusCode = rs.getString("status_code");
 				String memo = rs.getString("memo");
