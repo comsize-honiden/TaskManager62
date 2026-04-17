@@ -7,19 +7,19 @@
         <mxCell id="TnwNa1AWAWhmJoJutgqy-13" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="50" width="100" x="630" y="230" as="geometry" />
         </mxCell>
-        <mxCell id="TnwNa1AWAWhmJoJutgqy-12" parent="TnwNa1AWAWhmJoJutgqy-13" style="rounded=1;whiteSpace=wrap;html=1;" value="コメント&lt;br&gt;削除エラー画面" vertex="1">
+        <mxCell id="TnwNa1AWAWhmJoJutgqy-12" parent="TnwNa1AWAWhmJoJutgqy-13" style="rounded=1;whiteSpace=wrap;html=1;" value="コメント&lt;br&gt;投稿エラー画面" vertex="1">
           <mxGeometry height="50" width="100" as="geometry" />
         </mxCell>
         <mxCell id="TnwNa1AWAWhmJoJutgqy-14" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="50" width="100" x="630" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="TnwNa1AWAWhmJoJutgqy-5" parent="TnwNa1AWAWhmJoJutgqy-14" style="rounded=1;whiteSpace=wrap;html=1;" value="コメント&lt;br&gt;削除完了画面" vertex="1">
+        <mxCell id="TnwNa1AWAWhmJoJutgqy-5" parent="TnwNa1AWAWhmJoJutgqy-14" style="rounded=1;whiteSpace=wrap;html=1;" value="コメント&lt;br&gt;投稿完了画面" vertex="1">
           <mxGeometry height="50" width="100" as="geometry" />
         </mxCell>
         <mxCell id="TnwNa1AWAWhmJoJutgqy-18" connectable="0" parent="1" style="group" value="" vertex="1">
           <mxGeometry height="50" width="100" x="450" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="TnwNa1AWAWhmJoJutgqy-19" parent="TnwNa1AWAWhmJoJutgqy-18" style="rounded=1;whiteSpace=wrap;html=1;" value="コメント&lt;br&gt;削除確認画面" vertex="1">
+        <mxCell id="TnwNa1AWAWhmJoJutgqy-19" parent="TnwNa1AWAWhmJoJutgqy-18" style="rounded=1;whiteSpace=wrap;html=1;" value="コメント&lt;br&gt;投稿画面" vertex="1">
           <mxGeometry height="50" width="100" as="geometry" />
         </mxCell>
         <mxCell id="TnwNa1AWAWhmJoJutgqy-25" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="TnwNa1AWAWhmJoJutgqy-5" value="">
@@ -27,7 +27,7 @@
             <mxPoint x="550" y="175" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="TnwNa1AWAWhmJoJutgqy-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="[削除失敗]" vertex="1">
+        <mxCell id="TnwNa1AWAWhmJoJutgqy-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="[投稿失敗]" vertex="1">
           <mxGeometry height="30" width="60" x="522" y="250" as="geometry" />
         </mxCell>
         <mxCell id="TnwNa1AWAWhmJoJutgqy-28" edge="1" parent="1" source="TnwNa1AWAWhmJoJutgqy-19" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" value="">
@@ -45,7 +45,7 @@
         <mxCell id="TnwNa1AWAWhmJoJutgqy-30" parent="TnwNa1AWAWhmJoJutgqy-29" style="rounded=1;whiteSpace=wrap;html=1;" value="メニュー画面" vertex="1">
           <mxGeometry height="50" width="100" as="geometry" />
         </mxCell>
-        <mxCell id="UmxKBqZnlyqLnE47jOGP-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="[削除成功]" vertex="1">
+        <mxCell id="UmxKBqZnlyqLnE47jOGP-9" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="[投稿成功]" vertex="1">
           <mxGeometry height="30" width="60" x="560" y="180" as="geometry" />
         </mxCell>
         <mxCell id="UmxKBqZnlyqLnE47jOGP-12" edge="1" parent="1" source="TnwNa1AWAWhmJoJutgqy-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="TnwNa1AWAWhmJoJutgqy-30">
