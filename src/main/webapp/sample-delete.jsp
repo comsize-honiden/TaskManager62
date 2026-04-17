@@ -8,6 +8,9 @@
 </head>
 <body>
 <h1>削除機能サンプルJSP</h1>
+	<sess>
+	<form action="comment-delete-confirm.jsp">
 	<input type="submit" value="コメント削除画面へ">
+	</form>
 </body>
 </html>
