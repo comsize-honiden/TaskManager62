@@ -7,14 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>削除機能サンプルJSP</h1>
-	<sess>
-	<form action="comment-delete-confirm.jsp">
+	<h1>削除機能サンプルJSP</h1>
+	<form action="comment-delete-form.jsp">
 	<input type="submit" value="コメント削除画面へ">
-<body> 
-	<h1>サンプル</h1>
-	<form action="sample-servlet" method="POST">
-	<input type="submit" value="BeanLIstを生成">
 	</form>
 </body>
 </html>

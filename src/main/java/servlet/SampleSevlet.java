@@ -92,7 +92,7 @@ public class SampleSevlet extends HttpServlet {
 		
 		System.out.println(userBeanList.get(1).getUserName());
 		//転送先を代入
-		String forwadUrl = "task-alter-form.jsp";
+		String forwadUrl = "sample-delete.jsp";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		

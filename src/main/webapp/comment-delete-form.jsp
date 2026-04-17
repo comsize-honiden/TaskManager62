@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import=""%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,12 +12,15 @@
 	下記のコメントを削除します。よろしいですか？
 	<br>
 	<%
-	//セッションにタスクIDを入れる 
+	//セッションからタスクIDを受け取る 
+	int taskId = (int)session.getAttribute("taskId");
 	
-	session.getAttribute();
-	
+	TaskBean task = new TaskBean();
 	%>
-	タスク名：
+	
+	
+	
+	タスク名：<%= %>
 
 </body>
 </html>
