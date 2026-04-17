@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
   <diagram name="ページ-1" id="Cimd6SMpBsqIMDUuCg-o">
-    <mxGraphModel dx="2440" dy="1460" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1712" dy="1026" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -17,7 +17,7 @@
         <mxCell id="02VdPKPCSF5gGAjBLwYQ-5" parent="02VdPKPCSF5gGAjBLwYQ-2" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=15;" value="WebContent" vertex="1">
           <mxGeometry height="33.103448275862064" width="83.33333333333334" x="84.99666666666667" y="55.17241379310344" as="geometry" />
         </mxCell>
-        <mxCell id="02VdPKPCSF5gGAjBLwYQ-6" parent="02VdPKPCSF5gGAjBLwYQ-2" style="html=1;whiteSpace=wrap;fillColor=#eeeeee;strokeColor=#36393d;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;«JSP»&lt;br&gt;&lt;b style=&quot;&quot;&gt;task-delete-succes.jsp&lt;/b&gt;&lt;/font&gt;" vertex="1">
+        <mxCell id="02VdPKPCSF5gGAjBLwYQ-6" parent="02VdPKPCSF5gGAjBLwYQ-2" style="html=1;whiteSpace=wrap;fillColor=#eeeeee;strokeColor=#36393d;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;«JSP»&lt;br&gt;&lt;b style=&quot;&quot;&gt;task-delete-success.jsp&lt;/b&gt;&lt;/font&gt;" vertex="1">
           <mxGeometry height="55.17241379310344" width="223.95833333333334" x="13.025000000000002" y="176.551724137931" as="geometry" />
         </mxCell>
         <mxCell id="02VdPKPCSF5gGAjBLwYQ-114" parent="02VdPKPCSF5gGAjBLwYQ-2" style="html=1;whiteSpace=wrap;fillColor=#eeeeee;strokeColor=#36393d;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;«JSP»&lt;br&gt;&lt;b style=&quot;&quot;&gt;task-delete-failure.jsp&lt;/b&gt;&lt;/font&gt;" vertex="1">
@@ -83,7 +83,7 @@
         <mxCell id="02VdPKPCSF5gGAjBLwYQ-27" parent="02VdPKPCSF5gGAjBLwYQ-20" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ getStatusName() : String" vertex="1">
           <mxGeometry height="26" width="255" y="134" as="geometry" />
         </mxCell>
-        <mxCell id="02VdPKPCSF5gGAjBLwYQ-28" parent="02VdPKPCSF5gGAjBLwYQ-20" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ setStatsName(statusName : String) : void" vertex="1">
+        <mxCell id="02VdPKPCSF5gGAjBLwYQ-28" parent="02VdPKPCSF5gGAjBLwYQ-20" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" value="+ setStatusName(statusName : String) : void" vertex="1">
           <mxGeometry height="26" width="255" y="160" as="geometry" />
         </mxCell>
         <mxCell id="02VdPKPCSF5gGAjBLwYQ-56" parent="02VdPKPCSF5gGAjBLwYQ-16" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="TaskBean" vertex="1">
