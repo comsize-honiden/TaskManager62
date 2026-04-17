@@ -10,7 +10,7 @@ import model.entity.TaskBean;
 public class TaskDAO {
 
 	//タスクの変更を行うメソッド
-	public int taskAlter(TaskBean task) throws SQLException, ClassNotFoundException {
+	public int updateTask(TaskBean task) throws SQLException, ClassNotFoundException {
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
