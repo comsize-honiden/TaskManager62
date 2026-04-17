@@ -2,7 +2,7 @@ package model.entity;
 
 import java.sql.Timestamp;
 
-public class CategoryBean {
+public class CategoryBean { 
 	private int categoryId;
 	private String categoryName;
 	private Timestamp ts;

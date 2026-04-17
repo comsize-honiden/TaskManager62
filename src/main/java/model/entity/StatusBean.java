@@ -2,7 +2,7 @@ package model.entity;
 
 import java.sql.Timestamp;
 
-public class StatusBean {
+public class StatusBean { 
 	private String statusCode;
 	private String statusName;
 	private Timestamp ts;

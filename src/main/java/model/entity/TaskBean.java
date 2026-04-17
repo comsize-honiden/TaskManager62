@@ -3,7 +3,7 @@ package model.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class TaskBean {
+public class TaskBean { 
 	private int taskId;
 	private String taskName;
 	private int categoryId;
