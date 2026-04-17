@@ -82,7 +82,9 @@
 		<tr>
 			<th>期限</th>
 			<td>
-				<%=task.getLimitDate() %>
+				<%= task.getLimitDate().format(
+					    java.time.format.DateTimeFormatter.ofPattern("yyyy年M月d日")
+						) %>
 			</td>
 		</tr>
 		<tr>

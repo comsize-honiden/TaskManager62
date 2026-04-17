@@ -96,7 +96,7 @@
 		<tr>
 			<th>タスク名</th>
 			<td>
-				<input type="text" name="taskName"  value="<%=task.getTaskName()%>">
+				<input type="text" name="taskName"  value="<%=task.getTaskName()%>" required>
 			</td>
 		</tr>
 		<tr>
@@ -130,7 +130,7 @@
 		<tr>
 			<th>期限</th>
 			<td>
-			<input type="date" name="limitdate" value="<%=limitDate %>" min="<%=today%>"/>
+			<input type="date" name="limitdate" required value="<%=limitDate %>" min="<%=today%>"/>
 			</td>
 		</tr>
 		<tr>
