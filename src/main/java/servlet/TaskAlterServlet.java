@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.TaskDAO;
 import model.entity.TaskBean;
 
 /**
@@ -94,21 +96,44 @@ public class TaskAlterServlet extends HttpServlet {
 		updateTask.setStatusCode(statusCode);
 		updateTask.setMemo(memo);
 		
-		
 		session.setAttribute("updateTask", updateTask);
+		
+		TaskDAO taskDao = new TaskDAO();
 		
 		String url = null;
 		
 		if (task.equals(updateTask)) {
 			//成功処理に遷移するコード
 			System.out.println("変更有");
-			url = "task-alter-success.jsp";
+			try {
+				
+				int res = taskDao.taskAlter(updateTask);
+				System.out.println("res:" + res);
+				
+				if (res == 1) {
+					
+					url = "task-alter-success.jsp";
+			
+				} else {
+					
+					url = "task-alter-failure.jsp";
+					
+				}
+			
+			} catch (SQLException | ClassNotFoundException e) {
+			
+				e.printStackTrace();
+		
+			}
+			
+			
 		} else {
-		System.out.println("変更なし");
-		//失敗画面に遷移するコード
-		url = "task-alter-failure.jsp";
+			//失敗画面に遷移するコード
+			System.out.println("変更なし");
+			url = "task-alter-failure.jsp";
 		}
 		
+		System.out.println(url);
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}
