@@ -107,7 +107,7 @@ public class TaskAlterServlet extends HttpServlet {
 			System.out.println("変更有");
 			try {
 				
-				int res = taskDao.taskAlter(updateTask);
+				int res = taskDao.updateTask(updateTask);
 				System.out.println("res:" + res);
 				
 				if (res == 1) {
