@@ -46,22 +46,25 @@ public class TaskDeleteServlet extends HttpServlet {
 		TaskBean task = (TaskBean) session.getAttribute("task");
 		
 		TaskDAO dao = new TaskDAO();
+		String url = "";
 		try {
 			int count = dao.deleteTask(task.getTaskId());
-			request.setAttribute("count", count);
+			System.out.println(task.getTaskId());
+			if(count >= 1) {
+				url = "task-delete-success.jsp";
+			}
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println("削除に失敗しました。");
 			e.printStackTrace();
-			RequestDispatcher rd = request.getRequestDispatcher("task-delete-failure.jsp");
-			rd.forward(request, response);
+			url = "task-delete-failure.jsp";
+			
 		} catch (SQLException e) {
 			System.out.println("削除に失敗");
 			e.printStackTrace();
-			RequestDispatcher rd = request.getRequestDispatcher("task-delete-failure.jsp");
-			rd.forward(request, response);
+			url = "task-delete-failure.jsp";
 		}
-		RequestDispatcher rd = request.getRequestDispatcher("task-delete-success.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}
 }

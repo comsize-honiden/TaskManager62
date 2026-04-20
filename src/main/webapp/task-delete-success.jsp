@@ -9,7 +9,7 @@
 <body>
 	<h3>タスク削除完了画面</h3>
 	タスクの削除が完了しました
-	<form method="POST" action="menu.jsp">
+	<form method="POST" action="sample.jsp">
 		<input type="submit" value="メニュー画面へ">
 	</form>
 </body>
