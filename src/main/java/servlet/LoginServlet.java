@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 		if (user.getUserName() != null) {
 			
 			HttpSession session = request.getSession();
-			session.setAttribute("userName",user.getUserName());
+			session.setAttribute("user",user);
 			
 			//全ユーザーリストを生成し、セッションに詰める
 			List<UserBean> userList = new ArrayList<>();
