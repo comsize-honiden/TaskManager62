@@ -71,4 +71,17 @@ public class TaskDAO {
 		}
 		return result;
 	}
+	
+	public int deleteTask(int taskId) throws ClassNotFoundException, SQLException {
+		String sql = "DELETE FROM t_task WHERE task_id = ?";
+		int count = 0;
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql)) {
+			pstmt.setInt(1, taskId);
+			count = pstmt.executeUpdate();
+		}
+		return count;
+		
+	}
+	
 }
