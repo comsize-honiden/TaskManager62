@@ -41,7 +41,6 @@
 				</td>
 			</tr>
 		</table>
-		<%=task.getTaskId()%>
 		<input type="submit" value="削除する">
 	</form>
 	<form method="POST" action="task-detail.jsp">
