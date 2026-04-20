@@ -9,9 +9,9 @@
 <body>
 	<h1>ログアウト画面</h1>
 	<%
-		String userName = (String) session.getAttribute("userName");
+	UserBean user = (UserBean) session.getAttribute("user");
 	%>
-	お疲れ様でした！ <%=userName %>さん
+	お疲れ様でした！ <%=user.getUserName() %>さん
 	<% session.invalidate(); %>
 	<h3>ログアウトしました</h3>
 	<form action="login.jsp" method="POST">
