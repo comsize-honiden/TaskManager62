@@ -56,6 +56,7 @@ public class SampleSevlet extends HttpServlet {
 		List<CategoryBean> categoryBeanList = new ArrayList<>();
 		List<StatusBean> statusBeanList = new ArrayList<>();
 		List<TaskBean> taskBeanList = new ArrayList<>();
+		UserBean user = new UserBean();
 		
 		SampleDAO sampleDao = new SampleDAO();
 		
@@ -65,6 +66,9 @@ public class SampleSevlet extends HttpServlet {
 			categoryBeanList = sampleDao.getCategoryBeanList();
 			statusBeanList = sampleDao.getStatusBeanList();
 			taskBeanList = sampleDao.getTaskBeanList();
+			user.setUserId("h-suzuki");
+			user.setPassword("456");
+			user.setUserName("鈴木花子");
 			
 			//テスト用
 			System.out.println("各リストの長さ");
@@ -83,8 +87,9 @@ public class SampleSevlet extends HttpServlet {
 		session.setAttribute("categoryList", categoryBeanList);
 		session.setAttribute("statusList", statusBeanList);
 		session.setAttribute("taskList", taskBeanList);
+		session.setAttribute("user", user);
 		
-		//転送先を代入 
+		//転送先を代入
 		String forwadUrl = "task-list.jsp";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
