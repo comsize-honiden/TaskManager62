@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="java.util.List, 
     	java.time.LocalDate, 
     	
+    	model.entity.TaskBean, 
     	model.entity.CategoryBean, 
     	model.entity.UserBean, 
     	model.entity.StatusBean"%>
@@ -16,6 +17,9 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 	
+		List<TaskBean> taskBeanList
+			= (List<TaskBean>)session.getAttribute("taskList");
+		
 		List<CategoryBean> categoryList
 			= (List<CategoryBean>)session.getAttribute("categoryList");
 		
@@ -52,7 +56,7 @@
 			<tr>
 				<th align="center">期限</th>
 				<td>
-					<input type="date" name="limitDate" value="" min=<%=LocalDate.now%>>
+					<input type="date" name="limitDate" value="" min=<%=LocalDate.now()%>>
 				</td>
 			</tr>
 			<tr>
