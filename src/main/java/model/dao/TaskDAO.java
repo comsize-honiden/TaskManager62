@@ -44,7 +44,7 @@ public class TaskDAO {
 		}
 		return result;
 	}
-
+	//タスク詳細を表示するためのメソッド
 	public TaskBean getTaskDetail(int taskId) throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM t_task WHERE task_id = ?";
 		TaskBean result = new TaskBean();
