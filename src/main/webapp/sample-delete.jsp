@@ -8,8 +8,11 @@
 </head>
 <body>
 	<h1>削除機能サンプルJSP</h1>
-	<form action="comment-delete-form.jsp">
-	<input type="submit" value="コメント削除画面へ">
-	</form>
+	<%
+	//仮のコメントID
+	int commentId = 1;
+	%>
+	削除するコメント
+	<a href="comment-delete-form.jsp?commentId=<%=commentId %>"><%=commentId %></a>
 </body>
 </html>

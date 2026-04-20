@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import model.dao.SampleDAO;
 import model.entity.CategoryBean;
+import model.entity.CommentBean;
 import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
@@ -56,6 +57,7 @@ public class SampleSevlet extends HttpServlet {
 		List<CategoryBean> categoryBeanList = new ArrayList<>();
 		List<StatusBean> statusBeanList = new ArrayList<>();
 		List<TaskBean> taskBeanList = new ArrayList<>();
+		List<CommentBean> commentBeanList = new ArrayList<>();
 		
 		
 		SampleDAO sampleDao = new SampleDAO();
@@ -66,6 +68,7 @@ public class SampleSevlet extends HttpServlet {
 			categoryBeanList = sampleDao.getCategoryBeanList();
 			statusBeanList = sampleDao.getStatusBeanList();
 			taskBeanList = sampleDao.getTaskBeanList();
+			commentBeanList = sampleDao.getCommentBeanList();
 			
 			//テスト用
 			System.out.println("各リストの長さ");
@@ -84,11 +87,15 @@ public class SampleSevlet extends HttpServlet {
 		//仮の受け取るタスク番号taskId = 1
 		int taskId = 1;
 		session.setAttribute("taskId", taskId);
+		//仮の受け取るコメント番号commentId = 1
+		int commentId = 1;
+		session.setAttribute("commentId", commentId);
 		
 		session.setAttribute("userBeanList", userBeanList);
 		session.setAttribute("categoryBeanList", categoryBeanList);
 		session.setAttribute("statusBeanList", statusBeanList);
 		session.setAttribute("taskBeanList", taskBeanList);
+		session.setAttribute("commentBeanList", commentBeanList);
 		
 		System.out.println(userBeanList.get(1).getUserName());
 		//転送先を代入

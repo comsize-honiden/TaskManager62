@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.entity.CategoryBean;
+import model.entity.CommentBean;
 import model.entity.StatusBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
@@ -150,6 +151,43 @@ public class SampleDAO {
 			}
 			
 			return taskBeanList;
+			
+		}
+		
+	}
+	
+	public List<CommentBean> getCommentBeanList() throws SQLException, ClassNotFoundException {
+		
+		List<CommentBean> commentBeanList = new ArrayList<>();
+		
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement
+					("SELECT * FROM t_comment")) {
+			
+			ResultSet res = pstmt.executeQuery();
+			
+			while (res.next()) {
+			
+				CommentBean comment = new CommentBean();
+				
+				int commentId = res.getInt("comment_id");
+				int taskId = res.getInt("task_id");
+				String userId = res.getString("user_id");
+				String commentText = res.getString("comment");
+				LocalDateTime updateDatetime = res.getObject("create_datetime", LocalDateTime.class);
+				
+				
+				comment.setCommentId(commentId);
+				comment.setTaskId(taskId);
+				comment.setUserId(userId);
+				comment.setComment(commentText);
+				comment.setUpdateDateTime(updateDatetime);
+				
+				commentBeanList.add(comment);
+				
+			}
+			
+			return commentBeanList;
 			
 		}
 		
