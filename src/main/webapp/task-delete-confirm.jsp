@@ -37,8 +37,7 @@
 							statusName = statusList.getStatusName();
 						}
 					}
-					%>
-					<%=statusName%>
+					%> <%=statusName%>
 				</td>
 			</tr>
 		</table>
