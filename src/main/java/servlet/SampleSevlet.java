@@ -76,7 +76,7 @@ public class SampleSevlet extends HttpServlet {
 			System.out.println("categoryBeanList:" + categoryBeanList.size());
 			System.out.println("statusBeanList:" + statusBeanList.size());
 			System.out.println("taskBeanList:" + taskBeanList.size());
-			
+			System.out.println("commentBeanList:" + commentBeanList.size());
 			
 		}catch (SQLException | ClassNotFoundException e) {
 			 System.out.println("error");
@@ -84,11 +84,11 @@ public class SampleSevlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		//仮の受け取るタスク番号taskId = 1
+		//仮の受け取るタスク番号taskId
 		int taskId = 1;
 		session.setAttribute("taskId", taskId);
-		//仮の受け取るコメント番号commentId = 1
-		int commentId = 1;
+		//仮の受け取るコメント番号commentId
+		int commentId = 2;
 		session.setAttribute("commentId", commentId);
 		
 		session.setAttribute("userBeanList", userBeanList);

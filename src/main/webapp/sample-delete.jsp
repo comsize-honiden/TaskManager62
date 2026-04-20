@@ -10,7 +10,7 @@
 	<h1>削除機能サンプルJSP</h1>
 	<%
 	//仮のコメントID
-	int commentId = 1;
+	int commentId = 2;
 	%>
 	削除するコメント
 	<a href="comment-delete-form.jsp?commentId=<%=commentId %>"><%=commentId %></a>

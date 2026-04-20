@@ -174,7 +174,7 @@ public class SampleDAO {
 				int taskId = res.getInt("task_id");
 				String userId = res.getString("user_id");
 				String commentText = res.getString("comment");
-				LocalDateTime updateDatetime = res.getObject("create_datetime", LocalDateTime.class);
+				LocalDateTime updateDatetime = res.getObject("update_datetime", LocalDateTime.class);
 				
 				
 				comment.setCommentId(commentId);
@@ -186,6 +186,8 @@ public class SampleDAO {
 				commentBeanList.add(comment);
 				
 			}
+			
+			System.out.println("コメントリストサイズ：" + commentBeanList.size());
 			
 			return commentBeanList;
 			

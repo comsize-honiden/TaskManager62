@@ -11,6 +11,5 @@
 	<form action="sample-servlet" method="POST">
 	<input type="submit" value="サンプルサーブレット">
 	</form>
-
 </body>
 </html>
