@@ -6,7 +6,7 @@ public class CommentBean {
 	private int commentId;
 	private int taskId;
 	private String userId;
-	private String comment;
+	private String commentText;
 	private LocalDateTime updateDateTime;
 
 	public int getCommentId() {
@@ -33,12 +33,12 @@ public class CommentBean {
 		this.userId = userId;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getCommentText() {
+		return commentText;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setCommentText(String commentText) {
+		this.commentText = commentText;
 	}
 
 	public LocalDateTime getUpdateDateTime() {
