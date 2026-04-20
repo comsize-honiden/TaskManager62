@@ -24,7 +24,7 @@
 	TaskDAO taskDao = new TaskDAO();
 	TaskBean task = taskDao.getTaskDetail(1);
 	
-	//TaskBean task = (TaskBean) session.getAttribute("task");
+	//TaskBean task = (TaskBean) session.getAttribute("taskDetail");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryBeanList");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusBeanList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userBeanList");
@@ -82,7 +82,7 @@
 	<h3>コメント</h3>
 	<form action="comment-post-servlet" method="POST">
 		<input type="hidden" name="taskId" value="<%=task.getTaskId()%>">
-		<textarea rows="4" cols="25" name="commentText" maxlength="100" required></textarea><br>
+		<textarea rows="4" cols="25" name="comment" maxlength="100" required></textarea><br>
 		<input type="submit" value="投稿する">
 	</form>
 </body>
