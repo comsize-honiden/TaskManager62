@@ -1,7 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.TaskDAO;
 import model.entity.TaskBean;
 
 /**
@@ -42,8 +45,23 @@ public class TaskDeleteServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		TaskBean task = (TaskBean) session.getAttribute("task");
 		
-		
-		
+		TaskDAO dao = new TaskDAO();
+		try {
+			int count = dao.deleteTask(task.getTaskId());
+			request.setAttribute("count", count);
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("削除に失敗しました。");
+			e.printStackTrace();
+			RequestDispatcher rd = request.getRequestDispatcher("task-delete-failure.jsp");
+			rd.forward(request, response);
+		} catch (SQLException e) {
+			System.out.println("削除に失敗");
+			e.printStackTrace();
+			RequestDispatcher rd = request.getRequestDispatcher("task-delete-failure.jsp");
+			rd.forward(request, response);
+		}
+		RequestDispatcher rd = request.getRequestDispatcher("task-delete-success.jsp");
+		rd.forward(request, response);
 	}
-
 }
