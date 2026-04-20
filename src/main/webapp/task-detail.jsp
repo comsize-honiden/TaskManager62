@@ -22,7 +22,7 @@
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
-	List<CommentBean> commentList = (List<CommentBean>) request.getAttribute("commentList");
+	List<CommentBean> commentList = (List<CommentBean>) session.getAttribute("commentList");
 
 	%>
 	<h3>タスク詳細画面</h3>
@@ -81,9 +81,9 @@
 					<input type="submit" value="編集">
 				</form>
 			</td>
-
 			<td>
 				<form method="POST" action="task-delete-confirm.jsp">
+				<input type="hidden" name="taskId" value="<%=task.getTaskId()%>">
 					<input type="submit" value="削除">
 				</form>
 			</td>

@@ -49,8 +49,7 @@ public class TaskDetailServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("task", task);
-			request.setAttribute("commentList", commentList);
-			System.out.println(commentList.size());
+			session.setAttribute("commentList", commentList);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("task-detail.jsp");
 			rd.forward(request, response);
