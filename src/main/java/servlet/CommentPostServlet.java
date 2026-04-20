@@ -1,15 +1,20 @@
 package servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.CommentDAO;
 import model.entity.CommentBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class CommentPostServlet
@@ -41,19 +46,50 @@ public class CommentPostServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		//GETで受け取る必要がある？
 		String task = request.getParameter("taskId");
 		int taskId = Integer.parseInt(task);
 		
-		String comment = request.getParameter("comment");
+		HttpSession session = request.getSession();
 		
-		CommentBean coment = new CommentBean();
+		//本番用のログインユーザー取得のための記述
+		//UserBean user = (UserBean) session.getAttribute("user");
+		
+		//テスト用のログインユーザー取得のための記述
+		List<UserBean> userList = (List<UserBean>) session.getAttribute("userBeanList");
+		String userId = null;
+		for (UserBean user : userList) {
+			userId = user.getUserId();
+		}
+		
+		String commentText = request.getParameter("commentText");
+		
+		CommentBean comment = new CommentBean();
 		CommentDAO commentDao = new CommentDAO();
 		
+		//コメント登録メソッドを呼び出し、登録件数から登録成功か否かを判別して画面遷移させる
+		int count = 0;
 		try {
+			comment.setTaskId(taskId);
 			
-		} catch() {
+			//本番用のログインユーザー取得のための記述
+			//comment.setUserId(user.getUserId());
 			
+			//テスト用のログインユーザー取得のための記述
+			comment.setUserId(userId);
+			
+			comment.setCommentText(commentText);
+			
+			count = commentDao.insertComment(comment);
+			
+		} catch(SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		if (count > 0) {
+			RequestDispatcher rd = request.getRequestDispatcher("comment-post-success.jsp");
+			rd.forward(request, response);
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("comment-post-failure.jsp");
+			rd.forward(request, response);
 		}
 	}
 }
