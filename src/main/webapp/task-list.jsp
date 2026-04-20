@@ -14,7 +14,7 @@
 <title>TaskManager62</title>
 </head>
 <body>
-	<h3>タスク一覧画面</h3>
+	<h1>タスク一覧画面</h1>
 	<%
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html charset=UTF-8");
@@ -25,7 +25,7 @@
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	
 	%>
-	<table border=1>
+	<table border=1 height="300">
 		<th>タスク名</th>
 		<th>カテゴリ</th>
 		<th>期限</th>
@@ -86,5 +86,8 @@
 		}
 		%>
 	</table>
+	<form method="POST" action="menu.jsp">
+		<input type="submit" value="メニュー画面へ">
+	</form>
 </body>
 </html>
