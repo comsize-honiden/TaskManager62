@@ -28,12 +28,14 @@ public class UserDAO {
 			while (res.next()) {
 				String userName = res.getString("user_name");
 				
+				user.setUserId(id);
+				user.setPassword(pass);
 				user.setUserName(userName);
 			}
 			return user;
 		}
 	}
-	//全ユーザー情報リストの生成メソッド
+	//全ユーザー情報リストを生成するメソッド
 	public List<UserBean> getUserList() throws SQLException, ClassNotFoundException {
 		
 		List<UserBean> userList = new ArrayList<>();
