@@ -61,7 +61,7 @@ public class CommentPostServlet extends HttpServlet {
 			userId = user.getUserId();
 		}
 		
-		String commentText = request.getParameter("commentText");
+		String commentText = request.getParameter("comment");
 		
 		CommentBean comment = new CommentBean();
 		CommentDAO commentDao = new CommentDAO();
