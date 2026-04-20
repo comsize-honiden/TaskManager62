@@ -1,11 +1,25 @@
 package model.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.entity.CategoryBean;
+import model.entity.StatusBean;
+import model.entity.TaskBean;
+import model.entity.UserBean;
+
 public class SampleDAO {
 
  
-	public List<UserBean> getUserBeanList() throws SQLException, ClassNotFoundException {
+	public List<UserBean> getUserList() throws SQLException, ClassNotFoundException {
 		
-		List<UserBean> userBeanList = new ArrayList<>();
+		List<UserBean> userList = new ArrayList<>();
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
@@ -25,19 +39,19 @@ public class SampleDAO {
 				user.setPassword(pass);
 				user.setUserName(userName);
 				
-				userBeanList.add(user);
+				userList.add(user);
 				
 			}
 			
-			return userBeanList;
+			return userList;
 			
 		}
 		
 	}
 	
-	public List<CategoryBean> getCategoryBeanList() throws SQLException, ClassNotFoundException {
+	public List<CategoryBean> getCategoryList() throws SQLException, ClassNotFoundException {
 		
-		List<CategoryBean> categoryBeanList = new ArrayList<>();
+		List<CategoryBean> categoryList = new ArrayList<>();
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
@@ -55,19 +69,19 @@ public class SampleDAO {
 				category.setCategoryId(categoryId);
 				category.setCategoryName(categoryName);
 				
-				categoryBeanList.add(category);
+				categoryList.add(category);
 				
 			}
 			
-			return categoryBeanList;
+			return categoryList;
 			
 		}
 		
 	}
 	
-	public List<StatusBean> getStatusBeanList() throws SQLException, ClassNotFoundException {
+	public List<StatusBean> getStatusList() throws SQLException, ClassNotFoundException {
 		
-		List<StatusBean> statusBeanList = new ArrayList<>();
+		List<StatusBean> statusList = new ArrayList<>();
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
@@ -86,19 +100,19 @@ public class SampleDAO {
 				status.setStatusName(statusName);
 				
 				
-				statusBeanList.add(status);
+				statusList.add(status);
 				
 			}
 			
-			return statusBeanList;
+			return statusList;
 			
 		}
 		
 	}
 	
-	public List<TaskBean> getTaskBeanList() throws SQLException, ClassNotFoundException {
+	public List<TaskBean> getTaskList() throws SQLException, ClassNotFoundException {
 		
-		List<TaskBean> taskBeanList = new ArrayList<>();
+		List<TaskBean> taskList = new ArrayList<>();
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
@@ -131,11 +145,11 @@ public class SampleDAO {
 				task.setUpdateDatetime(updateDatetime); 
 				
 				
-				taskBeanList.add(task);
+				taskList.add(task);
 				
 			}
 			
-			return taskBeanList;
+			return taskList;
 			
 		}
 		
