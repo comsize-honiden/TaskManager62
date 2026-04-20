@@ -1,6 +1,5 @@
 package model.dao;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,6 +60,7 @@ public class TaskDAO {
 				String statusCode = rs.getString("status_code");
 				String memo = rs.getString("memo");
 
+				result.setTaskId(taskId);
 				result.setTaskName(taskName);
 				result.setCategoryId(categoryId);
 				result.setLimitDate(limitDate);
@@ -71,17 +71,23 @@ public class TaskDAO {
 		}
 		return result;
 	}
-	
+
 	public int deleteTask(int taskId) throws ClassNotFoundException, SQLException {
-		String sql = "DELETE FROM t_task WHERE task_id = ?";
+		String taskSql = "DELETE FROM t_task WHERE task_id = ?";
+		String commentSql = "DELETE FROM t_comment WHERE task_id = ?";
 		int count = 0;
-		try (Connection con = ConnectionManager.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(sql)) {
-			pstmt.setInt(1, taskId);
-			count = pstmt.executeUpdate();
+		try (Connection con = ConnectionManager.getConnection()){
+//			con.setAutoCommit(false);
+				try(PreparedStatement commentPstmt = con.prepareStatement(commentSql)){
+					commentPstmt.setInt(1, taskId);
+					commentPstmt.executeUpdate();
+				}
+				try(PreparedStatement taskPstmt = con.prepareStatement(taskSql)){
+					taskPstmt.setInt(1, taskId);
+					count = taskPstmt.executeUpdate();
+				}
+//			con.commit();
 		}
 		return count;
-		
 	}
-	
 }
