@@ -20,16 +20,16 @@ import model.entity.TaskBean;
 import model.entity.UserBean;
 
 /**
- * Servlet implementation class SampleSevlet
+ * Servlet implementation class TestServlet
  */
-@WebServlet("/sample-servlet")
-public class SampleSevlet extends HttpServlet {
+@WebServlet("/test-servlet")
+public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SampleSevlet() { 
+    public TestServlet() { 
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,27 +52,27 @@ public class SampleSevlet extends HttpServlet {
 		
 		//サンプルデータ生成
 		
-		List<UserBean> userBeanList = new ArrayList<>();
-		List<CategoryBean> categoryBeanList = new ArrayList<>();
-		List<StatusBean> statusBeanList = new ArrayList<>();
-		List<TaskBean> taskBeanList = new ArrayList<>();
+		List<UserBean> userList = new ArrayList<>();
+		List<CategoryBean> categoryList = new ArrayList<>();
+		List<StatusBean> statusList = new ArrayList<>();
+		List<TaskBean> taskList = new ArrayList<>();
 		
 		
 		SampleDAO sampleDao = new SampleDAO();
 		
 		try {
 			
-			userBeanList = sampleDao.getUserBeanList();
-			categoryBeanList = sampleDao.getCategoryBeanList();
-			statusBeanList = sampleDao.getStatusBeanList();
-			taskBeanList = sampleDao.getTaskBeanList();
+			userList = sampleDao.getUserList();
+			categoryList = sampleDao.getCategoryList();
+			statusList = sampleDao.getStatusList();
+			taskList = sampleDao.getTaskList();
 			
 			//テスト用
 			System.out.println("各リストの長さ");
-			System.out.println("userBaenList:" + userBeanList.size());
-			System.out.println("categoryBeanList:" + categoryBeanList.size());
-			System.out.println("statusBeanList:" + statusBeanList.size());
-			System.out.println("taskBeanList:" + taskBeanList.size());
+			System.out.println("userList:" + userList.size());
+			System.out.println("categoryList:" + categoryList.size());
+			System.out.println("statusList:" + statusList.size());
+			System.out.println("taskList:" + taskList.size());
 			
 			
 		}catch (SQLException | ClassNotFoundException e) {
@@ -85,12 +85,12 @@ public class SampleSevlet extends HttpServlet {
 		int taskId = 1;
 		session.setAttribute("taskId", taskId);
 		
-		session.setAttribute("userBeanList", userBeanList);
-		session.setAttribute("categoryBeanList", categoryBeanList);
-		session.setAttribute("statusBeanList", statusBeanList);
-		session.setAttribute("taskBeanList", taskBeanList);
+		session.setAttribute("userList", userList);
+		session.setAttribute("categoryList", categoryList);
+		session.setAttribute("statusList", statusList);
+		session.setAttribute("taskList", taskList);
 		
-		System.out.println(userBeanList.get(1).getUserName());
+		System.out.println(userList.get(1).getUserName());
 		//転送先を代入
 		String forwadUrl = "task-alter-form.jsp";
 		
