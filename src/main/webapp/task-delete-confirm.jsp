@@ -17,15 +17,15 @@
 	TaskBean task = (TaskBean) session.getAttribute("task");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	%>
-	<h3>タスク削確認画面</h3>
+	<h1>タスク削確認画面</h1>
 
 	<h5>下記のタスクを本当に削除しますか？</h5>
 
 	<form method="POST" action="task-delete-servlet">
-		<table border="">
+		<table border="1" height="100">
 			<tr>
-				<td>タスク名</td>
-				<td>ステータス情報</td>
+				<th>タスク名</th>
+				<th>ステータス情報</th>
 			</tr>
 			<tr>
 				<td><%=task.getTaskName()%></td>
