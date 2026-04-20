@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,11 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import model.dao.CommentDAO;
 import model.entity.CommentBean;
-import model.entity.UserBean;
 
 /**
  * Servlet implementation class CommentPostServlet
@@ -49,17 +46,12 @@ public class CommentPostServlet extends HttpServlet {
 		String task = request.getParameter("taskId");
 		int taskId = Integer.parseInt(task);
 		
+		/* 本番用のログインユーザー取得のための記述
 		HttpSession session = request.getSession();
-		
-		//本番用のログインユーザー取得のための記述
-		//UserBean user = (UserBean) session.getAttribute("user");
+		UserBean user = (UserBean) session.getAttribute("user"); */
 		
 		//テスト用のログインユーザー取得のための記述
-		List<UserBean> userList = (List<UserBean>) session.getAttribute("userBeanList");
-		String userId = null;
-		for (UserBean user : userList) {
-			userId = user.getUserId();
-		}
+		String userId = "t-yamada";
 		
 		String commentText = request.getParameter("comment");
 		
