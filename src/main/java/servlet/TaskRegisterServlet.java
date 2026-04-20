@@ -47,13 +47,16 @@ public class TaskRegisterServlet extends HttpServlet {
 		String url = null;
 		
 		try {
-			int taskId = request.getParameter("taskId");
+			int taskId = Integer.parseInt(request.getParameter("taskId"));
 			String taskName = request.getParameter("taskName");
-			int categoryId = request.getParameter("categoryId");
-			LocalDate limitDate =request.getParameter("limitDate");
+			int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+			String limitDateStr = request.getParameter("limitDate");
 			String userId = request.getParameter("userId");
 			String statusCode = request.getParameter("statusCode");
 			String memo = request.getParameter("memo");
+			
+			// 期限をString型からLocalDate型に変換
+			LocalDate limitDate = LocalDate.parse(limitDateStr);
 			
 			TaskBean task = new TaskBean();
 			
@@ -84,5 +87,4 @@ public class TaskRegisterServlet extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(url);
 		rd.forward(request, response);
 	}
-
 }
