@@ -61,6 +61,7 @@ public class TaskDAO {
 				String statusCode = rs.getString("status_code");
 				String memo = rs.getString("memo");
 
+				result.setTaskId(taskId);
 				result.setTaskName(taskName);
 				result.setCategoryId(categoryId);
 				result.setLimitDate(limitDate);
