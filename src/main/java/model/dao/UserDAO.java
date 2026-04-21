@@ -12,14 +12,14 @@ import model.entity.UserBean;
 
 public class UserDAO {
 	//ログイン認証メソッド
-	public UserBean getUser(String id, String pass) throws SQLException, ClassNotFoundException {
+	public UserBean getUser(String userId, String pass) throws SQLException, ClassNotFoundException {
 		
 		String sql = "SELECT user_name FROM m_user WHERE user_id = ? AND password = ?";
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			
-			pstmt.setString(1, id);
+			pstmt.setString(1, userId);
 			pstmt.setString(2, pass);
 			
 			ResultSet res = pstmt.executeQuery();
@@ -28,7 +28,7 @@ public class UserDAO {
 			while (res.next()) {
 				String userName = res.getString("user_name");
 				
-				user.setUserId(id);
+				user.setUserId(userId);
 				user.setPassword(pass);
 				user.setUserName(userName);
 			}
