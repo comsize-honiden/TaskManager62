@@ -24,10 +24,10 @@
 	TaskDAO taskDao = new TaskDAO();
 	TaskBean task = taskDao.getTaskDetail(1);
 	
-	//TaskBean task = (TaskBean) session.getAttribute("taskDetail");
-	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryBeanList");
-	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusBeanList");
-	List<UserBean> userList = (List<UserBean>) session.getAttribute("userBeanList");
+	//TaskBean task = (TaskBean) session.getAttribute("task");
+	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
+	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
+	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 	%>
 	<table border="1">
 		<tr>
