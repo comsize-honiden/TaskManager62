@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>ログイン失敗画面</h1>
-	<h3>ログインに失敗しました。</h3><br>
+	<h3>ログインに失敗しました</h3><br>
 	<form action="login.jsp" method="POST">
 		<input type="submit" value="ログイン画面へ">
 	</form>
