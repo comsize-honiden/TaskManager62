@@ -38,7 +38,7 @@ public class CommentDAO {
 		}
 		return result;
 	}
-	//コメントを登録するメソッド
+	//コメント登録メソッド
 	public int commentPost(CommentBean comment) throws ClassNotFoundException, SQLException {
 		
 		int count;
