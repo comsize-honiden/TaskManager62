@@ -39,7 +39,7 @@ public class CommentDAO {
 		return result;
 	}
 	//コメントを登録するメソッド
-	public int insertComment(CommentBean comment) throws ClassNotFoundException, SQLException {
+	public int commentPost(CommentBean comment) throws ClassNotFoundException, SQLException {
 		
 		int count;
 		String sql = "INSERT INTO t_comment (task_id, user_id, comment) VALUES (?,?,?)";
