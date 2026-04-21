@@ -71,7 +71,7 @@ public class CommentPostServlet extends HttpServlet {
 			
 			comment.setCommentText(commentText);
 			
-			count = commentDao.insertComment(comment);
+			count = commentDao.commentPost(comment);
 			
 		} catch(SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
