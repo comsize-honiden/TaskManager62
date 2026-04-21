@@ -63,10 +63,10 @@ public class CommentPostServlet extends HttpServlet {
 		try {
 			comment.setTaskId(taskId);
 			
-			//本番用のログインユーザー取得のための記述
+			//本番用のログインユーザーをBeanに詰める記述
 			//comment.setUserId(user.getUserId());
 			
-			//テスト用のログインユーザー取得のための記述
+			//テスト用のログインユーザーをBeanに詰める記述
 			comment.setUserId(userId);
 			
 			comment.setCommentText(commentText);
