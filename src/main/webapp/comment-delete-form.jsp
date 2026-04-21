@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.time.LocalDate, java.util.List, model.entity.TaskBean, model.entity.CategoryBean,
-    	model.entity.UserBean, model.entity.StatusBean, model.entity.CommentBean, model.entity.CommentBean,
-    	java.time.LocalDateTime, java.time.format.DateTimeFormatter"%>
+    pageEncoding="UTF-8" 
+    import="java.time.LocalDate, java.util.List, model.entity.TaskBean, model.entity.CategoryBean,
+    		model.entity.UserBean, model.entity.StatusBean, model.entity.CommentBean, model.entity.CommentBean,
+    		java.time.LocalDateTime, java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +15,8 @@
 	<br><br>
 	<%
 	//セッションからタスクIDを受け取る 
-	int taskId = (int)session.getAttribute("taskId");
-	System.out.println("タスクId" + taskId);
+//	int taskId = (int)session.getAttribute("taskId");
+//	System.out.println("タスクId" + taskId);
 	
 	//コメントIDを受けとる
 	int commentId = Integer.parseInt(request.getParameter("commentId"));
@@ -26,6 +27,22 @@
 	List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
 	List<StatusBean> statusBeanList = (List<StatusBean>)session.getAttribute("statusBeanList");
 	List<CommentBean> commentBeanList = (List<CommentBean>)session.getAttribute("commentBeanList");
+	
+	//コメントIDに一致するCommentBeanオブジェクトをCommentBeanListから取得
+	CommentBean comment = new CommentBean();
+	
+	for (CommentBean newComment : commentBeanList) {
+		
+		if(newComment.getCommentId() == commentId) {
+			
+			comment = newComment;
+			
+		}
+		
+	}
+	
+	int taskId = comment.getTaskId();
+	
 	
 	//タスクIDに一致するTaskBeanオブジェクトをtaskBeanListから取得
 	TaskBean task = new TaskBean();
@@ -42,20 +59,6 @@
 	
 	//期限の取得
 	LocalDate limitDate = task.getLimitDate();
-	
-	//コメントIDに一致するCommentBeanオブジェクトをCommetBeanListから取得
-	CommentBean comment = new CommentBean();
-	
-	for (CommentBean newComment : commentBeanList) {
-		
-		
-		if(newComment.getCommentId() == commentId) {
-			
-			comment = newComment;
-			
-		}
-		
-	}
 	
 	//コメントをしたユーザーIDに一致するUserBeanオブジェクトをUserBeanListから取得
 	UserBean user = new UserBean();
@@ -80,7 +83,6 @@
 	DateTimeFormatter formatter =
 	    DateTimeFormatter.ofPattern("yyyy年MM月dd日 HH時mm分");
 
-	String formatted = updateDate.format(formatter);
 	
 	%>
 	<b>タスク名：<%= task.getTaskName()%></b><br><br>
