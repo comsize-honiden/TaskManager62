@@ -86,7 +86,7 @@ public class SampleSevlet extends HttpServlet {
 		session.setAttribute("userList",userBaenList );
 		session.setAttribute("categoryList", categoryBeanList);
 		session.setAttribute("statusList", statusBeanList);
-		session.setAttribute("taskList", taskBeanList);
+		request.setAttribute("taskList", taskBeanList);
 		session.setAttribute("user", user);
 		
 		//転送先を代入

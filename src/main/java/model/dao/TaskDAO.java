@@ -13,7 +13,7 @@ import model.entity.TaskBean;
 
 public class TaskDAO {
 	public List<TaskBean> getTaskList() throws ClassNotFoundException, SQLException {
-		String sql = "SELECT * FROM t_task ";
+		String sql = "SELECT * FROM t_task";
 		List<TaskBean> result = new ArrayList<TaskBean>();
 
 		try (Connection con = ConnectionManager.getConnection();

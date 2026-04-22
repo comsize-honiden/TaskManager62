@@ -19,7 +19,7 @@
 	request.setCharacterEncoding("UTF-8");
 	response.setContentType("text/html charset=UTF-8");
 
-	List<TaskBean> taskList = (List<TaskBean>) session.getAttribute("taskList");
+	List<TaskBean> taskList = (List<TaskBean>) request.getAttribute("taskList");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
@@ -42,14 +42,7 @@
 					<%=task.getTaskName()%>
 			</a></td>
 			<td>
-				<%
-				String categoryName = "";
-				for (CategoryBean category : categoryList) {
-					if (task.getCategoryId() == category.getCategoryId()) {
-						categoryName = category.getCategoryName();
-					}
-				}
-				%><%=categoryName%>
+				<%=categoryList.get(task.getCategoryId() - 1).getCategoryName()%>
 			</td>
 			<td>
 				<%
@@ -66,7 +59,7 @@
 						userName = user.getUserName();
 					}
 				}
-				%> <%=userName%>
+				%><%=userName%>
 			</td>
 			<td>
 				<%
