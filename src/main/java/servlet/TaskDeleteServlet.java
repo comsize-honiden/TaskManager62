@@ -49,7 +49,6 @@ public class TaskDeleteServlet extends HttpServlet {
 		String url = "";
 		try {
 			int count = dao.deleteTask(task.getTaskId());
-			System.out.println(task.getTaskId());
 			if(count >= 1) {
 				url = "task-delete-success.jsp";
 			}
