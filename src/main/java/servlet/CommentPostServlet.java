@@ -32,8 +32,9 @@ public class CommentPostServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		RequestDispatcher rd = request.getRequestDispatcher("sample.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -77,8 +78,8 @@ public class CommentPostServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		if (count > 0) {
-			RequestDispatcher rd = request.getRequestDispatcher("comment-post-success.jsp");
-			rd.forward(request, response);
+			String url = "comment-post-success.jsp";
+			response.sendRedirect(url);
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("comment-post-failure.jsp");
 			rd.forward(request, response);
