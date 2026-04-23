@@ -25,7 +25,7 @@
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	
 	%>
-	<table border=1 height="300">
+	<table border=1>
 		<th>タスク名</th>
 		<th>カテゴリ</th>
 		<th>期限</th>
