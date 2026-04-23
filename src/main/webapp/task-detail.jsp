@@ -20,13 +20,13 @@
 
 	UserBean user = (UserBean) session.getAttribute("user");
 	TaskBean task = (TaskBean) session.getAttribute("task");
+	List<CommentBean> commentList = (List<CommentBean>) session.getAttribute("commentList");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
-	List<CommentBean> commentList = (List<CommentBean>) session.getAttribute("commentList");
 	%>
 	<h1>タスク詳細画面</h1>
-	<table border=1 height="300">
+	<table border=1 height="150">
 		<tr>
 			<th>タスク名</th>
 			<td><%=task.getTaskName()%></td>
@@ -89,7 +89,6 @@
 			</td>
 			<td>
 				<form method="POST" action="task-delete-confirm.jsp">
-					<input type="hidden" name="taskId" value="<%=task.getTaskId()%>">
 					<input type="submit" value="削除">
 				</form>
 			</td>
@@ -111,7 +110,7 @@
 	%>
 	<a href="comment-delete-servlet?commentId=<%=comment.getCommentId()%>">
 	<%} %>
-		<%=i%>
+	<%=i%>
 	</a>
 	<%
 	String CommentUserName = "";
