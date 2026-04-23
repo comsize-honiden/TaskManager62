@@ -39,7 +39,7 @@ public class TestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class TestServlet extends HttpServlet {
 		
 		System.out.println(userList.get(1).getUserName());
 		//転送先を代入
-		String forwadUrl = "task-alter-form.jsp";
+		String forwadUrl = "task-register.jsp";
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		
