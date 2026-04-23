@@ -95,6 +95,7 @@ public class TaskBean {
 			this.taskName.equals(updateTask.getTaskName()) &&
 			this.categoryId == updateTask.getCategoryId() &&
 			this.limitDate.compareTo(updateTask.getLimitDate()) == 0 &&
+			this.userId.equals(updateTask.getUserId())&&
 			this.statusCode.equals(updateTask.getStatusCode()) &&
 			this.memo.equals(updateTask.getMemo())){
 				
