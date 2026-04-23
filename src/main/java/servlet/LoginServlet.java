@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.SampleDAO;
+import model.dao.CategoryDAO;
+import model.dao.StatusDAO;
 import model.dao.UserDAO;
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
@@ -53,52 +54,55 @@ public class LoginServlet extends HttpServlet {
 		UserBean user = new UserBean();
 		UserDAO userDao = new UserDAO();
 		
-		//ログイン認証メソッドを呼び出し、認証された場合はセッションに詰める
 		try {
- 			user = userDao.getUser(userId,pass);
+			//入力値が未入力の場合,例外を投げる
+			if (userId == null || pass == null) {
+				throw  new NullPointerException();
+				
+			//入力値が既定の文字数以上の場合,例外を投げる
+			} else if (userId.length() > 24 || pass.length() > 32) {
+				throw new IllegalArgumentException();
+				
+			//ログイン認証メソッドを呼び出し、認証した場合はセッションに詰める
+			} else {
+				user = userDao.getUser(userId,pass);
  			
-		} catch (SQLException | ClassNotFoundException e) {
+	 			if (user.getUserName() != null) {
+	 				
+	 				HttpSession session = request.getSession();
+	 				session.setAttribute("user",user);
+	 				
+	 				//全ユーザーリストを生成し、セッションに詰める
+	 				List<UserBean> userList = new ArrayList<>();
+	 				userList = userDao.getUserList();
+	 				
+	 				session.setAttribute("userList",userList);
+	 				
+	 				//カテゴリーリストを生成し、セッションに詰める
+	 				CategoryDAO categoryDao = new CategoryDAO();
+	 				List<CategoryBean> categoryList = new ArrayList<>();
+	 				categoryList = categoryDao.getCategoryList();
+	 				
+	 				session.setAttribute("categoryList",categoryList);
+	 				
+	 				//ステータスリストを生成し、セッションに詰める
+	 				StatusDAO statusDao = new StatusDAO();
+	 				List<StatusBean> statusList = new ArrayList<>();
+	 				statusList = statusDao.getStatusList();
+	 				
+	 				session.setAttribute("statusList",statusList);
+	 				
+	 				RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
+	 				rd.forward(request, response);
+	 			} else {
+	 				RequestDispatcher rd = request.getRequestDispatcher("login-failure.jsp");
+	 				rd.forward(request, response);
+	 			}
+			}
+		} catch (SQLException | ClassNotFoundException 
+					| IllegalArgumentException | NullPointerException e) {
 			e.printStackTrace();
-		}
-		if (user.getUserName() != null) {
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("user",user);
-			
-			//全ユーザーリストを生成し、セッションに詰める
-			List<UserBean> userList = new ArrayList<>();
-			try {
-				userList = userDao.getUserList();
-				
-			} catch(SQLException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			session.setAttribute("userList",userList);
-			
-			//カテゴリーリストを生成し、セッションに詰める
-			SampleDAO sampleDao = new SampleDAO();
-			List<CategoryBean> categoryList = new ArrayList<>();
-			try {
-				categoryList = sampleDao.getCategoryBeanList();
-				
-			} catch(SQLException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			session.setAttribute("categoryList",categoryList);
-			
-			//ステータスリストを生成し、セッションに詰める
-			List<StatusBean> statusList = new ArrayList<>();
-			try {
-				statusList = sampleDao.getStatusBeanList();
-				
-			} catch(SQLException | ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			session.setAttribute("statusList",statusList);
-			
-			RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
-			rd.forward(request, response);
-		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("login-failure.jsp");
 			rd.forward(request, response);
 		}
