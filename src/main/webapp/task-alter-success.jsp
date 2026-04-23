@@ -102,13 +102,20 @@
 		<tr>
 			<th>メモ</th>
 			<td>
+				<%
+				if (task.getMemo() == null) {
+				%>
+				&nbsp;
+				<%
+				} else {
+				%>
 				<%=task.getMemo() %>
+				<%
+				}
+				%>
 			</td> 
 		</tr>
 	</table>
-	<%
-	session.removeAttribute("taskId");
-	%>
 	<br>
 	<form action="menu.jsp" method="GET">
 	<input type="submit" value="メニュー画面へ">
