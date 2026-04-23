@@ -49,9 +49,10 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		
 		//ログインページとログイン済みのページはチェック対象外にする
 		boolean isLoginPage = requestURI.endsWith("login.jsp");
+		boolean isLoginServlet = requestURI.endsWith("login-servlet");
 		boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
 		
-		if (isLoginPage || isLoggedIn) {
+		if (isLoginServlet || isLoginPage || isLoggedIn) {
 			//ログインページ、またはログイン済みのページならそのまま通す
 			chain.doFilter(request, response);
 		} else {
