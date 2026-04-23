@@ -15,8 +15,14 @@
 <body>
 	<h1>タスク登録画面</h1>
 	<%
-		request.setCharacterEncoding("UTF-8");
+		session = request.getSession(false);
+		request.setCharacterEncoding("UTF-8");	
 	
+		if (session == null) {
+			RequestDispatcher rd = request.getRequestDispatcher("login-servlet.jsp");
+			rd.forward(request, response);
+		}
+		
 		List<TaskBean> taskBeanList
 			= (List<TaskBean>)session.getAttribute("taskList");
 		
