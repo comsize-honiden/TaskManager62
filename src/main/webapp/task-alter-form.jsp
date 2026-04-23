@@ -12,9 +12,20 @@
 	<h1>タスク編集画面</h1>
 	<%
 	request.setCharacterEncoding("UTF-8");
+
 	//セッションで受け取る必要あり
-	int taskId = (int)session.getAttribute("taskId");
-	System.out.println("タスクId" + taskId);
+	Object taskIdObj = null;
+	taskIdObj = session.getAttribute("taskId");
+		
+	if (taskIdObj == null) {
+			
+		RequestDispatcher rd = request.getRequestDispatcher("task-alter-servlet");
+		rd.forward(request, response);
+		return;
+	}
+
+	int taskId = (int)taskIdObj;
+	
 	
 	List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
 	List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
@@ -91,12 +102,11 @@
 	
 	%>
 	<form action="task-alter-servlet" method="POST">
-	<input type="hidden" name="taskId" value="<%= taskId %>">
 	<table border="1">
 		<tr>
 			<th>タスク名</th>
 			<td>
-				<input type="text" name="taskName"  value="<%=task.getTaskName()%>" required>
+				<input type="text" maxlength="50" size="60" name="taskName"  value="<%=task.getTaskName()%>" required>
 			</td>
 		</tr>
 		<tr>
@@ -145,14 +155,12 @@
 						<%=user.getUserName()%>
 					</option>	
 				<%	
-			//	System.out.println("syokiti" + user.getUserName());
 				 }else {
 				%>	 
 					<option value="<%=userBeanList.get(i).getUserId()%>">
 						<%=userBeanList.get(i).getUserName()%>
 					</option>
 				<% 
-			//	System.out.println("テスト" + userBeanList.get(i).getUserName());
 				 }
 			 }
 			 %>
@@ -189,7 +197,7 @@
 		<tr>
 			<th>メモ</th>
 			<td>
-				<input type="text" name="memo"  value="<%=task.getMemo()%>">
+				<input type="text" maxlength="100" size="110" name="memo"  value="<%=task.getMemo()%>">
 			</td> 
 		</tr>
 	</table>
