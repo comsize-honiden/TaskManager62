@@ -13,11 +13,11 @@
 		<table border="1" style="border-collapse: collapse">
 			<tr>
 				<th>ユーザーID</th>
-				<td><input type ="text" name="userId"></td>
+				<td><input type ="text" name="userId" maxlength="24" required></td>
 			</tr>	
 			<tr>
 				<th>パスワード</th>
-				<td><input type ="password" name="pass"></td>
+				<td><input type ="password" name="pass" maxlength="32" required></td>
 			</tr>
 		</table><br>
 		<input type="submit" value="ログイン">
