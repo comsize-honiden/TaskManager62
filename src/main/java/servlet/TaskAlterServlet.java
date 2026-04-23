@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.TaskDAO;
+import model.entity.CategoryBean;
+import model.entity.StatusBean;
 import model.entity.TaskBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class TaskAlterServlet
@@ -35,8 +39,9 @@ public class TaskAlterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		this.doPost(request, response);
+		
 	}
 
 	/**
@@ -50,11 +55,27 @@ public class TaskAlterServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
+		List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
+		List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
+		List<StatusBean> statusBeanList = (List<StatusBean>)session.getAttribute("statusBeanList");
 		
 		//変更前のタスクを取得
 		TaskBean task = new TaskBean();
 		
-		int taskId = Integer.parseInt(request.getParameter("taskId"));
+		int taskId = 0;
+		
+		try {
+			
+			taskId = (int)(session.getAttribute("taskId"));
+		
+		}catch (NullPointerException e) {
+			
+			RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+			rd.forward(request, response);
+			
+			return;
+			
+		}
 		
 		for (TaskBean newTask : taskBeanList) {
 			
@@ -68,51 +89,165 @@ public class TaskAlterServlet extends HttpServlet {
 		
 		//変更後のタスクオブジェクトを用意
 		TaskBean updateTask = new TaskBean();
-		
-		updateTask.setTaskId(task.getTaskId());
-		updateTask.setTaskName(task.getTaskName());
-		updateTask.setCategoryId(taskId);
-		updateTask.setLimitDate(task.getLimitDate());
-		updateTask.setUserId(task.getUserId());
-		updateTask.setStatusCode(task.getStatusCode());
-		updateTask.setMemo(task.getMemo());
 		updateTask.setCreateDatetime(task.getCreateDatetime());
 		updateTask.setUpdateDatetime(task.getUpdateDatetime());
 		 
 		
-		//変更後の値を取得
-		String taskName = request.getParameter("taskName");
-		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-		LocalDate limitDate = LocalDate.parse(request.getParameter("limitdate"));
-		String userId = request.getParameter("userId");
-		String statusCode = request.getParameter("statusCode");
-		String memo = request.getParameter("memo");
+	//変更後の値を取得しオブジェクトの中身を更新する
+		//タスク名
+			String taskName = request.getParameter("taskName");
+			//Name属性を変更された場合
+			if (taskName == null) {
+				//変更前の値をセット
+				updateTask.setTaskName(task.getTaskName());
+				
+			} else {
+				//正常な更新
+				updateTask.setTaskName(taskName);
+				
+			}
+			
+		//カテゴリーID
+			//Name属性を変更された場合
+			try {
+				
+				int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+			//valueの数値を変更された場合	
+				if (categoryBeanList.size() >= categoryId) {
+				//リストサイズ内ならそのまま登録	
+					updateTask.setCategoryId(categoryId);
+					
+				} else {
+				//リストサイズ外なら初期値を登録	
+					updateTask.setCategoryId(task.getCategoryId());
+					
+				}
+				
+			} catch (NumberFormatException e) {
+			//正常な更新	
+				updateTask.setCategoryId(taskId);
+				
+			}
+			
+		//期限
+		boolean dateBollean = false;
 		
-		//変更後の値でオブジェクトの中身を更新
-		updateTask.setTaskName(taskName);
-		updateTask.setCategoryId(categoryId);
-		updateTask.setLimitDate(limitDate);
-		updateTask.setUserId(userId);
-		updateTask.setStatusCode(statusCode);
-		updateTask.setMemo(memo);
+		try {
+			
+			LocalDate limitDate = LocalDate.parse(request.getParameter("limitdate"));
+			updateTask.setLimitDate(limitDate);
+			
+			//期限が過去のものになっていないかチェック
+			LocalDate nowDate = LocalDate.now();
+		
+			if (limitDate.isAfter(nowDate)) {
+				
+				dateBollean = true;
+				
+			}
+		
+		}catch (DateTimeParseException | NullPointerException e) {
+			
+			updateTask.setLimitDate(task.getLimitDate());
+			
+		}
+		
+		//ユーザーID
+		String userId = request.getParameter("userId");
+			//Name属性を変更された場合	
+		if (userId == null) {
+			//変更前の値をセット
+			updateTask.setUserId(task.getUserId());
+			
+		}else {
+		
+			for (UserBean ub : userBeanList) {
+				
+				if (ub.getUserId().equals(userId)) {
+					//変更後の値をセット
+					updateTask.setUserId(userId);
+					
+				} else {
+					
+					//変更前の値をセット
+					updateTask.setUserId(task.getUserId());
+					
+				}
+				
+			}
+			
+		}
+		
+		//ステータスコード
+		String statusCode = request.getParameter("statusCode");
+			//Name属性を変更された場合
+		if (statusCode == null) {
+			
+			//変更前の値をセット
+			updateTask.setStatusCode(task.getStatusCode());
+				
+		}else {
+			
+			for (StatusBean sb : statusBeanList) {
+				
+				if (sb.getStatusCode().equals(statusCode)) {
+					
+					//正常な更新
+					updateTask.setStatusCode(statusCode);
+					
+				} else {
+					
+					//変更前の値をセット
+					updateTask.setStatusCode(task.getStatusCode());
+					
+				}
+				
+			}
+			
+			
+		}
+		
+		//メモ
+		updateTask.setMemo(request.getParameter("memo"));
 		
 		session.setAttribute("updateTask", updateTask);
 		
 		TaskDAO taskDao = new TaskDAO();
 		
-		String url = null;
+		String url = "task-alter-failure.jsp";
 		
 		if (task.equals(updateTask)) {
 			//成功処理に遷移するコード
 			System.out.println("変更有");
+			
 			try {
 				
-				int res = taskDao.updateTask(updateTask);
-				System.out.println("res:" + res);
-				
-				if (res == 1) {
+				//文字数チェック、未入力チェック
+				if (updateTask.getTaskName().length() <= 50 && updateTask.getMemo().length() <= 100
+						&& updateTask.getTaskName() != ""&& dateBollean){
+					
+					//DBアップデート
+					int res = taskDao.updateTask(updateTask);
+					
+					if (res == 1) {
 					
 					url = "task-alter-success.jsp";
+					//TaskBeanList更新
+					taskBeanList.get(taskId - 1).setTaskId(updateTask.getTaskId());
+					taskBeanList.get(taskId - 1).setTaskName(updateTask.getTaskName());
+					taskBeanList.get(taskId - 1).setCategoryId(updateTask.getCategoryId());
+					taskBeanList.get(taskId - 1).setLimitDate(updateTask.getLimitDate());
+					taskBeanList.get(taskId - 1).setUserId(updateTask.getUserId());
+					taskBeanList.get(taskId - 1).setStatusCode(updateTask.getStatusCode());
+					taskBeanList.get(taskId - 1).setMemo(updateTask.getMemo());
+					
+					
+					} else {
+						
+						url = "task-list.jsp";
+						
+					}
+	
 			
 				} else {
 					
@@ -120,7 +255,7 @@ public class TaskAlterServlet extends HttpServlet {
 					
 				}
 			
-			} catch (SQLException | ClassNotFoundException e) {
+			} catch (SQLException | ClassNotFoundException | NullPointerException e) {
 			
 				e.printStackTrace();
 		
