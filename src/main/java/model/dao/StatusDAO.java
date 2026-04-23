@@ -11,7 +11,7 @@ import model.entity.StatusBean;
 
 public class StatusDAO {
 	public List<StatusBean> getStatusList() throws ClassNotFoundException, SQLException{
-		String sql = "SELECT * FROM m_category";
+		String sql = "SELECT * FROM m_status";
 		List<StatusBean> result = new ArrayList<StatusBean>();
 		
 		try (Connection con = ConnectionManager.getConnection();
