@@ -22,7 +22,7 @@
 	<h5>下記のタスクを本当に削除しますか？</h5>
 
 	<form method="POST" action="task-delete-servlet">
-		<table border="1" height="100">
+		<table border="1">
 			<tr>
 				<th>タスク名</th>
 				<th>ステータス情報</th>
@@ -41,8 +41,10 @@
 				</td>
 			</tr>
 		</table>
+		<br>
 		<input type="submit" value="削除する">
 	</form>
+	<br>
 	<form method="POST" action="task-detail.jsp">
 		<input type="submit" value="詳細画面へ">
 	</form>

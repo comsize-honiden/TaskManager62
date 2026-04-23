@@ -3,7 +3,6 @@ package servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +49,8 @@ public class TaskDeleteServlet extends HttpServlet {
 			int count = dao.deleteTask(task.getTaskId());
 			if(count >= 1) {
 				url = "task-delete-success.jsp";
+			}else {
+				url = "task-delete-failure.jsp";
 			}
 			
 		} catch (ClassNotFoundException e) {
@@ -62,7 +63,6 @@ public class TaskDeleteServlet extends HttpServlet {
 			e.printStackTrace();
 			url = "task-delete-failure.jsp";
 		}
-		RequestDispatcher rd = request.getRequestDispatcher(url);
-		rd.forward(request, response);
+		response.sendRedirect(url);
 	}
 }
