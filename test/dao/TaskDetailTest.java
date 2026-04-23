@@ -33,10 +33,15 @@ public class TaskDetailTest {
 		
 	}
 	
-	void task_detail_失敗() {
+	void task_detail_失敗() throws ClassNotFoundException, SQLException {
 		TaskDAO dao = new TaskDAO();
 		TaskBean task = null;
 		
+		int taskId = 99;
+		task = dao.getTaskDetail(taskId);
+		
+		assertNull(task.getLimitDate());
+		assertNull(task.getCategoryId());
 		
 	}
 }

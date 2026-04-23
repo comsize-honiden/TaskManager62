@@ -40,9 +40,10 @@
 			<td>
 				<%
 				if (!(task.getLimitDate() == null)) {
-				%> <%=task.getLimitDate()%> <%
- }
- %>
+				%> <%=task.getLimitDate()%>
+				<%
+				}
+ 				%>
 			</td>
 		</tr>
 		<tr>
