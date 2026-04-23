@@ -42,6 +42,12 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
+		
+		//キャッシュ無効化
+		res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+		res.setHeader("Pragma", "no-cache");
+		res.setHeader("Expires", "0");
+		
 		HttpSession session = req.getSession(false);
 		
 		//アクセスされたURLを取得
@@ -49,12 +55,12 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		
 		//ログインページとログイン済みのページはチェック対象外にする
 		boolean isLoginPage = requestURI.endsWith("login.jsp");
-		boolean isLoginServlet = requestURI.endsWith("login-servlet");
 		boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
 		
-		if (isLoginServlet || isLoginPage || isLoggedIn) {
+		if (isLoginPage || isLoggedIn) {
 			//ログインページ、またはログイン済みのページならそのまま通す
 			chain.doFilter(request, response);
+			return;
 		} else {
 			//未ログインならログイン画面へ飛ばす
 			res.sendRedirect(req.getContextPath() + "/login.jsp");
