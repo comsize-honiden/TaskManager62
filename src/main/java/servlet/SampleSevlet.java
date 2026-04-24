@@ -39,7 +39,7 @@ public class SampleSevlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	/**
@@ -86,7 +86,11 @@ public class SampleSevlet extends HttpServlet {
 		session.setAttribute("taskBeanList", taskBeanList);
 		
 		//転送先を代入
+<<<<<<< HEAD:src/main/java/servlet/SampleSevlet.java
 		String forwadUrl = "task-alter.jsp";
+=======
+		String forwadUrl = "task-register.jsp";
+>>>>>>> feature/task-register:src/main/java/servlet/TestServlet.java
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		
