@@ -12,8 +12,8 @@
 	タスクの削除に失敗しました
 	<br>
 	<br>
-	<form method="POST" action="task-delete-confirm.jsp">
-		<input type="submit" value="削除画面へ">
+	<form method="POST" action="task-list-servlet">
+		<input type="submit" value="一覧画面へ">
 	</form>
 </body>
 </html>

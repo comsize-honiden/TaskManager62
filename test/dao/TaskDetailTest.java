@@ -29,7 +29,7 @@ public class TaskDetailTest {
 		assertEquals(task.getCategoryId(),1);
 		assertEquals(task.getStatusCode(),"00");
 		assertEquals(task.getTaskName(),"チームメンバー面談");
-		assertEquals(task.getUserId(),"i-sato");
+		assertEquals(task.getUserId(),"h-suzuki");
 		
 	}
 	
