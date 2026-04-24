@@ -27,15 +27,15 @@
 	int taskId = (int)taskIdObj;
 	
 	
-	List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
-	List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
-	List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
-	List<StatusBean> statusBeanList = (List<StatusBean>)session.getAttribute("statusBeanList");
+	List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
+	List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
+	List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
+	List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
 	
 	//タスクIDに一致するTaskBeanオブジェクトをtaskBeanListから取得
 	TaskBean task = new TaskBean();
 	
-	for (TaskBean newtask : taskBeanList) {
+	for (TaskBean newtask : taskList) {
 		
 		if(newtask.getTaskId() == taskId) {
 			
@@ -50,7 +50,7 @@
 	
 	int categoryId = task.getCategoryId();
 	
-	for (CategoryBean newCategory : categoryBeanList) {
+	for (CategoryBean newCategory : categoryList) {
 		
 		if(newCategory.getCategoryId() == categoryId) {
 			
@@ -72,7 +72,7 @@
 	
 	String userId = task.getUserId();
 	
-	for (UserBean newUser : userBeanList) {
+	for (UserBean newUser : userList) {
 		
 		
 		if(newUser.getUserId().equals(userId)) {
@@ -88,7 +88,7 @@
 	
 	String stausCode = task.getStatusCode();
 	
-	for (StatusBean newStatus : statusBeanList) {
+	for (StatusBean newStatus : statusList) {
 		
 		if(newStatus.getStatusCode().equals(stausCode)) {
 			
@@ -97,8 +97,6 @@
 		}
 		
 	}
-	
-	
 	
 	%>
 	<form action="task-alter-servlet" method="POST">
@@ -114,10 +112,10 @@
 			<td>
 			 <select name="categoryId">
 			 <%
-			 for (int i = 0; i < categoryBeanList.size(); i++) {
+			 for (int i = 0; i < categoryList.size(); i++) {
 				
 				 String categoryName = category.getCategoryName();
-				 String eachCategoryName = categoryBeanList.get(i).getCategoryName();
+				 String eachCategoryName = categoryList.get(i).getCategoryName();
 				
 				 if (categoryName.equals(eachCategoryName)) {
 			%>		
@@ -127,8 +125,8 @@
 				<%		 
 				 }else {
 				%>	 
-					<option value="<%=categoryBeanList.get(i).getCategoryId()%>">
-						<%=categoryBeanList.get(i).getCategoryName()%>
+					<option value="<%=categoryList.get(i).getCategoryId()%>">
+						<%=categoryList.get(i).getCategoryName()%>
 					</option>
 				<% 
 				 }
@@ -147,9 +145,9 @@
 			<th>担当者情報</th>
 			<td> <select name="userId">
 			 <%
-			 for (int i = 0; i < userBeanList.size(); i++) {
+			 for (int i = 0; i < userList.size(); i++) {
 				
-				 if (userBeanList.get(i).getUserId().equals(user.getUserId())) {
+				 if (userList.get(i).getUserId().equals(user.getUserId())) {
 			%>		
 					 <option value="<%=user.getUserId()%>" selected>
 						<%=user.getUserName()%>
@@ -157,8 +155,8 @@
 				<%	
 				 }else {
 				%>	 
-					<option value="<%=userBeanList.get(i).getUserId()%>">
-						<%=userBeanList.get(i).getUserName()%>
+					<option value="<%=userList.get(i).getUserId()%>">
+						<%=userList.get(i).getUserName()%>
 					</option>
 				<% 
 				 }
@@ -171,23 +169,23 @@
 			<th>ステータス情報</th>
 			<td> <select name="statusCode">
 			 <%
-			 for (int i = 0; i < statusBeanList.size(); i++) {
+			 for (int i = 0; i < statusList.size(); i++) {
 				
-				 if (statusBeanList.get(i).getStatusCode().equals(status.getStatusCode())) {
+				 if (statusList.get(i).getStatusCode().equals(status.getStatusCode())) {
 			%>		
 					 <option value="<%=status.getStatusCode()%>" selected>
 						<%=status.getStatusName()%>
 					</option>	
 				<%	
-				System.out.println("真偽値" + statusBeanList.get(i).getStatusCode().equals(status.getStatusCode()));
+				System.out.println("真偽値" + statusList.get(i).getStatusCode().equals(status.getStatusCode()));
 				System.out.println("syokiti" + status.getStatusName());
 				 }else {
 				%>	 
-					<option value="<%=statusBeanList.get(i).getStatusCode()%>">
-						<%=statusBeanList.get(i).getStatusName()%>
+					<option value="<%=statusList.get(i).getStatusCode()%>">
+						<%=statusList.get(i).getStatusName()%>
 					</option>
 				<% 
-				System.out.println("test" + statusBeanList.get(i).getStatusName());
+				System.out.println("test" + statusList.get(i).getStatusName());
 				 }
 			 }
 			 %>

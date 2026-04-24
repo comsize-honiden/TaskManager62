@@ -2,22 +2,16 @@ package model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-<<<<<<< HEAD
-import java.sql.SQLException;
-import java.time.LocalDate;
-=======
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> origin/feature/task-list
 
 import model.entity.TaskBean;
-
 public class TaskDAO {
-<<<<<<< HEAD
+
 
 	//タスクの変更を行うメソッド
 	public int updateTask(TaskBean task) throws SQLException, ClassNotFoundException {
@@ -52,8 +46,8 @@ public class TaskDAO {
 		
 	}
 
-}
-=======
+
+
 	public List<TaskBean> getTaskList() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM t_task";
 		List<TaskBean> result = new ArrayList<TaskBean>();
@@ -133,4 +127,4 @@ public class TaskDAO {
 		return count;
 	}
 }
->>>>>>> origin/feature/task-list
+

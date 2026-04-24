@@ -56,9 +56,10 @@ public class TaskListServlet extends HttpServlet {
 		StatusDAO statusDao = new StatusDAO();
 		UserDAO userDao = new UserDAO();
 		UserBean user = new UserBean();
-		user.setUserId("h-suzuki");
-		user.setPassword("456");
-		user.setUserName("鈴木花子");
+	//	user.setUserId("h-suzuki");	山村コメントアウト
+	//	user.setPassword("456");	山村コメントアウト
+	//	user.setUserName("鈴木花子");山村コメントアウト
+		
 		try {
 			List<TaskBean> taskList = taskDao.getTaskList();
 			List<CategoryBean> categoryList = categoryDao.getCategoryList();
@@ -70,7 +71,7 @@ public class TaskListServlet extends HttpServlet {
 			request.setAttribute("userList", userList);
 			
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+	//		session.setAttribute("user", user);	山村コメントアウト
 			
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 			rd.forward(request, response);
