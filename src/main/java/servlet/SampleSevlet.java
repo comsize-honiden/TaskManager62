@@ -29,7 +29,11 @@ public class SampleSevlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
+<<<<<<< HEAD
     public SampleSevlet() { 
+=======
+    public SampleSevlet() {
+>>>>>>> origin/feature/login-logout
         super();
         // TODO Auto-generated constructor stub
     }
@@ -52,7 +56,11 @@ public class SampleSevlet extends HttpServlet {
 		
 		//サンプルデータ生成
 		
+<<<<<<< HEAD
 		List<UserBean> userBeanList = new ArrayList<>();
+=======
+		List<UserBean> userBaenList = new ArrayList<>();
+>>>>>>> origin/feature/login-logout
 		List<CategoryBean> categoryBeanList = new ArrayList<>();
 		List<StatusBean> statusBeanList = new ArrayList<>();
 		List<TaskBean> taskBeanList = new ArrayList<>();
@@ -62,14 +70,22 @@ public class SampleSevlet extends HttpServlet {
 		
 		try {
 			
+<<<<<<< HEAD
 			userBeanList = sampleDao.getUserBeanList();
+=======
+			userBaenList = sampleDao.getUserBeanList();
+>>>>>>> origin/feature/login-logout
 			categoryBeanList = sampleDao.getCategoryBeanList();
 			statusBeanList = sampleDao.getStatusBeanList();
 			taskBeanList = sampleDao.getTaskBeanList();
 			
 			//テスト用
 			System.out.println("各リストの長さ");
+<<<<<<< HEAD
 			System.out.println("userBaenList:" + userBeanList.size());
+=======
+			System.out.println("userBaenList:" + userBaenList.size());
+>>>>>>> origin/feature/login-logout
 			System.out.println("categoryBeanList:" + categoryBeanList.size());
 			System.out.println("statusBeanList:" + statusBeanList.size());
 			System.out.println("taskBeanList:" + taskBeanList.size());
@@ -80,19 +96,28 @@ public class SampleSevlet extends HttpServlet {
 		}
 		
 		HttpSession session = request.getSession();
+<<<<<<< HEAD
 		
 		//仮の受け取るタスク番号taskId = 1
 		int taskId = 1;
 		session.setAttribute("taskId", taskId);
 		
 		session.setAttribute("userBeanList", userBeanList);
+=======
+		session.setAttribute("userBaenList",userBaenList );
+>>>>>>> origin/feature/login-logout
 		session.setAttribute("categoryBeanList", categoryBeanList);
 		session.setAttribute("statusBeanList", statusBeanList);
 		session.setAttribute("taskBeanList", taskBeanList);
 		
+<<<<<<< HEAD
 		System.out.println(userBeanList.get(1).getUserName());
 		//転送先を代入
 		String forwadUrl = "task-alter-form.jsp";
+=======
+		//転送先を代入
+		String forwadUrl = "task-alter.jsp";
+>>>>>>> origin/feature/login-logout
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		

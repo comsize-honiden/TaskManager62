@@ -13,7 +13,7 @@ public class TaskBean {
 	private String memo;
 	private LocalDateTime createDatetime;
 	private LocalDateTime updateDatetime;
- 
+
 	public int getTaskId() {
 		return taskId;
 	}
@@ -43,6 +43,7 @@ public class TaskBean {
 	}
 
 	public void setLimitDate(LocalDate limitDate) {
+
 		this.limitDate = limitDate;
 	}
 

@@ -39,5 +39,5 @@ public class UserBean {
 	public void setUpdateDatetimet(LocalDateTime updateDatetime) {
 		this.updateDatetime = updateDatetime;
 	}
-	
+
 }

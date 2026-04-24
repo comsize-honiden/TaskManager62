@@ -6,10 +6,18 @@
 <meta charset="UTF-8">
 <title>サンプル</title>
 </head>
+<<<<<<< HEAD
 <body> 
+=======
+<body>
+>>>>>>> origin/feature/login-logout
 	<h1>サンプル</h1>
 	<form action="sample-servlet" method="POST">
 	<input type="submit" value="BeanLIstを生成">
 	</form>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html> 
+>>>>>>> origin/feature/login-logout

@@ -1,5 +1,6 @@
 package model.entity;
 
+
 import java.time.LocalDateTime;
 
 public class CategoryBean { 
