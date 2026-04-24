@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>サンプル</h1>
-	<form action="sample-servlet" method="POST">
+	<form action="task-list-servlet" method="POST">
 	<input type="submit" value="BeanLIstを生成">
 	</form>
 </body>

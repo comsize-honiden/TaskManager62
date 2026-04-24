@@ -10,9 +10,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import model.dao.CategoryDAO;
+import model.dao.StatusDAO;
 import model.dao.TaskDAO;
+import model.dao.UserDAO;
+import model.entity.CategoryBean;
+import model.entity.StatusBean;
 import model.entity.TaskBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class TaskListServlet
@@ -44,10 +51,27 @@ public class TaskListServlet extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 
-		TaskDAO dao = new TaskDAO();
+		TaskDAO taskDao = new TaskDAO();
+		CategoryDAO categoryDao = new CategoryDAO();
+		StatusDAO statusDao = new StatusDAO();
+		UserDAO userDao = new UserDAO();
+		UserBean user = new UserBean();
+		user.setUserId("h-suzuki");
+		user.setPassword("456");
+		user.setUserName("鈴木花子");
 		try {
-			List<TaskBean> taskList = dao.getTaskList();
+			List<TaskBean> taskList = taskDao.getTaskList();
+			List<CategoryBean> categoryList = categoryDao.getCategoryList();
+			List<StatusBean> statusList = statusDao.getStatusList();
+			List<UserBean> userList = userDao.getUserList();
 			request.setAttribute("taskList", taskList);
+			request.setAttribute("categoryList", categoryList);
+			request.setAttribute("statusList", statusList);
+			request.setAttribute("userList", userList);
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 			rd.forward(request, response);
 			

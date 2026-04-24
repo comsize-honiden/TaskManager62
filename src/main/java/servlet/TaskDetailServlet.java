@@ -11,10 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.CategoryDAO;
 import model.dao.CommentDAO;
+import model.dao.StatusDAO;
 import model.dao.TaskDAO;
+import model.dao.UserDAO;
+import model.entity.CategoryBean;
 import model.entity.CommentBean;
+import model.entity.StatusBean;
 import model.entity.TaskBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class TaskDetailServlet
@@ -39,13 +45,22 @@ public class TaskDetailServlet extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			int taskId = (int) Integer.parseInt(request.getParameter("taskId"));
 			TaskDAO taskDao = new TaskDAO();
+			CategoryDAO categoryDao = new CategoryDAO();
+			StatusDAO statusDao = new StatusDAO();
+			UserDAO userDao = new UserDAO();
 			CommentDAO commentDao = new CommentDAO();
 			
 			TaskBean task = taskDao.getTaskDetail(taskId);
+			List<CategoryBean> categoryList = categoryDao.getCategoryList();
+			List<StatusBean> statusList = statusDao.getStatusList();
+			List<UserBean> userList = userDao.getUserList();
 			List<CommentBean> commentList = commentDao.getCommentList(taskId);
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("task", task);
+			session.setAttribute("categoryList", categoryList);
+			session.setAttribute("statusList" , statusList);
+			session.setAttribute("userList" , userList);
 			session.setAttribute("commentList", commentList);
 			
 			response.sendRedirect("task-detail.jsp");

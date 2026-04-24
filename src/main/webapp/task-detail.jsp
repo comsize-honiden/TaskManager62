@@ -23,7 +23,7 @@
 	List<CommentBean> commentList = (List<CommentBean>) session.getAttribute("commentList");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
-	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
+	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");	
 	%>
 	<h1>タスク詳細画面</h1>
 	<table border=1 height="150">

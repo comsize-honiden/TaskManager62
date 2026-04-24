@@ -20,9 +20,9 @@
 	response.setContentType("text/html charset=UTF-8");
 
 	List<TaskBean> taskList = (List<TaskBean>) request.getAttribute("taskList");
-	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
-	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
-	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
+	List<CategoryBean> categoryList = (List<CategoryBean>) request.getAttribute("categoryList");
+	List<UserBean> userList = (List<UserBean>) request.getAttribute("userList");
+	List<StatusBean> statusList = (List<StatusBean>) request.getAttribute("statusList");
 	
 	%>
 	<table border=1>
