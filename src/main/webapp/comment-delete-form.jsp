@@ -14,9 +14,6 @@
 	下記のコメントを削除します。よろしいですか？
 	<br><br>
 	<%
-	//セッションからタスクIDを受け取る 
-//	int taskId = (int)session.getAttribute("taskId");
-//	System.out.println("タスクId" + taskId);
 	
 	//コメントIDを受けとる
 	int commentId = Integer.parseInt(request.getParameter("commentId"));
@@ -89,7 +86,7 @@
 	<%=commentId %>&nbsp;&nbsp;&nbsp;&nbsp;
 	投稿者：<%=user.getUserName() %>&nbsp;&nbsp;&nbsp;&nbsp;
 	投稿日時:<%=updateDate.format(formatter) %><br>
-	<div style="width: 600px; height: 150px; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+	<div style="width: 560px; height: 50px; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
     <%=comment.getComment() %>
 	</div>
 	
