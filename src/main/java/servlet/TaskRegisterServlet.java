@@ -43,14 +43,33 @@ public class TaskRegisterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		
-		if (session != null) {
-			doPost(request, response);
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("login-servlet.jsp");
-			rd.forward(request, response);
+		String url;
+		
+		CategoryDAO categoryDao = new CategoryDAO();
+		UserDAO userDao = new UserDAO();
+		StatusDAO statusDao = new StatusDAO();
+		
+		try {
+			List<CategoryBean> categoryList = categoryDao.getCategoryList();
+			List<UserBean> userList = userDao.getUserList();
+			List<StatusBean> statusList = statusDao.getStatusList();
+			
+			
+			
+			session.setAttribute("categoryList", categoryList);
+			session.setAttribute("userList", userList);
+			session.setAttribute("statusList", statusList);
+			
+			url = "task-register.jsp";
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			url = "login.jsp";
 		}
+		
+		RequestDispatcher rd = request.getRequestDispatcher(url);
+		rd.forward(request, response);
 	}
 
 	/**
@@ -73,16 +92,6 @@ public class TaskRegisterServlet extends HttpServlet {
 		String memo = request.getParameter("memo");
 		
 		try {
-<<<<<<< HEAD
-			int taskId = request.getParameter("taskId");
-			String taskName = request.getParameter("taskName");
-			int categoryId = request.getParameter("categoryId");
-			LocalDate limitDate =request.getParameter("limitDate");
-			String userId = request.getParameter("userId");
-			String statusCode = request.getParameter("statusCode");
-			String memo = request.getParameter("memo");
-			
-=======
 			// 未入力チェック
 			if (taskName == null || taskName.isEmpty()) {
 				throw new NullPointerException();
@@ -130,10 +139,6 @@ public class TaskRegisterServlet extends HttpServlet {
 			List<UserBean> userList = userDao.getUserList();
 			List<StatusBean> statusList = statusDao.getStatusList();
 			
-			request.setAttribute("categoryList", categoryList);
-			request.setAttribute("userList", userList);
-			request.setAttribute("statusList", statusList);
-			
 			// 妥当性チェック用のboolean変数
 			boolean categoryIdExist = false;
 			boolean userIdExist = false;
@@ -169,9 +174,9 @@ public class TaskRegisterServlet extends HttpServlet {
 			
 			// リクエストパラメータのステータスIDのチェック
 			for (StatusBean user : statusList) {
-				String ValidstatusCode = user.getStatusCode(); 
+				String ValidStatusCode = user.getStatusCode(); 
 				
-			 	if (statusCode.equals(ValidstatusCode)) {
+			 	if (statusCode.equals(ValidStatusCode)) {
 			 		statusCodeExist = true;
 			 		break;
 			 	}
@@ -196,7 +201,6 @@ public class TaskRegisterServlet extends HttpServlet {
 			}
 			
 			// Beanに代入
->>>>>>> feature/task-register
 			TaskBean task = new TaskBean();
 			
 			task.setTaskName(taskName);
