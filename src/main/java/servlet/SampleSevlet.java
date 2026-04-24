@@ -83,11 +83,11 @@ public class SampleSevlet extends HttpServlet {
 		}
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("userList",userBaenList );
-		session.setAttribute("categoryList", categoryBeanList);
-		session.setAttribute("statusList", statusBeanList);
-		request.setAttribute("taskList", taskBeanList);
-		session.setAttribute("user", user);
+//		session.setAttribute("userList",userBaenList );
+//		session.setAttribute("categoryList", categoryBeanList);
+//		session.setAttribute("statusList", statusBeanList);
+//		request.setAttribute("taskList", taskBeanList);
+//		session.setAttribute("user", user);
 		
 		//転送先を代入
 		String forwadUrl = "task-list.jsp";
