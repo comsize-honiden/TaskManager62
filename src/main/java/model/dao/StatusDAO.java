@@ -11,20 +11,26 @@ import model.entity.StatusBean;
 
 public class StatusDAO {
 	public List<StatusBean> getStatusList() throws ClassNotFoundException, SQLException{
+		
 		String sql = "SELECT * FROM m_status";
+		
 		List<StatusBean> result = new ArrayList<StatusBean>();
 		
 		try (Connection con = ConnectionManager.getConnection();
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)){
+			
 			while(rs.next()) {
-				String StatusName = rs.getString("status_name");
+				String statusCode = rs.getString("status_code");
+				String statusName = rs.getString("status_name");
 				StatusBean status = new StatusBean();
-				status.setStatusName(StatusName);
+				status.setStatusCode(statusCode);
+				status.setStatusName(statusName);
 				
 				result.add(status);
 			}
 		}
+		
 		return result;
 	}
 }
