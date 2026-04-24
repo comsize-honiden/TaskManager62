@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginCheckFilter
  */
-@WebFilter("") //全リクエストを対象
+@WebFilter("/*") //全リクエストを対象
 public class LoginCheckFilter extends HttpFilter implements Filter {
        
     /**
@@ -52,15 +52,20 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		
 		//アクセスされたURLを取得
 		String requestURI = req.getRequestURI();
+		System.out.println(requestURI);
 		
 		//ログインページとログイン済みのページはチェック対象外にする
-		boolean isLoginPage = requestURI.endsWith("login.jsp");
+		boolean isLoginPage = requestURI.contains("login.jsp");
+		boolean isLoginServlet = requestURI.contains("login-servlet");
 		boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
 		
-		if (isLoginPage || isLoggedIn) {
+		System.out.println(isLoginPage);
+		System.out.println(isLoginServlet);
+		System.out.println(isLoggedIn);
+		
+		if (isLoginPage || isLoginServlet || isLoggedIn) {
 			//ログインページ、またはログイン済みのページならそのまま通す
 			chain.doFilter(request, response);
-			return;
 		} else {
 			//未ログインならログイン画面へ飛ばす
 			res.sendRedirect(req.getContextPath() + "/login.jsp");
