@@ -108,9 +108,18 @@ public class TaskRegisterServlet extends HttpServlet {
 			int categoryId = Integer.parseInt(categoryIdStr);
 			
 			// 妥当性チェック用のリストを取得
-			List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
-			List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
-			List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
+			
+			CategoryDAO categoryDao = new CategoryDAO();
+			UserDAO userDao = new UserDAO();
+			StatusDAO statusDao = new StatusDAO();
+			
+			List<CategoryBean> categoryList = categoryDao.getCategorylist();
+			List<UserBean> userList = userDao.getUserList();
+			List<StatusBean> statusList = statusDao.getStatusList();
+			
+			request.setAttribute("categoryList", categoryList);
+			request.setAttribute("userList", userList);
+			request.setAttribute("statusList", statusList);
 			
 			// 妥当性チェック用のboolean変数
 			boolean categoryIdExist = false;
