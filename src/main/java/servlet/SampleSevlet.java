@@ -30,10 +30,14 @@ public class SampleSevlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
 <<<<<<< HEAD
+<<<<<<< HEAD
     public SampleSevlet() { 
 =======
     public SampleSevlet() {
 >>>>>>> origin/feature/login-logout
+=======
+    public SampleSevlet() {
+>>>>>>> origin/feature/task-list
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,6 +61,7 @@ public class SampleSevlet extends HttpServlet {
 		//サンプルデータ生成
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		List<UserBean> userBeanList = new ArrayList<>();
 =======
 		List<UserBean> userBaenList = new ArrayList<>();
@@ -65,11 +70,19 @@ public class SampleSevlet extends HttpServlet {
 		List<StatusBean> statusBeanList = new ArrayList<>();
 		List<TaskBean> taskBeanList = new ArrayList<>();
 		
+=======
+		List<UserBean> userBaenList = new ArrayList<>();
+		List<CategoryBean> categoryBeanList = new ArrayList<>();
+		List<StatusBean> statusBeanList = new ArrayList<>();
+		List<TaskBean> taskBeanList = new ArrayList<>();
+		UserBean user = new UserBean();
+>>>>>>> origin/feature/task-list
 		
 		SampleDAO sampleDao = new SampleDAO();
 		
 		try {
 			
+<<<<<<< HEAD
 <<<<<<< HEAD
 			userBeanList = sampleDao.getUserBeanList();
 =======
@@ -86,6 +99,19 @@ public class SampleSevlet extends HttpServlet {
 =======
 			System.out.println("userBaenList:" + userBaenList.size());
 >>>>>>> origin/feature/login-logout
+=======
+			userBaenList = sampleDao.getUserBeanList();
+			categoryBeanList = sampleDao.getCategoryBeanList();
+			statusBeanList = sampleDao.getStatusBeanList();
+			taskBeanList = sampleDao.getTaskBeanList();
+			user.setUserId("h-suzuki");
+			user.setPassword("456");
+			user.setUserName("鈴木花子");
+			
+			//テスト用
+			System.out.println("各リストの長さ");
+			System.out.println("userBaenList:" + userBaenList.size());
+>>>>>>> origin/feature/task-list
 			System.out.println("categoryBeanList:" + categoryBeanList.size());
 			System.out.println("statusBeanList:" + statusBeanList.size());
 			System.out.println("taskBeanList:" + taskBeanList.size());
@@ -96,6 +122,7 @@ public class SampleSevlet extends HttpServlet {
 		}
 		
 		HttpSession session = request.getSession();
+<<<<<<< HEAD
 <<<<<<< HEAD
 		
 		//仮の受け取るタスク番号taskId = 1
@@ -118,6 +145,16 @@ public class SampleSevlet extends HttpServlet {
 		//転送先を代入
 		String forwadUrl = "task-alter.jsp";
 >>>>>>> origin/feature/login-logout
+=======
+		session.setAttribute("userList",userBaenList );
+		session.setAttribute("categoryList", categoryBeanList);
+		session.setAttribute("statusList", statusBeanList);
+		request.setAttribute("taskList", taskBeanList);
+		session.setAttribute("user", user);
+		
+		//転送先を代入
+		String forwadUrl = "task-list.jsp";
+>>>>>>> origin/feature/task-list
 		
 		RequestDispatcher rd = request.getRequestDispatcher(forwadUrl);
 		

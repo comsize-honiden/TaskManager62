@@ -1,9 +1,14 @@
 package model.entity;
 
 import java.time.LocalDate;
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 
 public class TaskBean { 
+=======
+
+public class TaskBean {
+>>>>>>> origin/feature/task-list
 	private int taskId;
 	private String taskName;
 	private int categoryId;
@@ -11,8 +16,11 @@ public class TaskBean {
 	private String userId;
 	private String statusCode;
 	private String memo;
+<<<<<<< HEAD
 	private LocalDateTime createDatetime;
 	private LocalDateTime updateDatetime;
+=======
+>>>>>>> origin/feature/task-list
 
 	public int getTaskId() {
 		return taskId;
@@ -43,7 +51,10 @@ public class TaskBean {
 	}
 
 	public void setLimitDate(LocalDate limitDate) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/feature/task-list
 		this.limitDate = limitDate;
 	}
 
@@ -71,6 +82,7 @@ public class TaskBean {
 		this.memo = memo;
 	}
 
+<<<<<<< HEAD
 	public LocalDateTime getCreateDatetime() {
 		return createDatetime;
 	}
@@ -111,4 +123,6 @@ public class TaskBean {
 		
 	}
 
+=======
+>>>>>>> origin/feature/task-list
 }

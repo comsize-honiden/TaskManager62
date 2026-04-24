@@ -1,11 +1,17 @@
 package model.entity;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 
 public class StatusBean { 
 	private String statusCode;
 	private String statusName;
 	private LocalDateTime updateDatetime;
+=======
+public class StatusBean {
+	private String statusCode;
+	private String statusName;
+>>>>>>> origin/feature/task-list
 
 	public String getStatusCode() {
 		return statusCode;
@@ -23,6 +29,7 @@ public class StatusBean {
 		this.statusName = statusName;
 	}
 
+<<<<<<< HEAD
 	public LocalDateTime getUpdateDatetime() {
 		return updateDatetime;
 	}
@@ -31,4 +38,6 @@ public class StatusBean {
 		this.updateDatetime = updateDatetime;
 	}
 
+=======
+>>>>>>> origin/feature/task-list
 }

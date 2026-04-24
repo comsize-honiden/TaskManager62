@@ -7,6 +7,7 @@
 <title>サンプル</title>
 </head>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <body> 
 =======
 <body>
@@ -21,3 +22,12 @@
 =======
 </html> 
 >>>>>>> origin/feature/login-logout
+=======
+<body>
+	<h1>サンプル</h1>
+	<form action="task-list-servlet" method="POST">
+	<input type="submit" value="BeanLIstを生成">
+	</form>
+</body>
+</html>
+>>>>>>> origin/feature/task-list

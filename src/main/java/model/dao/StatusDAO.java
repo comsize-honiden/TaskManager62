@@ -18,8 +18,15 @@ public class StatusDAO {
 				Statement stmt = con.createStatement();
 				ResultSet rs = stmt.executeQuery(sql)){
 			while(rs.next()) {
+<<<<<<< HEAD
 				String StatusName = rs.getString("status_name");
 				StatusBean status = new StatusBean();
+=======
+				String StatusCode = rs.getString("status_code");
+				String StatusName = rs.getString("status_name");
+				StatusBean status = new StatusBean();
+				status.setStatusCode(StatusCode);
+>>>>>>> origin/feature/task-list
 				status.setStatusName(StatusName);
 				
 				result.add(status);
