@@ -40,6 +40,8 @@ public class TaskDAO {
 			
 			int res = pstmt.executeUpdate();
 			
+			System.out.println("taskId" + taskId);
+			
 			return res;
 				
 		}

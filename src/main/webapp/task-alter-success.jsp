@@ -12,16 +12,16 @@
 	<%
 	TaskBean task = (TaskBean)session.getAttribute("updateTask");
 	
-	List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
-	List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
-	List<StatusBean> statusBeanList = (List<StatusBean>)session.getAttribute("statusBeanList");
+	List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
+	List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
+	List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
 	
 	//カテゴリIDに一致するCategoryBeanオブジェクトをCategoryBeanListから取得
 	CategoryBean category = new CategoryBean();
 	
 	int categoryId = task.getCategoryId();
 	
-	for (CategoryBean newCategory : categoryBeanList) {
+	for (CategoryBean newCategory : categoryList) {
 		
 		if(newCategory.getCategoryId() == categoryId) {
 			
@@ -40,7 +40,7 @@
 	
 	String userId = task.getUserId();
 	
-	for (UserBean newUser : userBeanList) {
+	for (UserBean newUser : userList) {
 		
 		
 		if(newUser.getUserId().equals(userId)) {
@@ -56,7 +56,7 @@
 	
 	String stausCode = task.getStatusCode();
 	
-	for (StatusBean newStatus : statusBeanList) {
+	for (StatusBean newStatus : statusList) {
 		
 		if(newStatus.getStatusCode().equals(stausCode)) {
 			
