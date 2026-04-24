@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.dao.CategoryDAO;
+import model.dao.StatusDAO;
 import model.dao.TaskDAO;
+import model.dao.UserDAO;
 import model.entity.CategoryBean;
 import model.entity.StatusBean;
 import model.entity.TaskBean;
@@ -113,7 +116,7 @@ public class TaskRegisterServlet extends HttpServlet {
 			UserDAO userDao = new UserDAO();
 			StatusDAO statusDao = new StatusDAO();
 			
-			List<CategoryBean> categoryList = categoryDao.getCategorylist();
+			List<CategoryBean> categoryList = categoryDao.getCategoryList();
 			List<UserBean> userList = userDao.getUserList();
 			List<StatusBean> statusList = statusDao.getStatusList();
 			
