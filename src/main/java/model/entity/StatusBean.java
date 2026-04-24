@@ -1,11 +1,11 @@
 package model.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class StatusBean { 
 	private String statusCode;
 	private String statusName;
-	private Timestamp ts;
+	private LocalDateTime updateDatetime;
 
 	public String getStatusCode() {
 		return statusCode;
@@ -23,12 +23,12 @@ public class StatusBean {
 		this.statusName = statusName;
 	}
 
-	public Timestamp getTs() {
-		return ts;
+	public LocalDateTime getUpdateDatetime() {
+		return updateDatetime;
 	}
 
-	public void setTs(Timestamp ts) {
-		this.ts = ts;
+	public void setUpdateDatetimet(LocalDateTime updateDatetime) {
+		this.updateDatetime = updateDatetime;
 	}
 
 }

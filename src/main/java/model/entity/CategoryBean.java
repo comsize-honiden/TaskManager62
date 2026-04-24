@@ -1,11 +1,11 @@
 package model.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class CategoryBean { 
 	private int categoryId;
 	private String categoryName;
-	private Timestamp ts;
+	private LocalDateTime updateDatetime;
 
 	public int getCategoryId() {
 		return categoryId;
@@ -23,12 +23,12 @@ public class CategoryBean {
 		this.categoryName = categoryName;
 	}
 
-	public Timestamp getTs() {
-		return ts;
+	public LocalDateTime getUpdateDatetime() {
+		return updateDatetime;
 	}
 
-	public void setTs(Timestamp ts) {
-		this.ts = ts;
+	public void setUpdateDatetimet(LocalDateTime updateDatetime) {
+		this.updateDatetime = updateDatetime;
 	}
 
 }
