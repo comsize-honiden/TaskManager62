@@ -62,8 +62,29 @@ public class LoginServlet extends HttpServlet {
 				user = userDao.getUser(userId,pass);
  			
 	 			if (user.getUserName() != null) {
+	 				
 	 				HttpSession session = request.getSession();
 	 				session.setAttribute("user",user);
+	 				
+	 				//全ユーザーリストを生成し、セッションに詰める
+	 				List<UserBean> userList = new ArrayList<>();
+	 				userList = userDao.getUserList();
+	 				
+	 				session.setAttribute("userList",userList);
+	 				
+	 				//カテゴリーリストを生成し、セッションに詰める
+	 				CategoryDAO categoryDao = new CategoryDAO();
+	 				List<CategoryBean> categoryList = new ArrayList<>();
+	 				categoryList = categoryDao.getCategoryList();
+	 				
+	 				session.setAttribute("categoryList",categoryList);
+	 				
+	 				//ステータスリストを生成し、セッションに詰める
+	 				StatusDAO statusDao = new StatusDAO();
+	 				List<StatusBean> statusList = new ArrayList<>();
+	 				statusList = statusDao.getStatusList();
+	 				
+	 				session.setAttribute("statusList",statusList);
 	 				
 	 				RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
 	 				rd.forward(request, response);
