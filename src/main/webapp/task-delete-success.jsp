@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TaskManager62</title>
+<title>タスク削除完了画面</title>
 </head>
 <body>
 	<h1>タスク削除完了画面</h1>
@@ -13,7 +13,7 @@
 	タスクの削除が完了しました
 	<br>
 	<br>
-	<form method="POST" action="sample.jsp">
+	<form method="POST" action="menu.jsp">
 		<input type="submit" value="メニュー画面へ">
 	</form>
 </body>
