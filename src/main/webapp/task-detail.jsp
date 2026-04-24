@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TaskManager62</title>
+<title>タスク詳細画面</title>
 </head>
 <body>
 	<%
