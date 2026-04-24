@@ -2,8 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,11 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.dao.CategoryDAO;
-import model.dao.StatusDAO;
 import model.dao.UserDAO;
-import model.entity.CategoryBean;
-import model.entity.StatusBean;
 import model.entity.UserBean;
 
 /**
@@ -68,29 +62,8 @@ public class LoginServlet extends HttpServlet {
 				user = userDao.getUser(userId,pass);
  			
 	 			if (user.getUserName() != null) {
-	 				
 	 				HttpSession session = request.getSession();
 	 				session.setAttribute("user",user);
-	 				
-	 				//全ユーザーリストを生成し、セッションに詰める
-	 				List<UserBean> userList = new ArrayList<>();
-	 				userList = userDao.getUserList();
-	 				
-	 				session.setAttribute("userList",userList);
-	 				
-	 				//カテゴリーリストを生成し、セッションに詰める
-	 				CategoryDAO categoryDao = new CategoryDAO();
-	 				List<CategoryBean> categoryList = new ArrayList<>();
-	 				categoryList = categoryDao.getCategoryList();
-	 				
-	 				session.setAttribute("categoryList",categoryList);
-	 				
-	 				//ステータスリストを生成し、セッションに詰める
-	 				StatusDAO statusDao = new StatusDAO();
-	 				List<StatusBean> statusList = new ArrayList<>();
-	 				statusList = statusDao.getStatusList();
-	 				
-	 				session.setAttribute("statusList",statusList);
 	 				
 	 				RequestDispatcher rd = request.getRequestDispatcher("menu.jsp");
 	 				rd.forward(request, response);
