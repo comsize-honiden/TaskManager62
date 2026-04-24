@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginCheckFilter
  */
-@WebFilter("/*") //全リクエストを対象
+@WebFilter("") //全リクエストを対象
 public class LoginCheckFilter extends HttpFilter implements Filter {
        
     /**
