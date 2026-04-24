@@ -54,13 +54,15 @@ public class TaskAlterServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
-		List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
-		List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
-		List<StatusBean> statusBeanList = (List<StatusBean>)session.getAttribute("statusBeanList");
+		List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
+		List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
+		List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
+		List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
 		
 		//変更前のタスクを取得
 		TaskBean task = new TaskBean();
+		
+		task = (TaskBean)session.getAttribute("task");
 		
 		int taskId = 0;
 		
@@ -68,9 +70,13 @@ public class TaskAlterServlet extends HttpServlet {
 			
 			taskId = (int)(session.getAttribute("taskId"));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			System.out.println("try:" + taskId); 
 >>>>>>> b28e7d7 (修正　マージ可能データ)
+=======
+			System.out.println("try:" + taskId);
+>>>>>>> 0cdccae (調整済み)
 		
 		}catch (NullPointerException e) {
 			
@@ -81,7 +87,7 @@ public class TaskAlterServlet extends HttpServlet {
 			
 		}
 		
-		for (TaskBean newTask : taskBeanList) {
+/*		for (TaskBean newTask : taskList) {
 			
 			if(newTask.getTaskId() == taskId) {
 				
@@ -89,10 +95,12 @@ public class TaskAlterServlet extends HttpServlet {
 				
 			}
 			
-		}
+		}*/
+		
 		
 		//変更後のタスクオブジェクトを用意
 		TaskBean updateTask = new TaskBean();
+		updateTask.setTaskId(taskId);
 		updateTask.setCreateDatetime(task.getCreateDatetime());
 		updateTask.setUpdateDatetime(task.getUpdateDatetime());
 		 
@@ -117,7 +125,7 @@ public class TaskAlterServlet extends HttpServlet {
 				
 				int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 			//valueの数値を変更された場合	
-				if (categoryBeanList.size() >= categoryId) {
+				if (categoryList.size() >= categoryId) {
 				//リストサイズ内ならそのまま登録	
 					updateTask.setCategoryId(categoryId);
 					
@@ -165,7 +173,7 @@ public class TaskAlterServlet extends HttpServlet {
 			
 		}else {
 		
-			for (UserBean ub : userBeanList) {
+			for (UserBean ub : userList) {
 				
 				if (ub.getUserId().equals(userId)) {
 					//変更後の値をセット
@@ -192,7 +200,7 @@ public class TaskAlterServlet extends HttpServlet {
 				
 		}else {
 			
-			for (StatusBean sb : statusBeanList) {
+			for (StatusBean sb : statusList) {
 				
 				if (sb.getStatusCode().equals(statusCode)) {
 					
@@ -234,21 +242,22 @@ public class TaskAlterServlet extends HttpServlet {
 					int res = taskDao.updateTask(updateTask);
 					
 					if (res == 1) {
-					
+						System.out.println("変更成功");
 					url = "task-alter-success.jsp";
 					//TaskBeanList更新
-					taskBeanList.get(taskId - 1).setTaskId(updateTask.getTaskId());
-					taskBeanList.get(taskId - 1).setTaskName(updateTask.getTaskName());
-					taskBeanList.get(taskId - 1).setCategoryId(updateTask.getCategoryId());
-					taskBeanList.get(taskId - 1).setLimitDate(updateTask.getLimitDate());
-					taskBeanList.get(taskId - 1).setUserId(updateTask.getUserId());
-					taskBeanList.get(taskId - 1).setStatusCode(updateTask.getStatusCode());
-					taskBeanList.get(taskId - 1).setMemo(updateTask.getMemo());
+					taskList.get(taskId - 1).setTaskId(updateTask.getTaskId());
+					taskList.get(taskId - 1).setTaskName(updateTask.getTaskName());
+					taskList.get(taskId - 1).setCategoryId(updateTask.getCategoryId());
+					taskList.get(taskId - 1).setLimitDate(updateTask.getLimitDate());
+					taskList.get(taskId - 1).setUserId(updateTask.getUserId());
+					taskList.get(taskId - 1).setStatusCode(updateTask.getStatusCode());
+					taskList.get(taskId - 1).setMemo(updateTask.getMemo());
 					
 					
 					} else {
 						
-						url = "task-list.jsp";
+						System.out.println("変更失敗");
+						url = "task-list-servlet";
 						
 					}
 	

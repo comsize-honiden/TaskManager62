@@ -27,15 +27,27 @@
 	int taskId = (int)taskIdObj;
 	
 	
+<<<<<<< HEAD
 	List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
 	List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
 	List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
 	List<StatusBean> statusBeanList = (List<StatusBean>)session.getAttribute("statusBeanList");
+=======
+//	List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
+	List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
+	List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
+	List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
+>>>>>>> 0cdccae (調整済み)
 	
 	//タスクIDに一致するTaskBeanオブジェクトをtaskBeanListから取得
 	TaskBean task = new TaskBean();
+	task = (TaskBean)session.getAttribute("task");
 	
+<<<<<<< HEAD
 	for (TaskBean newtask : taskBeanList) {
+=======
+/*for (TaskBean newtask : taskList) {
+>>>>>>> 0cdccae (調整済み)
 		
 		if(newtask.getTaskId() == taskId) {
 			
@@ -43,7 +55,7 @@
 			
 		}
 		
-	}
+	}*/
 	
 	//カテゴリIDに一致するCategoryBeanオブジェクトをCategoryBeanListから取得
 	CategoryBean category = new CategoryBean();
