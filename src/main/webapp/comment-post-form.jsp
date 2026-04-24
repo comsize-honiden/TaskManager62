@@ -22,7 +22,7 @@
 
 	//テスト用の記述
 	TaskDAO taskDao = new TaskDAO();
-	TaskBean task = taskDao.getTaskDetail(1);
+	TaskBean task = taskDao.getTaskDetail(4);
 	
 	//TaskBean task = (TaskBean) session.getAttribute("task");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
@@ -80,10 +80,10 @@
 		</tr>
 	</table><br>
 	<h3>コメント</h3>
-	<form action="comment-post-servlet" method="POST">
-		<input type="hidden" name="taskId" value="<%=task.getTaskId()%>">
+	<form method="POST">
 		<textarea rows="4" cols="25" name="comment" maxlength="100" required></textarea><br>
-		<input type="submit" value="投稿する">
+		<input type="submit" value="投稿する" formaction="comment-post-servlet">
+		<input type="submit" value="詳細画面へ" formaction="task-detail-servlet">
 	</form>
 </body>
 </html>
