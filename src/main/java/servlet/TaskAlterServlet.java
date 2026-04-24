@@ -67,6 +67,10 @@ public class TaskAlterServlet extends HttpServlet {
 		try {
 			
 			taskId = (int)(session.getAttribute("taskId"));
+<<<<<<< HEAD
+=======
+			System.out.println("try:" + taskId); 
+>>>>>>> b28e7d7 (修正　マージ可能データ)
 		
 		}catch (NullPointerException e) {
 			

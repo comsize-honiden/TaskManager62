@@ -10,7 +10,7 @@
 <body>
 	<h1>次のデータを変更登録しました</h1>
 	<%
-	TaskBean task = (TaskBean)session.getAttribute("updateTask");
+	TaskBean task = (TaskBean)session.getAttribute("updateTask"); 
 	
 	List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
 	List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
