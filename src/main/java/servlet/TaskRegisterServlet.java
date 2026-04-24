@@ -73,16 +73,6 @@ public class TaskRegisterServlet extends HttpServlet {
 		String memo = request.getParameter("memo");
 		
 		try {
-<<<<<<< HEAD
-			int taskId = request.getParameter("taskId");
-			String taskName = request.getParameter("taskName");
-			int categoryId = request.getParameter("categoryId");
-			LocalDate limitDate =request.getParameter("limitDate");
-			String userId = request.getParameter("userId");
-			String statusCode = request.getParameter("statusCode");
-			String memo = request.getParameter("memo");
-			
-=======
 			// 未入力チェック
 			if (taskName == null || taskName.isEmpty()) {
 				throw new NullPointerException();
