@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.dao.CommentDAO;
+import model.dao.TaskDAO;
 import model.entity.CommentBean;
+import model.entity.TaskBean;
 
 /**
  * Servlet implementation class CommentPostServlet
@@ -43,46 +45,53 @@ public class CommentPostServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		
-		String task = request.getParameter("taskId");
-		int taskId = Integer.parseInt(task);
-		
-		/* 本番用のログインユーザー取得のための記述
-		HttpSession session = request.getSession();
-		UserBean user = (UserBean) session.getAttribute("user"); */
-		
-		//テスト用のログインユーザー取得のための記述
-		String userId = "t-yamada";
-		
 		String commentText = request.getParameter("comment");
 		
-		CommentBean comment = new CommentBean();
-		CommentDAO commentDao = new CommentDAO();
+		/* 本番用のタスクIDとログインユーザー取得のための記述
+		HttpSession session = request.getSession();
+		TaskBean task = (TaskBean) session.getAttribute("task");
+		UserBean user = (UserBean) session.getAttribute("user"); */
 		
-		//コメント登録メソッドを呼び出し、登録件数から登録成功か否かを判別して画面遷移させる
-		int count = 0;
+		//テスト用のタスクIDとログインユーザー取得のための記述
+		String userId = "t-yamada";
+		TaskDAO taskDao = new TaskDAO();
+		TaskBean task = null;
 		try {
-			comment.setTaskId(taskId);
-			
-			//本番用のログインユーザーをBeanに詰める記述
-			//comment.setUserId(user.getUserId());
-			
-			//テスト用のログインユーザーをBeanに詰める記述
-			comment.setUserId(userId);
-			
-			comment.setCommentText(commentText);
-			
-			count = commentDao.commentPost(comment);
-			
-		} catch(SQLException | ClassNotFoundException e) {
+			task = taskDao.getTaskDetail(4);
+		
+			//コメントが未入力の場合は例外を投げる
+			if (commentText == "") {
+				RequestDispatcher rd = request.getRequestDispatcher("comment-post-failure.jsp");
+				rd.forward(request, response);
+				throw new IllegalArgumentException();
+			} else {
+				CommentBean comment = new CommentBean();
+				CommentDAO commentDao = new CommentDAO();
+				
+				//コメント登録メソッドを呼び出し、登録件数から登録成功か否かを判別して画面遷移させる
+				int count = 0;
+				comment.setTaskId(task.getTaskId());
+					
+				//本番用のログインユーザーをBeanに詰める記述
+				//comment.setUserId(user.getUserId());
+					
+				//テスト用のログインユーザーをBeanに詰める記述
+				comment.setUserId(userId);
+					
+				comment.setCommentText(commentText);
+					
+				count = commentDao.commentPost(comment);
+					
+				if (count > 0) {
+					String url = "comment-post-success.jsp";
+					response.sendRedirect(url);
+				} else {
+					RequestDispatcher rd = request.getRequestDispatcher("comment-post-failure.jsp");
+					rd.forward(request, response);
+				}
+			}
+		} catch(SQLException | ClassNotFoundException | IllegalArgumentException e) {
 			e.printStackTrace();
-		}
-		if (count > 0) {
-			String url = "comment-post-success.jsp";
-			response.sendRedirect(url);
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("comment-post-failure.jsp");
-			rd.forward(request, response);
 		}
 	}
 }
