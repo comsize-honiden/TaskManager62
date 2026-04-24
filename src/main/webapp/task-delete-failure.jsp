@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TaskManager62</title>
+<title>タスク削除エラー画面</title>
 </head>
 <body>
 	<h1>タスク削除エラー画面</h1>
