@@ -56,6 +56,10 @@ public class TaskRegisterServlet extends HttpServlet {
 			List<UserBean> userList = userDao.getUserList();
 			List<StatusBean> statusList = statusDao.getStatusList();
 			
+			for (StatusBean status : statusList) {
+				System.out.println(status.getStatusCode());
+			}
+			
 			
 			
 			session.setAttribute("categoryList", categoryList);
@@ -130,14 +134,16 @@ public class TaskRegisterServlet extends HttpServlet {
 			int categoryId = Integer.parseInt(categoryIdStr);
 			
 			// 妥当性チェック用のリストを取得
+			List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
+			List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
+			List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 			
-			CategoryDAO categoryDao = new CategoryDAO();
-			UserDAO userDao = new UserDAO();
-			StatusDAO statusDao = new StatusDAO();
+			// テスト
+			for (StatusBean status : statusList) {
+				System.out.println(status.getStatusCode());
+			}
 			
-			List<CategoryBean> categoryList = categoryDao.getCategoryList();
-			List<UserBean> userList = userDao.getUserList();
-			List<StatusBean> statusList = statusDao.getStatusList();
+			
 			
 			// 妥当性チェック用のboolean変数
 			boolean categoryIdExist = false;
@@ -173,8 +179,12 @@ public class TaskRegisterServlet extends HttpServlet {
 			}
 			
 			// リクエストパラメータのステータスIDのチェック
-			for (StatusBean user : statusList) {
-				String ValidStatusCode = user.getStatusCode(); 
+			for (StatusBean status : statusList) {
+				String ValidStatusCode = status.getStatusCode(); 
+				
+				System.out.println("a");
+				System.out.println(statusCode);
+				System.out.println(ValidStatusCode);
 				
 			 	if (statusCode.equals(ValidStatusCode)) {
 			 		statusCodeExist = true;
