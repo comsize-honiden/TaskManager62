@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>TaskManager62</title>
+<title>タスク削除確認画面</title>
 </head>
 <body>
 	<%
@@ -17,7 +17,7 @@
 	TaskBean task = (TaskBean) session.getAttribute("task");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	%>
-	<h1>タスク削確認画面</h1>
+	<h1>タスク削除確認画面</h1>
 
 	<h5>下記のタスクを本当に削除しますか？</h5>
 
