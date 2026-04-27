@@ -21,10 +21,10 @@
 	response.setContentType("text/html charset=UTF-8");
 
 	//テスト用の記述
-	TaskDAO taskDao = new TaskDAO();
-	TaskBean task = taskDao.getTaskDetail(4);
+	/*TaskDAO taskDao = new TaskDAO();
+	TaskBean task = taskDao.getTaskDetail(4);*/
 	
-	//TaskBean task = (TaskBean) session.getAttribute("task");
+	TaskBean task = (TaskBean) session.getAttribute("task");
 	List<CategoryBean> categoryList = (List<CategoryBean>) session.getAttribute("categoryList");
 	List<StatusBean> statusList = (List<StatusBean>) session.getAttribute("statusList");
 	List<UserBean> userList = (List<UserBean>) session.getAttribute("userList");
