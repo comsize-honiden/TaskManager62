@@ -11,7 +11,10 @@ import java.util.List;
 import model.entity.CommentBean;
 
 public class CommentDAO {
+	
+// コメント一覧を取得するメソッド
 	public List<CommentBean> getCommentList(int taskId) throws ClassNotFoundException, SQLException{
+		
 		String sql ="SELECT * FROM t_comment WHERE task_id = ?";
 		List<CommentBean> result = new ArrayList<CommentBean>();
 		
@@ -23,19 +26,6 @@ public class CommentDAO {
 			while(rs.next()) {
 				int commentId = rs.getInt("comment_id");
 				String userId = rs.getString("user_id");
-<<<<<<< HEAD
-				String comment = rs.getString("comment");
-				LocalDateTime updateTime = rs.getTimestamp("update_datetime").toLocalDateTime();
-				
-				CommentBean commentBean = new CommentBean();
-				
-				commentBean.setCommentId(commentId);
-				commentBean.setUserId(userId);
-				commentBean.setComment(comment);
-				commentBean.setUpdateDateTime(updateTime);
-				
-				result.add(commentBean);
-=======
 				String commentText = rs.getString("comment");
 				LocalDateTime updateTime = rs.getTimestamp("update_datetime").toLocalDateTime();
 				
@@ -47,15 +37,13 @@ public class CommentDAO {
 				comment.setUpdateDateTime(updateTime);
 				
 				result.add(comment);
->>>>>>> feature/comment-post
 			}
 		}
+		
 		return result;
 	}
-<<<<<<< HEAD
-}
-=======
-	//コメント登録メソッド
+
+	// コメント登録メソッド
 	public int commentPost(CommentBean comment) throws ClassNotFoundException, SQLException {
 		
 		int count;
@@ -72,8 +60,9 @@ public class CommentDAO {
 			pstmt.setString(3, commentText);
 
 			count = pstmt.executeUpdate();
-			return count;
 		}
+		
+		return count;
 	}
 }
->>>>>>> feature/comment-post
+
