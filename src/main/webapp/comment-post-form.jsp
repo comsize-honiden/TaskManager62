@@ -80,10 +80,12 @@
 		</tr>
 	</table><br>
 	<h3>コメント</h3>
-	<form method="POST">
+	<form action="comment-post-servlet" method="POST">
 		<textarea rows="4" cols="25" name="comment" maxlength="100" required></textarea><br>
-		<input type="submit" value="投稿する" formaction="comment-post-servlet">
-		<input type="submit" value="詳細画面へ" formaction="task-detail-servlet">
+		<input type="submit" value="投稿する">
+	</form><br>
+	<form action="task-list.jsp" method="GET">
+		<input type="submit" value="タスク一覧画面へ">
 	</form>
 </body>
 </html>
