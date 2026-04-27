@@ -36,11 +36,12 @@ public class TaskDAO {
 			pstmt.setString(5, statusCode);
 			pstmt.setString(6, memo);
 			pstmt.setInt(7, taskId);
-
 			
 			int res = pstmt.executeUpdate();
 			
 			System.out.println("taskId" + taskId);
+			
+			
 			
 			return res;
 				

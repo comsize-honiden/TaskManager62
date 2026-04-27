@@ -90,7 +90,6 @@ public class TaskAlterServlet extends HttpServlet {
 			
 		}*/
 		
-		
 		//変更後のタスクオブジェクトを用意
 		TaskBean updateTask = new TaskBean();
 		updateTask.setTaskId(taskId);
