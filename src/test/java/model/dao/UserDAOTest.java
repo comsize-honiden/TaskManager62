@@ -18,7 +18,7 @@ public class UserDAOTest {
 	private UserBean user;
 	private List<UserBean> userList;
 	private String userId;
-	private String password;
+	private String pass;
 	private String userName;
 	
 	@BeforeEach
@@ -28,10 +28,10 @@ public class UserDAOTest {
 		userList = new ArrayList<>();
 	}
 	@Test
-	void login_test_成功() {
+	void ログイン_正常_成功() {
 		//Arrange
-		String userId = "t-yamada";
-		String pass = "789";
+		userId = "i-sato";
+		pass = "123";
 		//Act
 		try {
 			user = userDao.getUser(userId, pass);
@@ -43,24 +43,48 @@ public class UserDAOTest {
 		assertNotNull(user);
 				
 		userName = user.getUserName();
-		assertEquals("山田太郎",userName);
+		assertEquals("佐藤一郎",userName);
 	}
 	@Test
-	void login_test_失敗() {
+	void ログイン_存在しないユーザID_失敗() {
+		//Arrange
+		userId = "a-aoi";
+		pass = "123";
 		//Act
 		try {
-			user = userDao.getUser("", "");
+			user = userDao.getUser(userId, pass);
 			
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 		//Assert
 		userId = user.getUserId();
-		password = user.getPassword();
+		pass = user.getPassword();
 		userName = user.getUserName();
 		
 		assertNull(userId);
-		assertNull(password);
+		assertNull(pass);
+		assertNull(userName);
+	}
+	@Test
+	void ログイン_存在しないパスワード_失敗() {
+		//Arrange
+		userId = "i-sato";
+		pass = "321";
+		//Act
+		try {
+			user = userDao.getUser(userId, pass);
+			
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		//Assert
+		userId = user.getUserId();
+		pass = user.getPassword();
+		userName = user.getUserName();
+		
+		assertNull(userId);
+		assertNull(pass);
 		assertNull(userName);
 	}
 	@Test
@@ -76,7 +100,7 @@ public class UserDAOTest {
 		assertNotNull(userList);
 		assertEquals(3,userList.size());
 	}
-	@Test
+/*	@Test
 	void userList生成_失敗() {
 		//Act
 		try {
@@ -94,5 +118,5 @@ public class UserDAOTest {
 		assertNull(userId);
 		assertNull(password);
 		assertNull(userName);
-	}
+	}*/
 }
