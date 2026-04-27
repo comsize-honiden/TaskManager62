@@ -21,19 +21,19 @@ import model.entity.TaskBean;
 import model.entity.UserBean;
 
 /**
- * Servlet implementation class TaskAlterServlet
- */
+ * Servlet implementation class TaskAlterServlet
+ */
 @WebServlet("/task-alter-servlet")
 public class TaskAlterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TaskAlterServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TaskAlterServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -69,9 +69,7 @@ public class TaskAlterServlet extends HttpServlet {
 		try {
 			
 			taskId = (int)(session.getAttribute("taskId"));
-			
-			System.out.println("try:" + taskId); 
-
+			System.out.println("try:" + taskId);
 		
 		}catch (NullPointerException e) {
 			
@@ -81,17 +79,6 @@ public class TaskAlterServlet extends HttpServlet {
 			return;
 			
 		}
-		
-/*		for (TaskBean newTask : taskList) {
-			
-			if(newTask.getTaskId() == taskId) {
-				
-				task = newTask;
-				
-			}
-			
-		}*/
-		
 		
 		//変更後のタスクオブジェクトを用意
 		TaskBean updateTask = new TaskBean();
