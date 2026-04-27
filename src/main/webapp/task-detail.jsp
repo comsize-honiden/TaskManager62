@@ -97,6 +97,9 @@
 	<%
 	}
 	%>
+	<form method="GET" action="task-list.jsp">
+		<input type="submit" value="タスク一覧画面へ">
+	</form>
 	<h3>コメント</h3>
 	<form method="POST" action="comment-post-form.jsp">
 		<input type="submit" value="コメントを投稿">
