@@ -44,6 +44,5 @@ public class TaskDAOTest {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-		
 	}
 }

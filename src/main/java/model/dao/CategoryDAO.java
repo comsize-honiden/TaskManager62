@@ -42,9 +42,9 @@ public class CategoryDAO {
 				String categoryName = rs.getString("category_name");
 
 				category.setCategoryName(categoryName);
+				category.setCategoryId(categoryId);
 			}
 		}
 		return category;
 	}
 }
-
