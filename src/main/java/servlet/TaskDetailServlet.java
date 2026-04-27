@@ -63,6 +63,8 @@ public class TaskDetailServlet extends HttpServlet {
 			session.setAttribute("userList" , userList);
 			session.setAttribute("commentList", commentList);
 			
+			session.setAttribute("taskId", taskId); // 山村加筆
+			
 			response.sendRedirect("task-detail.jsp");
 			
 		} catch (UnsupportedEncodingException e) {
