@@ -72,6 +72,7 @@ public class TaskListServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 	//		session.setAttribute("user", user);	山村コメントアウト
+			session.setAttribute("taskList", taskList); //山村追記
 			
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 			rd.forward(request, response);

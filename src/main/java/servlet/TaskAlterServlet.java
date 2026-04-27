@@ -103,9 +103,11 @@ public class TaskAlterServlet extends HttpServlet {
 			
 		//カテゴリーID
 			//Name属性を変更された場合
+			int categoryId = 0;
+			
 			try {
 				
-				int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+				categoryId = Integer.parseInt(request.getParameter("categoryId"));
 			//valueの数値を変更された場合	
 				if (categoryList.size() >= categoryId) {
 				//リストサイズ内ならそのまま登録	
@@ -119,7 +121,7 @@ public class TaskAlterServlet extends HttpServlet {
 				
 			} catch (NumberFormatException e) {
 			//正常な更新	
-				updateTask.setCategoryId(taskId);
+				updateTask.setCategoryId(categoryId);
 				
 			}
 			
@@ -160,6 +162,8 @@ public class TaskAlterServlet extends HttpServlet {
 				if (ub.getUserId().equals(userId)) {
 					//変更後の値をセット
 					updateTask.setUserId(userId);
+				
+					break;
 					
 				} else {
 					
@@ -171,6 +175,9 @@ public class TaskAlterServlet extends HttpServlet {
 			}
 			
 		}
+		
+		System.out.println("ユーザーリストサイズ" + userList.size());
+		System.out.println("ユーザーIDtest" + updateTask.getUserId());
 		
 		//ステータスコード
 		String statusCode = request.getParameter("statusCode");
@@ -188,6 +195,8 @@ public class TaskAlterServlet extends HttpServlet {
 					
 					//正常な更新
 					updateTask.setStatusCode(statusCode);
+					
+					break;
 					
 				} else {
 					
@@ -209,6 +218,7 @@ public class TaskAlterServlet extends HttpServlet {
 		TaskDAO taskDao = new TaskDAO();
 		
 		String url = "task-alter-failure.jsp";
+		System.out.println("かてごりーIDテスト" + updateTask.getCategoryId());
 		
 		if (task.equals(updateTask)) {
 			//成功処理に遷移するコード
@@ -226,14 +236,8 @@ public class TaskAlterServlet extends HttpServlet {
 					if (res == 1) {
 						System.out.println("変更成功");
 					url = "task-alter-success.jsp";
-					//TaskBeanList更新
-					taskList.get(taskId - 1).setTaskId(updateTask.getTaskId());
-					taskList.get(taskId - 1).setTaskName(updateTask.getTaskName());
-					taskList.get(taskId - 1).setCategoryId(updateTask.getCategoryId());
-					taskList.get(taskId - 1).setLimitDate(updateTask.getLimitDate());
-					taskList.get(taskId - 1).setUserId(updateTask.getUserId());
-					taskList.get(taskId - 1).setStatusCode(updateTask.getStatusCode());
-					taskList.get(taskId - 1).setMemo(updateTask.getMemo());
+					//taskList更新
+					taskList = taskDao.getTaskList();
 					
 					
 					} else {
