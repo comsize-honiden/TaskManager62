@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.Connection;
+<<<<<<< HEAD
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,10 +10,16 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+=======
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.time.LocalDate;
+>>>>>>> feature/task-alter
 
 import model.entity.TaskBean;
 
 public class TaskDAO {
+<<<<<<< HEAD
 	
 	public int insertTask(TaskBean task)
 		throws SQLException, ClassNotFoundException {
@@ -26,10 +33,26 @@ public class TaskDAO {
 			String taskName = task.getTaskName();
 			int categoryId = task.getCategoryId();
 			LocalDate limitDate = task.getLimitDate();
+=======
+
+	//タスクの変更を行うメソッド
+	public int updateTask(TaskBean task) throws SQLException, ClassNotFoundException { 
+		
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement
+					("UPDATE t_task SET task_name = ?, category_id = ?, limit_date = ?,user_id = ?, status_code = ?, memo = ? WHERE task_id = ?;")) {
+			
+			int taskId = task.getTaskId();
+			String taskName = task.getTaskName();
+			int categoryId = task.getTaskId();
+			LocalDate limitDate = task.getLimitDate();
+			String limitDateStr = limitDate.toString();
+>>>>>>> feature/task-alter
 			String userId = task.getUserId();
 			String statusCode = task.getStatusCode();
 			String memo = task.getMemo();
 			
+<<<<<<< HEAD
 			Date sqlLimitDate;
 			
 			if (limitDate == null) {
@@ -129,4 +152,25 @@ public class TaskDAO {
 		}
 		return count;
 	}
+=======
+			pstmt.setString(1, taskName);
+			pstmt.setInt(2, categoryId);
+			pstmt.setString(3, limitDateStr);
+			pstmt.setString(4, userId);
+			pstmt.setString(5, statusCode);
+			pstmt.setString(6, memo);
+			pstmt.setInt(7, taskId);
+
+			
+			int res = pstmt.executeUpdate();
+			
+			System.out.println("taskId" + taskId);
+			
+			return res;
+				
+		}
+		
+	}
+
+>>>>>>> feature/task-alter
 }

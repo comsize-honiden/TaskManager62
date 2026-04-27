@@ -1,34 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
     pageEncoding="UTF-8" import="java.util.List, model.entity.TaskBean, model.entity.CategoryBean, model.entity.UserBean,
-     model.entity.StatusBean, java.time.LocalDate"%>
-=======
-    pageEncoding="UTF-8"%>
->>>>>>> feature/task-alter
+     model.entity.StatusBean, java.time.LocalDate, java.time.format.DateTimeFormatter"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
-<<<<<<<< HEAD:src/main/webapp/sample.jsp
-<title>サンプル</title>
+<title>変更登録失敗</title>
 </head>
 <body>
-=======
-<title>サンプル</title>
-</head>
-<body> 
->>>>>>> feature/task-alter
-	<h1>サンプル</h1>
-	<form action="sample-servlet" method="POST">
-	<input type="submit" value="BeanLIstを生成">
-	</form>
-<<<<<<< HEAD
-========
-<title>変更登録成功</title>
-</head>
-<body>
-	<h1>次のデータを変更登録しました</h1>
+	<h1>次のデータを変更登録できませんでした</h1>
 	<%
 	TaskBean task = (TaskBean)session.getAttribute("updateTask"); 
 	
@@ -137,12 +117,8 @@
 		</tr>
 	</table>
 	<br>
-	<form action="menu.jsp" method="GET">
-	<input type="submit" value="メニュー画面へ">
->>>>>>>> feature/task-alter:src/main/webapp/task-alter-success.jsp
-</body>
-</html> 
-=======
+	<form action="task-alter-form.jsp" method="GET">
+	<input type="submit" value="戻る">
+	</form>
 </body>
 </html>
->>>>>>> feature/task-alter
