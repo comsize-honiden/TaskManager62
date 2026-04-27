@@ -18,7 +18,7 @@ public class CommentDAO {
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setInt(1, taskId);
-			
+
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int commentId = rs.getInt("comment_id");

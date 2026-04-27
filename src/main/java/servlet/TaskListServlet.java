@@ -64,9 +64,9 @@ public class TaskListServlet extends HttpServlet {
 			List<UserBean> userList = userDao.getUserList();
 			
 			HttpSession session = request.getSession();
-//			user.setUserId("h-suzuki");
-//			user.setPassword("456");
-//			user.setUserName("鈴木花子");
+			user.setUserId("h-suzuki");
+			user.setPassword("456");
+			user.setUserName("鈴木花子");
 			session.setAttribute("taskList", taskList);
 			session.setAttribute("categoryList", categoryList);
 			session.setAttribute("statusList", statusList);

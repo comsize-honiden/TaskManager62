@@ -31,20 +31,4 @@ public class CategoryDAO {
 		}
 		return result;
 	}
-
-	public CategoryBean getCategoryDetail(int categoryId) throws ClassNotFoundException, SQLException {
-		String sql = "SELECT * FROM m_category WHERE CategoryId = ?";
-		CategoryBean category = new CategoryBean();
-		try (Connection con = ConnectionManager.getConnection();
-				Statement stmt = con.createStatement();
-				ResultSet rs = stmt.executeQuery(sql)) {
-			while (rs.next()) {
-				String categoryName = rs.getString("category_name");
-
-				category.setCategoryName(categoryName);
-				category.setCategoryId(categoryId);
-			}
-		}
-		return category;
-	}
 }
