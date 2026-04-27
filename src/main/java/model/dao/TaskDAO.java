@@ -3,9 +3,6 @@ package model.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -53,7 +50,7 @@ public class TaskDAO {
 		
 		return insertCount;
 	}
-}
+
 	public List<TaskBean> getTaskList() throws ClassNotFoundException, SQLException {
 		String sql = "SELECT * FROM t_task";
 		List<TaskBean> result = new ArrayList<TaskBean>();
