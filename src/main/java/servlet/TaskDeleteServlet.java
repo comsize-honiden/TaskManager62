@@ -39,6 +39,10 @@ public class TaskDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD:src/main/java/servlet/TaskDeleteServlet.java
+=======
+		//
+>>>>>>> eeffbde (提出　コメント削除機能　チェリーピック用):src/main/java/servlet/CommentDeleteServlet.java
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		TaskBean task = (TaskBean) session.getAttribute("task");
