@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.dao.CommentDAO;
-import model.dao.TaskDAO;
 import model.entity.CommentBean;
 import model.entity.TaskBean;
 import model.entity.UserBean;
@@ -54,11 +53,7 @@ public class CommentPostServlet extends HttpServlet {
 		TaskBean task = (TaskBean) session.getAttribute("task");
 		UserBean user = (UserBean) session.getAttribute("user");
 		
-		TaskDAO taskDao = new TaskDAO();
-		
 		try {
-			task = taskDao.getTaskDetail(4);
-		
 			//コメントが未入力の場合は例外を投げる
 			if (commentText == "") {
 				RequestDispatcher rd = request.getRequestDispatcher("comment-post-failure.jsp");
