@@ -15,7 +15,7 @@
 	List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
 	List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
 	List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
-	
+	//
 	//カテゴリIDに一致するCategoryBeanオブジェクトをCategoryBeanListから取得
 	CategoryBean category = new CategoryBean();
 	

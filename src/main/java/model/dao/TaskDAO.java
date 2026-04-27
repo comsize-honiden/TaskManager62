@@ -12,7 +12,7 @@ import java.util.List;
 import model.entity.TaskBean;
 public class TaskDAO {
 
-
+//
 	//タスクの変更を行うメソッド
 	public int updateTask(TaskBean task) throws SQLException, ClassNotFoundException { 
 		

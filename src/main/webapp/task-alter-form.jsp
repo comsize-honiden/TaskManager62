@@ -12,7 +12,7 @@
 	<h1>タスク編集画面</h1>
 	<%
 	request.setCharacterEncoding("UTF-8"); 
-
+//
 	//セッションで受け取る必要あり
 	Object taskIdObj = null;
 	taskIdObj = session.getAttribute("taskId");
