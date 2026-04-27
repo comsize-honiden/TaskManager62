@@ -58,6 +58,7 @@ public class TaskDetailServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("task", task);
+			session.setAttribute("taskId", task.getTaskId());
 			session.setAttribute("categoryList", categoryList);
 			session.setAttribute("statusList" , statusList);
 			session.setAttribute("userList" , userList);

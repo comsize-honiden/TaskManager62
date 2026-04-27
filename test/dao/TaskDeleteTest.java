@@ -25,11 +25,4 @@ public class TaskDeleteTest {
 		int count = dao.deleteTask(task.getTaskId());
 		assertTrue(count == 1);
 	}
-	
-	void task_delete_失敗() throws ClassNotFoundException, SQLException {
-		TaskDAO dao = new TaskDAO();
-		
-		int count = dao.deleteTask(100000);
-		assertFalse(count == 1);
-	}
 }
