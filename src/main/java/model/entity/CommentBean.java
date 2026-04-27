@@ -6,7 +6,11 @@ public class CommentBean {
 	private int commentId;
 	private int taskId;
 	private String userId;
+<<<<<<< HEAD
 	private String comment;
+=======
+	private String commentText;
+>>>>>>> feature/comment-post
 	private LocalDateTime updateDateTime;
 
 	public int getCommentId() {
@@ -33,12 +37,21 @@ public class CommentBean {
 		this.userId = userId;
 	}
 
+<<<<<<< HEAD
 	public String getComment() {
 		return comment;
 	}
 
 	public void setComment(String comment) {
 		this.comment = comment;
+=======
+	public String getCommentText() {
+		return commentText;
+	}
+
+	public void setCommentText(String commentText) {
+		this.commentText = commentText;
+>>>>>>> feature/comment-post
 	}
 
 	public LocalDateTime getUpdateDateTime() {
