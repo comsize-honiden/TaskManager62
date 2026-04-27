@@ -1,14 +1,10 @@
 package model.entity;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
-
-public class TaskBean {
-=======
 import java.time.LocalDateTime;
 
 public class TaskBean { 
->>>>>>> feature/task-alter
+
 	private int taskId;
 	private String taskName;
 	private int categoryId;
@@ -16,13 +12,9 @@ public class TaskBean {
 	private String userId;
 	private String statusCode;
 	private String memo;
-<<<<<<< HEAD
-
-=======
 	private LocalDateTime createDatetime;
 	private LocalDateTime updateDatetime;
- 
->>>>>>> feature/task-alter
+	
 	public int getTaskId() {
 		return taskId;
 	}
@@ -78,9 +70,7 @@ public class TaskBean {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-
-<<<<<<< HEAD
-=======
+	
 	public LocalDateTime getCreateDatetime() {
 		return createDatetime;
 	}
@@ -115,11 +105,6 @@ public class TaskBean {
 		} else {
 			
 			return true;
-		
-		}
-		
-		
+		}	
 	}
-
->>>>>>> feature/task-alter
 }
