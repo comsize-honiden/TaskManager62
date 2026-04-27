@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.CommentDAO;
 import model.dao.TaskDAO;
 import model.entity.CommentBean;
 import model.entity.TaskBean;
+import model.entity.UserBean;
 
 /**
  * Servlet implementation class CommentPostServlet
@@ -47,15 +49,13 @@ public class CommentPostServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String commentText = request.getParameter("comment");
 		
-		/* 本番用のタスクIDとログインユーザー取得のための記述
+		// 本番用のタスクIDとログインユーザー取得のための記述
 		HttpSession session = request.getSession();
 		TaskBean task = (TaskBean) session.getAttribute("task");
-		UserBean user = (UserBean) session.getAttribute("user"); */
+		UserBean user = (UserBean) session.getAttribute("user");
 		
-		//テスト用のタスクIDとログインユーザー取得のための記述
-		String userId = "t-yamada";
 		TaskDAO taskDao = new TaskDAO();
-		TaskBean task = null;
+		
 		try {
 			task = taskDao.getTaskDetail(4);
 		
@@ -73,10 +73,7 @@ public class CommentPostServlet extends HttpServlet {
 				comment.setTaskId(task.getTaskId());
 					
 				//本番用のログインユーザーをBeanに詰める記述
-				//comment.setUserId(user.getUserId());
-					
-				//テスト用のログインユーザーをBeanに詰める記述
-				comment.setUserId(userId);
+				comment.setUserId(user.getUserId());
 					
 				comment.setCommentText(commentText);
 					
