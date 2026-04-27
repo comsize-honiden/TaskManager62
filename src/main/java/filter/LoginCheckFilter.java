@@ -45,20 +45,25 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 		HttpSession session = req.getSession(false);
 		
 		//アクセスされたURLを取得
-		String path = req.getRequestURI().substring(req.getContextPath().length());
+		String requestURI = req.getRequestURI();
+		System.out.println(requestURI);
 		
 		//ログインページとログイン済みのページはチェック対象外にする
-		boolean isLoginPage = path.equals("/login.jsp");
+		boolean isLoginPage = requestURI.contains("login.jsp");
+		boolean isLoginServlet = requestURI.contains("login-servlet");
+		boolean isSamplePage = requestURI.contains("sample.jsp");
 		boolean isLoggedIn = (session != null && session.getAttribute("user") != null);
 		
-		if (isLoginPage) {
+		System.out.println(isLoginPage);
+		System.out.println(isLoginServlet);
+		System.out.println(isLoggedIn);
+		
+		if (isLoginPage || isLoginServlet || isLoggedIn || isSamplePage) {
 			//ログインページ、またはログイン済みのページならそのまま通す
 			chain.doFilter(request, response);
-			return;
-		} else if (!isLoggedIn) {
+		} else {
 			//未ログインならログイン画面へ飛ばす
 			res.sendRedirect(req.getContextPath() + "/login.jsp");
-			return;
 		}
 		chain.doFilter(request, response);
 	}
