@@ -64,16 +64,13 @@ public class TaskListServlet extends HttpServlet {
 			List<UserBean> userList = userDao.getUserList();
 			
 			HttpSession session = request.getSession();
-<<<<<<< HEAD
+
 			session.setAttribute("taskList", taskList);
 			session.setAttribute("categoryList", categoryList);
 			session.setAttribute("statusList", statusList);
 			session.setAttribute("userList", userList);
-			//session.setAttribute("user", user);
-=======
 	//		session.setAttribute("user", user);	山村コメントアウト
 			session.setAttribute("taskList", taskList); //山村追記
->>>>>>> e6f6d54 (修正　タスク編集)
 			
 			RequestDispatcher rd = request.getRequestDispatcher("task-list.jsp");
 			rd.forward(request, response);

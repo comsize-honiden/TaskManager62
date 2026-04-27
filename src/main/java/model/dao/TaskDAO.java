@@ -14,17 +14,12 @@ import model.entity.TaskBean;
 
 public class TaskDAO {
 
-<<<<<<< HEAD
+
 // タスクの登録を行うメソッド
 	public int insertTask(TaskBean task)
 		throws SQLException, ClassNotFoundException {
 		
 		int insertCount;
-=======
-	
-	//タスクの変更を行うメソッド
-	public int updateTask(TaskBean task) throws SQLException, ClassNotFoundException { 
->>>>>>> e6f6d54 (修正　タスク編集)
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement
@@ -50,17 +45,6 @@ public class TaskDAO {
 			pstmt.setString(4, userId);
 			pstmt.setString(5, statusCode);
 			pstmt.setString(6, memo);
-<<<<<<< HEAD
-=======
-			pstmt.setInt(7, taskId);
-			
-			int res = pstmt.executeUpdate();
-			
-			System.out.println("タスクネーム" + task.getTaskName());
-			System.out.println("categoryId" + categoryId);
-		
-			return res;
->>>>>>> e6f6d54 (修正　タスク編集)
 				
 			insertCount = pstmt.executeUpdate();
 		}
@@ -159,7 +143,7 @@ public class TaskDAO {
 			
 			int taskId = task.getTaskId();
 			String taskName = task.getTaskName();
-			int categoryId = task.getTaskId();
+			int categoryId = task.getCategoryId();
 			LocalDate limitDate = task.getLimitDate();
 			String limitDateStr = limitDate.toString();
 			String userId = task.getUserId();
