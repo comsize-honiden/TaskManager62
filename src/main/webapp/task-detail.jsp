@@ -133,7 +133,7 @@
 	<%=comment.getUpdateDateTime().format(formatter)%>
 	<table border=1>
 		<tr>
-			<td><%=comment.getComment()%></td>
+			<td><%=comment.getCommentText()%></td>
 		</tr>
 	</table>
 	<%
