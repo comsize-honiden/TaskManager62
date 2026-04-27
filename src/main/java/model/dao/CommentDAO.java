@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class CommentDAO {
-
+//
 	//コメントを削除するメソッド
 	public int deleteComment(int commentId) throws SQLException, ClassNotFoundException {
 		

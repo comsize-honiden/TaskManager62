@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>コメント削除成功画面</title>
+<title>コメント削除成功画面</title><% %>
 </head>
 <body>
 	<h1>コメントの削除が完了しました</h1>

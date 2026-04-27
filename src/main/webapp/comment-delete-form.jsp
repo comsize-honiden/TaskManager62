@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>コメント削除確認画面</title>
+<title>コメント削除確認画面</title><% %>
 </head>
 <body>
 	<h1>コメント削除画面</h1>
