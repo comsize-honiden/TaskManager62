@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-class CommentDAOTest {
+class CommentDeleteTest {
 ////
 	@Test
 	void コメント削除_正常() {
