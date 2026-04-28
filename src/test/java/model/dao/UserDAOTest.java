@@ -98,7 +98,19 @@ public class UserDAOTest {
 		}
 		//Assert
 		assertNotNull(userList);
-		assertEquals(3,userList.size());
+		assertEquals(3, userList.size());
+		
+		assertEquals("h-suzuki", userList.get(0).getUserId());
+		assertEquals("456", userList.get(0).getPassword());
+		assertEquals("鈴木花子", userList.get(0).getUserName());
+		
+		assertEquals("i-sato", userList.get(1).getUserId());
+		assertEquals("123", userList.get(1).getPassword());
+		assertEquals("佐藤一郎", userList.get(1).getUserName());
+		
+		assertEquals("t-yamada", userList.get(2).getUserId());
+		assertEquals("789", userList.get(2).getPassword());
+		assertEquals("山田太郎", userList.get(2).getUserName());
 	}
 /*	@Test
 	void userList生成_失敗() {
