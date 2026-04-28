@@ -99,11 +99,13 @@
 	%>
 	<form method="GET" action="task-list.jsp">
 		<input type="submit" value="タスク一覧画面へ">
-	</form>
-	<h3>コメント</h3>
-	<form method="POST" action="comment-post-form.jsp">
-		<input type="submit" value="コメントを投稿">
-	</form>
+	</form><br>
+	<h3>コメント投稿</h3>
+	<form action="comment-post-servlet" method="POST">
+		<textarea rows="4" cols="25" name="comment" maxlength="100" required></textarea><br>
+		<input type="submit" value="投稿する">
+	</form><br>
+	<h3>コメント一覧</h3>
 	<%
 	int i = 1;
 	for (CommentBean comment : commentList) {
