@@ -9,9 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import model.entity.CommentBean;
 
-public class CommentDAOTest {
+public class CommentPostTest {
 	private CommentDAO commentDao;
 	private CommentBean comment;
+	private int count;
 	
 	@BeforeEach
 	void setUp() {
@@ -22,10 +23,9 @@ public class CommentDAOTest {
 	void コメント登録_正常な入力_成功() {
 		
 		//Arrange
-		comment.setTaskId(8);
+		comment.setTaskId(1);
 		comment.setUserId("i-sato");
 		comment.setCommentText("よろしく");
-		int count = 0;
 		
 		//Act
 		try {
@@ -44,7 +44,6 @@ public class CommentDAOTest {
 		comment.setTaskId(0);
 		comment.setUserId("i-sato");
 		comment.setCommentText("よろしく");
-		int count = 0;
 		
 		//Act
 		try {
@@ -60,10 +59,9 @@ public class CommentDAOTest {
 	void コメント登録_存在しないユーザID_失敗() {
 		
 		//Arrange
-		comment.setTaskId(8);
+		comment.setTaskId(1);
 		comment.setUserId("a");
 		comment.setCommentText("よろしく");
-		int count = 0;
 		
 		//Act
 		try {
@@ -79,10 +77,9 @@ public class CommentDAOTest {
 	void コメント登録_コメントnull_失敗() {
 		
 		//Arrange
-		comment.setTaskId(8);
+		comment.setTaskId(1);
 		comment.setUserId("i-sato");
 		comment.setCommentText(null);
-		int count = 0;
 		
 		//Act
 		try {
@@ -98,12 +95,11 @@ public class CommentDAOTest {
 	void コメント登録_コメント最大文字数_成功() {
 
 		//Arrange
-		comment.setTaskId(8);
+		comment.setTaskId(1);
 		comment.setUserId("i-sato");
 		
 		//コメントの最大文字数である100文字の文字列をBeanに詰める
 		comment.setCommentText("1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890");
-		int count = 0;
 		
 		//Act
 		try {
@@ -119,12 +115,11 @@ public class CommentDAOTest {
 	void コメント登録_コメント最大文字数以上_失敗() {
 		
 		//Arrange
-		comment.setTaskId(8);
+		comment.setTaskId(1);
 		comment.setUserId("i-sato");
 		
 		//コメントの最大文字数である100文字以上の文字列をBeanに詰める
 		comment.setCommentText("12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901");
-		int count = 0;
 		
 		//Act
 		try {
