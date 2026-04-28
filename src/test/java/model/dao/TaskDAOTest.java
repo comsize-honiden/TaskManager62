@@ -2,7 +2,11 @@ package model.dao;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
@@ -137,7 +141,7 @@ class TaskDAOTest {
 	}
 	
 	@Test
-	void testInsertTask_50文字のタスク名を設定する場合_データベースに登録される() {
+	void testInsertTask_カラム長制限を超過しないタスク名を設定する場合_データベースに登録される() {
 		
 		// Arrange
 		TaskBean task = new TaskBean();
@@ -162,7 +166,7 @@ class TaskDAOTest {
 	}
 	
 	@Test
-	void testInsertTask_51文字のタスク名を設定する場合_データベースの登録に失敗する() {
+	void testInsertTask_カラム長制限を超過するタスク名を設定する場合_データベースの登録に失敗する() {
 		
 		// Arrange
 		TaskBean task = new TaskBean();
@@ -187,7 +191,7 @@ class TaskDAOTest {
 	}
 	
 	@Test
-	void testInsertTask_100文字のメモを設定する場合_データベースに登録される() {
+	void testInsertTask_カラム長制限を超過しないメモを設定する場合_データベースに登録される() {
 		
 		// Arrange
 		TaskBean task = new TaskBean();
@@ -212,7 +216,7 @@ class TaskDAOTest {
 	}
 	
 	@Test
-	void testInsertTask_101文字のメモを設定する場合_データベースの登録に失敗する() {
+	void testInsertTask_カラム長制限を超過するメモを設定する場合_データベースの登録に失敗する() {
 		
 		// Arrange
 		TaskBean task = new TaskBean();
@@ -237,14 +241,14 @@ class TaskDAOTest {
 	}
 	
 	@Test
-	void testInsertTask_期限が設定されていない場合_SQLのDATEもnullになる() {
+	void testInsertTask_期限が設定されていないタスクを登録する場合_期限のカラムにnullが登録される() {
 		
 		// Arrange
 		TaskBean task = new TaskBean();
 		TaskDAO taskDao = new TaskDAO();
-		int insertCount = 0;
+		Date limitDate = null;
 		
-		task.setTaskName("a");
+		task.setTaskName("b");
 		task.setCategoryId(1);
 		task.setLimitDate(null);
 		task.setUserId("i-sato");
@@ -253,11 +257,55 @@ class TaskDAOTest {
 		
 		// Act
 		try {
-			insertCount = taskDao.insertTask(task);
+			taskDao.insertTask(task);
+			
+			Connection con = ConnectionManager.getConnection();
+			Statement stmt = con.createStatement();
+			ResultSet res = stmt.executeQuery("SELECT limit_date FROM t_task WHERE task_name = 'b'");
+			
+			while (res.next()) {
+				limitDate = res.getDate("limit_date");
+			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 		}
 		
 		// Assert
-		assertEquals(1, insertCount);
+		assertNull(limitDate);
+	}
+	
+	@Test
+	void testInsertTask_期限が設定されているタスクを登録する場合_設定した期限が登録される() {
+		
+		// Arrange
+		TaskBean task = new TaskBean();
+		TaskDAO taskDao = new TaskDAO();
+		Date actualLimitDate = new Date(0);
+		
+		task.setTaskName("c");
+		task.setCategoryId(1);
+		task.setLimitDate(LocalDate.of(2000, 1, 1));
+		task.setUserId("i-sato");
+		task.setStatusCode("00");
+		task.setMemo("");
+		
+		// Act
+		try {
+			taskDao.insertTask(task);
+			
+			Connection con = ConnectionManager.getConnection();
+			Statement stmt = con.createStatement();
+			ResultSet res = stmt.executeQuery("SELECT limit_date FROM t_task WHERE task_name = 'c'");
+			
+			while (res.next()) {
+				actualLimitDate = res.getDate("limit_date");
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+		}
+		
+		// Assert
+		assertNotNull(actualLimitDate);
+		assertEquals(LocalDate.of(2000, 1, 1), actualLimitDate.toLocalDate());
 	}
 }
