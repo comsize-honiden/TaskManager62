@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import model.dao.TaskDAO;
 import model.entity.TaskBean;
 
-public class TaskDAOTest {
+public class TaskListTest {
 	
 	@Test
 	void task_list_成功() {
