@@ -28,7 +28,7 @@ public class UserDAOTest {
 		userList = new ArrayList<>();
 	}
 	@Test
-	void ログイン_正常_成功() {
+	void login_正常値を設定_成功() {
 		//Arrange
 		userId = "i-sato";
 		pass = "123";
@@ -46,7 +46,7 @@ public class UserDAOTest {
 		assertEquals("佐藤一郎",userName);
 	}
 	@Test
-	void ログイン_存在しないユーザID_失敗() {
+	void login_存在しないユーザIDを設定_失敗() {
 		//Arrange
 		userId = "a-aoi";
 		pass = "123";
@@ -67,7 +67,7 @@ public class UserDAOTest {
 		assertNull(userName);
 	}
 	@Test
-	void ログイン_存在しないパスワード_失敗() {
+	void login_存在しないパスワードを設定_失敗() {
 		//Arrange
 		userId = "i-sato";
 		pass = "321";
@@ -114,9 +114,10 @@ public class UserDAOTest {
 			userId = user.getUserId();
 			password = user.getPassword();
 			userName = user.getUserName();
+			
+			assertNull(userId);
+			assertNull(password);
+			assertNull(userName);
 		}
-		assertNull(userId);
-		assertNull(password);
-		assertNull(userName);
 	}*/
 }

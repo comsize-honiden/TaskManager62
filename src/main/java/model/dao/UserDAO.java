@@ -35,7 +35,7 @@ public class UserDAO {
 			return user;
 		}
 	}
-	//全ユーザー情報リストを生成するメソッド
+	//全ユーザーリストを生成するメソッド
 	public List<UserBean> getUserList() throws SQLException, ClassNotFoundException {
 		
 		List<UserBean> userList = new ArrayList<>();
