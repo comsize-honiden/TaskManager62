@@ -11,18 +11,12 @@ import java.util.List;
 import model.entity.CommentBean;
 
 public class CommentDAO {
-<<<<<<< HEAD
 	
 // コメント一覧を取得するメソッド
 	public List<CommentBean> getCommentList(int taskId) throws ClassNotFoundException, SQLException{
 		
 		String sql ="SELECT * FROM t_comment WHERE task_id = ?";
 		List<CommentBean> result = new ArrayList<CommentBean>();
-=======
-//
-	//コメントを削除するメソッド
-	public int deleteComment(int commentId) throws SQLException, ClassNotFoundException {
->>>>>>> eeffbde (提出　コメント削除機能　チェリーピック用)
 		
 		try (Connection con = ConnectionManager.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -70,5 +64,24 @@ public class CommentDAO {
 		
 		return count;
 	}
+	
+	//コメントを削除するメソッド
+	public int deleteComment(int commentId) throws SQLException, ClassNotFoundException {
+		
+		try (Connection con = ConnectionManager.getConnection();
+				PreparedStatement pstmt = con.prepareStatement
+					("DELETE FROM t_comment WHERE comment_id = ?")) {
+			
+			pstmt.setInt(1, commentId);
+			
+			int res = pstmt.executeUpdate();
+			
+			System.out.println("削除テスト：" + res);
+			
+			return res;
+			
+		}
+	}
+	
 }
 

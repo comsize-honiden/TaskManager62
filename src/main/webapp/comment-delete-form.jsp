@@ -17,18 +17,19 @@
 	
 	//コメントIDを受けとる
 	int commentId = Integer.parseInt(request.getParameter("commentId"));
+	int taskId = (int)session.getAttribute("taskId");
 	System.out.println("コメントID：" + commentId);
 	
-	List<TaskBean> taskBeanList = (List<TaskBean>)session.getAttribute("taskBeanList");
-	List<CategoryBean> categoryBeanList = (List<CategoryBean>)session.getAttribute("categoryBeanList");
-	List<UserBean> userBeanList = (List<UserBean>)session.getAttribute("userBeanList");
-	List<StatusBean> statusBeanList = (List<StatusBean>)session.getAttribute("statusBeanList");
-	List<CommentBean> commentBeanList = (List<CommentBean>)session.getAttribute("commentBeanList");
+	List<TaskBean> taskList = (List<TaskBean>)session.getAttribute("taskList");
+	List<CategoryBean> categoryList = (List<CategoryBean>)session.getAttribute("categoryList");
+	List<UserBean> userList = (List<UserBean>)session.getAttribute("userList");
+	List<StatusBean> statusList = (List<StatusBean>)session.getAttribute("statusList");
+	List<CommentBean> commentList = (List<CommentBean>)session.getAttribute("commentList");
 	
 	//コメントIDに一致するCommentBeanオブジェクトをCommentBeanListから取得
 	CommentBean comment = new CommentBean();
 	
-	for (CommentBean newComment : commentBeanList) {
+	for (CommentBean newComment : commentList) {
 		
 		if(newComment.getCommentId() == commentId) {
 			
@@ -37,14 +38,14 @@
 		}
 		
 	}
-	
-	int taskId = comment.getTaskId();
+
+	System.out.print("コメ削テストたすくID：" + taskId + comment.getUserId());
 	
 	
 	//タスクIDに一致するTaskBeanオブジェクトをtaskBeanListから取得
 	TaskBean task = new TaskBean();
 	
-	for (TaskBean newtask : taskBeanList) {
+	for (TaskBean newtask : taskList) {
 		
 		if(newtask.getTaskId() == taskId) {
 			
@@ -62,7 +63,7 @@
 	
 	String userId = comment.getUserId();
 	
-	for (UserBean newUser : userBeanList) {
+	for (UserBean newUser : userList) {
 		
 		
 		if(newUser.getUserId().equals(userId)) {
@@ -87,7 +88,7 @@
 	投稿者：<%=user.getUserName() %>&nbsp;&nbsp;&nbsp;&nbsp;
 	投稿日時:<%=updateDate.format(formatter) %><br>
 	<div style="width: 560px; height: 50px; padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-    <%=comment.getComment() %>
+    <%=comment.getCommentText() %>
 	</div>
 	
 	<table>
@@ -100,7 +101,7 @@
 				</form>
 			</td>
 			<td>
-				<form action="task-datail.jsp" method="POST">
+				<form action="task-detail.jsp" method="POST">
 					<input type="submit" value="タスク詳細画面へ">
 				</form>
 			</td>

@@ -111,7 +111,7 @@
 	<%
 	if (user.getUserId().equals(comment.getUserId())) {
 	%>
-	<a href="comment-delete-servlet?commentId=<%=comment.getCommentId()%>">
+	<a href="comment-delete-form.jsp?commentId=<%=comment.getCommentId()%>">
 	<%} %>
 	<%=i%>
 	</a>
